@@ -36,63 +36,8 @@
                 
             <div class="row mx-0 bg-success">
                 
-                <nav class="navbar navbar-dark">
-                    <button class="navbar-toggler" type="button" data-toggle="dropdown" aria-haspopup="true" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="dropdown-menu bg-success" aria-labelledby="navbarDropdown">
-
-                        <a class="nav-link text-light" href="#">Афіша та квитки</a>
-
-                        <a class="nav-link text-light" href="#">Новини міста</a>
-
-                        <a class="nav-link text-light" href="#">Прогноз погоди</a>
-                        
-                        <a class="nav-link text-light" href="#">Мапа закладів</a>
-
-                        <a class="nav-link text-light" href="#">Список закладів</a>
-
-                        <a class="nav-link text-light" href="#">Доставка та оплата</a>
-                        
-                        <a class="nav-link text-light" href="#">Технічна підтримка</a>
-                        
-                    </div>
-
-                </nav>
+                @include('navbar')
             
-                <a class="navbar-brand text-center text-uppercase" href="#">
-                    <span class="h1 font-weight-bold text-light">iCity</span><br>
-                    <span class="h6 text-dark font-weight-bold"><sup>Місто онлайн</sup></span>
-                </a>
-                
-                <button class="btn btn-outline-light rounded-circle mx-3 my-2 px-3 py-1"><i class="h1 fas fa-map-marked-alt"></i></button>
-
-                
-                <form class="form-inline my-2 my-lg-0">
-
-                    <input class="form-control mr-sm-2" type="search" placeholder="Знайти послугу або компанію" aria-label="Search">
-                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-
-                </form>
-                
-                <div class="col-4">
-                @if (Route::has('login'))
-                    @auth
-                        <a href="{{ url('/') }}">Main</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                @endif
-                </div>
-                
-                <button class="btn btn-outline-light rounded-circle mx-3 my-2 px-3 py-1"><i class="h1 fas fa-shopping-cart"></i></button>
-
-                <button class="btn btn-outline-light rounded-circle mx-3 my-2 px-3 py-1"><i class="h1 fas fa-user"></i></button>
-                
             </div>
             
             <div class="container-fluid">

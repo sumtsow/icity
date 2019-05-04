@@ -13,3 +13,6 @@
 
 // Main page
 Route::get('/', 'Controller@index')->name('index');
+
+Auth::routes();
+
