@@ -8,12 +8,12 @@
     
     @foreach($categories as $category)
     
-    <div class="card w-50 p-3 border-secondary">
+    <div class="card d-inline-block mw-50 p-3 border-light">
         <a href="{{ url('/', ['id' => $category->id]) }}">
             <img src="/img/{{ $category->image }}" class="card-img-top" alt="{{ $category->name }}">
         </a>
-        <div class="card-body">
-            <h5 class="card-title">{{ $category->name }} ({{ count($category->service) }})</h5>
+        <div class="card-body px-0">
+            <p class="card-text text-truncate">{{ $category->name }} ({{ count($category->service) }})</p>
         </div>
     </div>
     

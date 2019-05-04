@@ -26,7 +26,7 @@
 
             </div>
 
-            <a class="navbar-brand text-center text-uppercase" href="#">
+            <a class="navbar-brand text-center text-uppercase" href="/">
                 <span class="h1 font-weight-bold text-light">iCity</span><br>
                 <span class="h6 text-dark font-weight-bold"><sup>Місто онлайн</sup></span>
             </a>
@@ -70,11 +70,15 @@
         <div class="dropdown-menu bg-success mt-5 mr-5" aria-labelledby="userDropdown">
         @if (Route::has('login'))
             @auth
-                <a class="dropdown-item bg-success text-light" href="{{ route('index') }}">Home</a>
+            <a class="dropdown-item bg-success text-light">{{ Auth::user()->lastname.' '.Auth::user()->firstname  }}</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item bg-success text-light" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>   
+                
             @else
-                <a class="dropdown-item bg-success text-light" href="{{ route('login') }}">Login</a>
+            <a class="dropdown-item bg-success text-light" href="{{ route('login') }}">Login</a>
             @if (Route::has('register'))
-                <a class="dropdown-item bg-success text-light" href="{{ route('register') }}">Register</a>
+            <a class="dropdown-item bg-success text-light" href="{{ route('register') }}">Register</a>
             @endif
             @endauth
         @endif        
