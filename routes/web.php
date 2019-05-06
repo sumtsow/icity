@@ -16,4 +16,6 @@ Auth::routes(['verify' => true]);
 // Main page
 Route::get('/', 'Controller@index')->name('index');
 
-
+//Language switch action
+Route::get('/setlocale/{locale?}', 'Controller@locale')
+        ->where('locale', '[a-z]{2}');

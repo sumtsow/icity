@@ -227,5 +227,12 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-
+    
+    'locales' => ['uk', 'ru', 'en'],
+    
+    'timeformat' => [
+        'uk' => 'uk_UA.UTF-8',
+        'ru' => 'ru_RU.UTF-8',        
+        'en' => 'en_US.UTF-8',
+    ],
 ];

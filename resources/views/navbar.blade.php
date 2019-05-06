@@ -10,25 +10,25 @@
 
             <div class="dropdown-menu bg-success" aria-labelledby="navbarDropdown">
 
-                <a class="nav-link text-light" href="#">Афіша та квитки</a>
+                <a class="nav-link text-light" href="#">{{ __('app.poster & tickets') }}</a>
 
-                <a class="nav-link text-light" href="#">Новини міста</a>
+                <a class="nav-link text-light" href="#">{{ __('app.city news') }}</a>
 
-                <a class="nav-link text-light" href="#">Прогноз погоди</a>
+                <a class="nav-link text-light" href="#">{{ __('app.weather forecast') }}</a>
 
-                <a class="nav-link text-light" href="#">Мапа закладів</a>
+                <a class="nav-link text-light" href="#">{{ __('app.services map') }}</a>
 
-                <a class="nav-link text-light" href="#">Список закладів</a>
+                <a class="nav-link text-light" href="#">{{ __('app.companies list') }}</a>
 
-                <a class="nav-link text-light" href="#">Доставка та оплата</a>
+                <a class="nav-link text-light" href="#">{{ __('app.delivery & payment') }}</a>
 
-                <a class="nav-link text-light" href="#">Технічна підтримка</a>
+                <a class="nav-link text-light" href="#">{{ __('app.support') }}</a>
 
             </div>
 
             <a class="navbar-brand text-center text-uppercase" href="/">
                 <span class="h1 font-weight-bold text-light">iCity</span><br>
-                <span class="h6 text-dark font-weight-bold"><sup>Місто онлайн</sup></span>
+                <span class="h6 text-dark font-weight-bold"><sup>{{ __('app.online city') }}</sup></span>
             </a>
 
             <a class="mx-3 mt-0" href="#"><img src="/img/map.png" alt="map" /></a>
@@ -43,11 +43,11 @@
                 <div class="row w-100 justify-content-end">
 
                     <div class="col-8">
-                        <input class="form-control d-flex mr-2 " type="search" placeholder="Знайти послугу або компанію" aria-label="Search">
+                        <input class="form-control d-flex mr-2 " type="search" placeholder="{{ __('app.find service') }}" aria-label="{{ __('app.search') }}">
                     </div>
                     
                     <div class="col-2">
-                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">{{ __('app.search') }}</button>
                     </div>
                 
                 </div>
@@ -72,16 +72,17 @@
             @auth
             <a class="dropdown-item bg-success text-light">{{ Auth::user()->lastname.' '.Auth::user()->firstname  }}</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item bg-success text-light" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+            <a class="dropdown-item bg-success text-light" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('auth.Logout') }}</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>   
                 
             @else
-            <a class="dropdown-item bg-success text-light" href="{{ route('login') }}">Login</a>
+            <a class="dropdown-item bg-success text-light" href="{{ route('login') }}">{{ __('auth.login') }}</a>
             @if (Route::has('register'))
-            <a class="dropdown-item bg-success text-light" href="{{ route('register') }}">Register</a>
+            <a class="dropdown-item bg-success text-light" href="{{ route('register') }}">{{ __('auth.register') }}</a>
             @endif
             @endauth
-        @endif        
+        @endif
+            <a class="dropdown-item bg-success text-light" href="/setlocale/ru">{{ __('auth.locale') }}</a>
         </div>
 
     </div>

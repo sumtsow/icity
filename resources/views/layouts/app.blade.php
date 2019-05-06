@@ -16,8 +16,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         
     </head>
     
@@ -26,10 +24,11 @@
         <div class="container-fluid m-0 p-0">
             
             <div class="row mx-0">
-                
+                @auth
                 <div class="col">
-                    Ваше місто - Харків?
+                    {{ __('app.your city') }} - {{ Auth::user()->city->name }}?
                 </div>
+                @endauth
                 
             </div>
                 
