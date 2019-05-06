@@ -24,4 +24,6 @@ return [
     'support' => 'Техническая поддержка',
     'find service' => 'Найти услугу или компанию',
     'search' => 'Поиск',
+    'select language' => 'Выбрать язак',
+    'current language' => 'Русский',
 ];

@@ -24,4 +24,6 @@ return [
     'support' => 'Support',
     'find service' => 'Find a service or a company',
     'search' => 'Search',
+    'select language' => 'Select Language',
+    'current language' => 'English',
 ];

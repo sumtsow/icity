@@ -64,25 +64,51 @@
 
 <div class="col-3">
     
-    <div class="dropdown mt-1">
-        <a class="mx-3 my-1" href="#"><img src="/img/cart.png" alt="map" /></a> 
+    <a class="mx-3 my-1" href="#"><img src="/img/cart.png" alt="map" /></a>
+    
+    <div class="d-inline dropdown mt-1">
+       
         <a class="mx-3" href="#" data-toggle="dropdown" aria-haspopup="true" aria-label="User Parameters" id="userDropdown"><img src="/img/user.png" alt="map" /></a>
-        <div class="dropdown-menu bg-success mt-5 mr-5" aria-labelledby="userDropdown">
+        <div class="dropdown-menu bg-success mt-5 mr-2" aria-labelledby="userDropdown">
         @if (Route::has('login'))
             @auth
             <a class="dropdown-item bg-success text-light">{{ Auth::user()->lastname.' '.Auth::user()->firstname  }}</a>
             <div class="dropdown-divider"></div>
+            @endauth
+            
+            <div class="dropdown-item">
+                
+                <div class="btn-group dropleft">
+                
+                    <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ __('app.select language') }}</a>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                    @foreach(config('app.locales') as $locale)
+                        <li class="dropdown-item bg-success text-light" href="/setlocale/{{ $locale }}">{{ __('app.current language', ['locale' => $locale]) }}</li>
+                    @endforeach
+
+                    </ul>
+                
+                </div>
+                
+            </div>
+            
+            @auth
             <a class="dropdown-item bg-success text-light" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('auth.Logout') }}</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>   
                 
             @else
             <a class="dropdown-item bg-success text-light" href="{{ route('login') }}">{{ __('auth.login') }}</a>
+            
             @if (Route::has('register'))
             <a class="dropdown-item bg-success text-light" href="{{ route('register') }}">{{ __('auth.register') }}</a>
             @endif
+            
             @endauth
+            
         @endif
-            <a class="dropdown-item bg-success text-light" href="/setlocale/ru">{{ __('auth.locale') }}</a>
+            
         </div>
 
     </div>
