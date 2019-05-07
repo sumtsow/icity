@@ -5,16 +5,19 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card border-success">
-                <div class="card-header bg-success text-light">Dashboard</div>
+                <div class="card-header bg-success text-light">{{ __('auth.Dashboard') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
                     @endif
-
-                    You are logged in!
+                    <a href="/user"><h5>{{ __('admin.user admin') }}</h5></a>
+                    <a href="/category"><h5>{{ __('admin.categories admin') }}</h5></a>
+                    <a href="/service"><h5>{{ __('admin.services admin') }}</h5></a>
+                    <a href="/order"><h5>{{ __('admin.orders admin') }}</h5></a>
+                    <a href="/password"><h5>{{ __('admin.change my password') }}</h5></a>
                 </div>
             </div>
         </div>

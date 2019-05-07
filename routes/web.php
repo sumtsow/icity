@@ -17,7 +17,7 @@ Auth::routes(['verify' => true]);
 Route::get('/', 'Controller@index')->name('index');
 
 // Home page
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('can:admin, App\User')->middleware('verified');
 
 //Language switch action
 Route::get('/setlocale', 'Controller@locale')
