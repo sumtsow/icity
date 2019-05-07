@@ -49,7 +49,20 @@
                 <div class="col text-light bg-success p-3">
                     &copy; iCity 2019
                 </div>
-
+                
+                <div class="col-2 text-light bg-success p-3">
+                    <form method="get" action="/setlocale">
+                        @csrf
+                        
+                        <select class="custom-select custom-select-sm mb-3" name="locale" onChange="this.form.submit();">
+                            <option selected>{{ __('app.select language') }}</option>
+                            @foreach(config('app.locales') as $locale)
+                            <option value="{{ $locale }}">{{ __('app.current language', [], $locale) }}</option>
+                            @endforeach
+                        </select>
+                    </form>
+                </div>
+                
             </div>
             
         </div>

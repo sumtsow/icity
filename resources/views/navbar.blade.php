@@ -74,27 +74,7 @@
             @auth
             <a class="dropdown-item bg-success text-light">{{ Auth::user()->lastname.' '.Auth::user()->firstname  }}</a>
             <div class="dropdown-divider"></div>
-            @endauth
-            
-            <div class="dropdown-item">
-                
-                <div class="btn-group dropleft">
-                
-                    <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ __('app.select language') }}</a>
 
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-
-                    @foreach(config('app.locales') as $locale)
-                        <li class="dropdown-item bg-success text-light" href="/setlocale/{{ $locale }}">{{ __('app.current language', ['locale' => $locale]) }}</li>
-                    @endforeach
-
-                    </ul>
-                
-                </div>
-                
-            </div>
-            
-            @auth
             <a class="dropdown-item bg-success text-light" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('auth.Logout') }}</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>   
                 
