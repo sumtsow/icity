@@ -16,6 +16,9 @@ Auth::routes(['verify' => true]);
 // Main page
 Route::get('/', 'Controller@index')->name('index');
 
+// Home page
+Route::get('/home', 'HomeController@index')->name('home');
+
 //Language switch action
 Route::get('/setlocale', 'Controller@locale')
         ->where('locale', '[a-z]{2}');
