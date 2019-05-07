@@ -24,6 +24,11 @@ return [
     'support' => 'Техническая поддержка',
     'find service' => 'Найти услугу или компанию',
     'search' => 'Поиск',
-    'select language' => 'Выбрать язак',
+    'select language' => 'Выбрать язык',
     'current language' => 'Русский',
+    'select category' => 'Выберите категорию',
+    'provided by' => 'Предоставляется',
+    'service description' => 'Описание услуги:',
+    'price' => 'Стоимость: :price грн. за :unit',
+    'details' => 'Подробнее ...',
 ];

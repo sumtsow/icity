@@ -16,9 +16,19 @@ Auth::routes(['verify' => true]);
 // Main page
 Route::get('/', 'Controller@index')->name('index');
 
-// Home page
-Route::get('/home', 'HomeController@index')->name('home')->middleware('can:admin, App\User')->middleware('verified');
+// Category page
+Route::get('/category/{id}', 'Controller@show');
+
+// Category page
+Route::get('/service/{id}', 'ServiceController@show');
 
 //Language switch action
 Route::get('/setlocale', 'Controller@locale')
         ->where('locale', '[a-z]{2}');
+
+// Home page
+Route::get('/home', 'HomeController@index')->name('home')->middleware('can:admin, App\User')->middleware('verified');
+
+
+
+

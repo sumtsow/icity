@@ -8,8 +8,19 @@ class Service extends Model
 {
     protected $table = 'service';
     
+    /**
+     * Get the category included this service.
+     */
     public function category()
     {
-        return $this->belongsTo('\App\Category');
+        return $this->belongsTo('\App\Category', 'id_category');
+    }
+    
+    /**
+     * Get the company provided this service.
+     */
+    public function company()
+    {
+        return $this->belongsTo('\App\Company', 'id_company');
     }
 }

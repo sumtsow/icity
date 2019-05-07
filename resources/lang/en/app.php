@@ -26,4 +26,9 @@ return [
     'search' => 'Search',
     'select language' => 'Select Language',
     'current language' => 'English',
+    'select category' => 'Select a category',
+    'provided by' => 'Provided by',
+    'service description' => 'Service description:',
+    'price' => 'Price: :price hrn per :unit',
+    'details' => 'Details ...',
 ];

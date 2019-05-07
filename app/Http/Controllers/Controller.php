@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\Auth;
 use App\Category;
+use App\Service;
 
 class Controller extends BaseController
 {
@@ -21,9 +22,25 @@ class Controller extends BaseController
      */
     public function index()
     {
-        $categories = Category::all();
         return view('index',[
-            'categories' => $categories,
+            'categories' => Category::all(),
+            'name' => 'name_'.app()->getLocale(),
+        ]);
+    }
+    
+    /**
+     * Display the specified category.
+     *
+     * @param  \App\Category  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return view('category',[
+            'category' => Category::find($id),
+            'name' => 'name_'.app()->getLocale(),
+            'description' => 'description_'.app()->getLocale(),
+            'unit' => 'unit_'.app()->getLocale(),
         ]);
     }
     

@@ -26,7 +26,7 @@
             <div class="row mx-0">
                 @auth
                 <div class="col">
-                    {{ __('app.your city') }} - {{ Auth::user()->city->name }}?
+                    {{ __('app.your city') }} - {{ Auth::user()->city->$name }}?
                 </div>
                 @endauth
                 

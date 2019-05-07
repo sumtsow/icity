@@ -26,4 +26,9 @@ return [
     'search' => 'Пошук',
     'select language' => 'Обрати мову',
     'current language' => 'Українська',
+    'select category' => 'Оберіть категорію',
+    'provided by' => 'Постачається',
+    'service description' => 'Опис послуги:',
+    'price' => 'Вартість: :price грн. за :unit',
+    'details' => 'Докладніше ...',
 ];
