@@ -19,7 +19,7 @@
                     <h5 class="card-title">{{ $service->$name }}</h5>
                     <p class="card-text">{{ __('app.provided by') }}: <a href="#">{{ $service->company->$name }}</a></p>
                     <p class="card-text">{{ __('app.price', ['price' => $service->price, 'unit' => $service->$unit]) }}</p>
-                    <a class="btn btn-success" href="{{ url('/service', ['id' => $service->id]) }}">{{ __('app.details') }}</a>
+                    <a class="btn btn-success" href="{{ route('service', ['id' => $service->id]) }}">{{ __('app.details') }}</a>
                 </div>
             </div>
         </div>

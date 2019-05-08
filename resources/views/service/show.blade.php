@@ -14,6 +14,10 @@
 
 <h4 class="h4">{{ __('app.price', ['price' => $service->price, 'unit' => $service->$unit]) }}</h4>
 
+<a href="{{ route('order') }}" class="btn btn-success mt-1 mb-5">{{ __('app.add to cart') }}</a>
+
+<p>&nbsp;</p>
+
 @endif
 
 @endsection

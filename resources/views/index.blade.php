@@ -8,7 +8,7 @@
     
     @foreach($categories as $category)
     <div class="card d-inline-block mw-50 p-3 border-light">
-        <a href="{{ url('/category', ['id' => $category->id]) }}">
+        <a href="{{ route('category', ['id' => $category->id]) }}">
             <img src="/img/{{ $category->image }}" class="card-img-top" alt="{{ $category->$name }}">
         </a>
         <div class="card-body px-0">

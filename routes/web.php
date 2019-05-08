@@ -17,10 +17,13 @@ Auth::routes(['verify' => true]);
 Route::get('/', 'Controller@index')->name('index');
 
 // Category page
-Route::get('/category/{id}', 'Controller@show');
+Route::get('/category/{id}', 'Controller@show')->name('category');
 
-// Category page
-Route::get('/service/{id}', 'ServiceController@show');
+// Service page
+Route::get('/service/{id}', 'ServiceController@show')->name('service');
+
+// Order page
+Route::get('/order/create', 'OrderController@create')->name('order');
 
 //Language switch action
 Route::get('/setlocale', 'Controller@locale')

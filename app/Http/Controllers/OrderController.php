@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Service;
+use App\Order;
 use Illuminate\Http\Request;
 
-class ServiceController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +24,9 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('order.create',[
+            'name' => 'name_'.app()->getLocale(),
+        ]);
     }
 
     /**
@@ -41,26 +43,21 @@ class ServiceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Service  $service
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        return view('service.show',[
-            'service' => Service::find($id),
-            'name' => 'name_'.app()->getLocale(),
-            'description' => 'description_'.app()->getLocale(),
-            'unit' => 'unit_'.app()->getLocale(),
-        ]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Service  $service
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit(Order $order)
     {
         //
     }
@@ -69,10 +66,10 @@ class ServiceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Service  $service
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(Request $request, Order $order)
     {
         //
     }
@@ -80,10 +77,10 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Service  $service
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
+    public function destroy(Order $order)
     {
         //
     }

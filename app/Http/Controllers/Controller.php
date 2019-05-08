@@ -36,7 +36,7 @@ class Controller extends BaseController
      */
     public function show($id)
     {
-        return view('category',[
+        return view('category.show',[
             'category' => Category::find($id),
             'name' => 'name_'.app()->getLocale(),
             'description' => 'description_'.app()->getLocale(),
