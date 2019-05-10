@@ -2,7 +2,7 @@
     
     <div class="row">
         
-        <nav class="col-4 navbar navbar-dark p-0">
+        <nav class="col-5 navbar navbar-dark p-0">
             
             <button class="navbar-toggler" type="button" data-toggle="dropdown" aria-haspopup="true" aria-label="Toggle navigation" id="navbarDropdown">
                 <span class="navbar-toggler-icon"></span>
@@ -26,24 +26,23 @@
 
             </div>
 
-            <a class="navbar-brand text-center text-uppercase" href="/">
+            <a class="navbar-brand text-center text-uppercase d-none d-xs-none d-sm-none d-md-block d-lg-block d-xl-block" href="/">
                 <span class="h1 font-weight-bold text-light">iCity</span><br>
                 <span class="h6 text-dark font-weight-bold"><sup>{{ __('app.online city') }}</sup></span>
             </a>
 
-            <a class="mx-3 mt-0" href="#"><img src="/img/map.png" alt="map" /></a>
-
+            <a class="mx-3 mt-0 d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block" href="#"><img src="/img/map.png" alt="map" /></a>
 
         </nav>
 
-        <div class="col-8 d-flex align-items-center">
+        <div class="col-6 d-none d-xs-none d-sm-none d-md-block d-lg-block d-xl-block">
             
-            <form class="form my-2 my-lg-0 w-100">   
+            <form class="form my-4 w-100">   
                 
-                <div class="row w-100 justify-content-end">
+                <div class="row w-100 justify-content-end my-auto align-items-center">
 
                     <div class="col-8">
-                        <input class="form-control d-flex mr-2 " type="search" placeholder="{{ __('app.find service') }}" aria-label="{{ __('app.search') }}">
+                        <input class="form-control mr-2" type="search" placeholder="{{ __('app.find service') }}" aria-label="{{ __('app.search') }}">
                     </div>
                     
                     <div class="col-2">
@@ -62,7 +61,7 @@
 
 <div class="col-1">&nbsp;</div>
 
-<div class="col-3">
+<div class="col-3 d-none d-xs-none d-sm-none d-md-block d-lg-block d-xl-block">
     
     <a class="mx-3 my-1" href="#"><img src="/img/cart.png" alt="map" /></a>
     
