@@ -16,7 +16,7 @@
             <th scope="col">{{ __('app.id') }}</th>
             <th scope="col">{{ __('auth.lastname') }}, {{ __('auth.firstname') }}, {{ __('auth.patronymic') }}</th>
             <th scope="col">{{ __('auth.E-Mail Address') }}</th>
-            <th scope="col">{{ __('app.Role') }}</th>              
+            <th scope="col">{{ __('app.role') }}</th>              
             <th scope="col">{{ __('app.phone') }}</th>
             <th scope="col">{{ __('app.date') }}</th>
             <th scope="col">{{ __('auth.Confirmed') }}</th>                

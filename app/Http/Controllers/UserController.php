@@ -53,6 +53,24 @@ class UserController extends Controller
     {
         return view('user.edit',[
             'user' => User::where('id', $id)->first(),
+            'name' => 'name_'.app()->getLocale(),
         ]);
+    }
+    
+    /**
+     * Update the specified user in database.
+     *
+     * @param  \App\Http\Requests\UpdateUser  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UpdateUser $request, $id)
+    {
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role = $request->role;
+        //$user->save();
+        return redirect('user');
     }
 }

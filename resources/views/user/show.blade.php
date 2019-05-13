@@ -19,7 +19,7 @@
             <th>{{ __('app.email verified at') }}:</th><td>{{ date('d.m.Y H:i:s', $user->email_verified_at->getTimestamp()) }}</td>
         </tr>
         <tr>
-            <th>{{ __('app.Role') }}:</th><td>{{ $user->role }}</td>
+            <th>{{ __('app.role') }}:</th><td>{{ $user->role }}</td>
         </tr>
         <tr>
             <th>{{ __('app.company') }}:</th><td>{{ ($user->company) ? $user->company->$name : '' }}</td>
@@ -62,7 +62,7 @@
 
 <div class="row">
     <div class="col">
-        <a href="{{ url('/user/edit', ['id' => $user->id]) }}"class="btn btn-success">{{ __('app.edit') }}</a>
+        <a href="{{ route('user.edit', ['id' => $user->id]) }}"class="btn btn-success">{{ __('app.edit') }}</a>
         <a href="{{ route('user') }}" class="btn btn-secondary">{{ __('app.cancel') }}</a>
     </div>
 </div>

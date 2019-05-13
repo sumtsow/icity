@@ -32,7 +32,10 @@ Route::get('/user', 'UserController@index')->name('user')->middleware('can:admin
 Route::get('/user/{id}', 'UserController@show')->middleware('can:admin, App\User')->middleware('verified');
 
 // User edit form
-Route::get('/user/{id}/edit', 'UserController@edit')->middleware('can:admin, App\User')->middleware('verified');
+Route::get('/user/{id}/edit', 'UserController@edit')->name('user.edit')->middleware('can:admin, App\User')->middleware('verified');
+
+// User update action
+Route::put('/user/{id}', 'UserController@update')->middleware('can:admin, App\User')->middleware('verified');
 
 //Language switch action
 Route::get('/setlocale', 'Controller@locale')

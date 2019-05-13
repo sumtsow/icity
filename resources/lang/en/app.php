@@ -53,6 +53,7 @@ return [
     'upload' => 'Upload',
     'filename' => 'File Name (using Latin symbols without spaces or dots)',
     'Role' => 'Role',
+    'select role' => 'Select Role',
     'User' => 'User',
     'id' => 'ID',
     'action' => 'Posiible actions',
