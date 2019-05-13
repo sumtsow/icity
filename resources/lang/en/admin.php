@@ -31,5 +31,4 @@ return [
     'Guestbook' => 'Guestbook',
     'do you want save chenges' => 'Do you want to save chenges',
     'no' => 'No',
-    'date' => 'Date',
 ];

@@ -13,11 +13,11 @@
                         {{ session('status') }}
                     </div>
                     @endif
-                    <a href="/user"><h5>{{ __('admin.user admin') }}</h5></a>
-                    <a href="/category"><h5>{{ __('admin.categories admin') }}</h5></a>
-                    <a href="/service"><h5>{{ __('admin.services admin') }}</h5></a>
-                    <a href="/order"><h5>{{ __('admin.orders admin') }}</h5></a>
-                    <a href="/password"><h5>{{ __('admin.change my password') }}</h5></a>
+                    <a href="{{ url('/user') }}"><h5>{{ __('admin.user admin') }}</h5></a>
+                    <a href="{{ url('/category') }}"><h5>{{ __('admin.categories admin') }}</h5></a>
+                    <a href="{{ url('/service') }}"><h5>{{ __('admin.services admin') }}</h5></a>
+                    <a href="{{ url('/order') }}"><h5>{{ __('admin.orders admin') }}</h5></a>
+                    <a href="{{ url('/password') }}"><h5>{{ __('admin.change my password') }}</h5></a>
                 </div>
             </div>
         </div>

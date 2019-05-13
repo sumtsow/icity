@@ -43,4 +43,6 @@ return [
     'completly remove' => 'Completly remove',
     'yes' => 'Yes',
     'warning' => 'Warning',
+    'date' => 'Date',
+    'phone' => 'Phone Number',
 ];

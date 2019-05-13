@@ -18,6 +18,7 @@ return [
     'login' => 'Логин',
     'lastname' => 'Фамилия',
     'firstname' => 'Имя',
+    'patronymic' => 'Отчество',
     'register' => 'Регистрация',
     'E-Mail Address' => 'Электронная почта',
     'Confirmed' => 'Подтвержден',    

@@ -31,5 +31,4 @@ return [
     'Guestbook' => 'Гостевая книга',
     'do you want save chenges' => 'Сохранить изменения',
     'no' => 'Нет',
-    'date' => 'Дата',
 ];

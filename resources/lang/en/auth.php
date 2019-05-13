@@ -18,6 +18,7 @@ return [
     'login' => 'Login',
     'lastname' => 'Last Name',
     'firstname' => 'First Name',
+    'patronymic' => 'Second Name',
     'register' => 'Register',
     'E-Mail Address' => 'E-Mail Address',
     'Confirmed' => 'Confirmed',

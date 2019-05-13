@@ -47,4 +47,14 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo('\App\City', 'id_city');
     }
+    
+    /**
+    * Get the user's full name.
+    *
+    * @return string
+    */
+    public function getFullName()
+    {
+        return "{$this->lastname} {$this->firstname} {$this->patronymic}";
+    }
 }
