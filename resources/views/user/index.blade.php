@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<h2 class="my-5">{{ __('admin.user admin')}}</h2>
+<h2 class="my-5">{{ __('app.user admin')}}</h2>
 
 <div class="flex-center">{{ $users->links() }}</div>
 
@@ -13,10 +13,10 @@
 <table class="table table-sm bg-white table-striped">
     <thead class="thead-pat text-center">
         <tr>
-            <th scope="col">{{ __('admin.id') }}</th>
+            <th scope="col">{{ __('app.id') }}</th>
             <th scope="col">{{ __('auth.lastname') }}, {{ __('auth.firstname') }}, {{ __('auth.patronymic') }}</th>
             <th scope="col">{{ __('auth.E-Mail Address') }}</th>
-            <th scope="col">{{ __('admin.Role') }}</th>              
+            <th scope="col">{{ __('app.Role') }}</th>              
             <th scope="col">{{ __('app.phone') }}</th>
             <th scope="col">{{ __('app.date') }}</th>
             <th scope="col">{{ __('auth.Confirmed') }}</th>                

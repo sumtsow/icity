@@ -2,12 +2,12 @@
 
 @section('content')
 
-<h1 class="mt-3">{{ __('admin.User') }} <em>{{ $user->getFullName() }}</em></h1>
+<h1 class="mt-3">{{ __('app.User') }} <em>{{ $user->getFullName() }}</em></h1>
 
 <div class="table-responsive">
     <table class="table table-sm bg-white table-striped">
         <tr>
-            <th>{{ __('admin.id') }}:</th><td>{{ $user->id }}</td>
+            <th class="w-50">{{ __('app.id') }}:</th><td>{{ $user->id }}</td>
         </tr>
         <tr>
             <th>{{ __('auth.lastname') }} {{ __('auth.firstname') }} {{ __('auth.patronymic') }}:</th><td>{{ $user->getFullName() }}</td>
@@ -16,13 +16,19 @@
             <th>{{ __('auth.E-Mail Address') }}:</th><td>{{ $user->email }}</td>
         </tr>
         <tr>
-            <th>{{ __('admin.Role') }}:</th><td>{{ $user->role }}</td>
+            <th>{{ __('app.email verified at') }}:</th><td>{{ date('d.m.Y H:i:s', $user->email_verified_at->getTimestamp()) }}</td>
         </tr>
         <tr>
-            <th>{{ __('auth.birthdate') }}:</th><td>{{ $user->birthdate }}</td>
+            <th>{{ __('app.Role') }}:</th><td>{{ $user->role }}</td>
         </tr>
         <tr>
-            <th>{{ __('admin.city') }}:</th><td>{{ $user->city->$name }}</td>
+            <th>{{ __('app.company') }}:</th><td>{{ ($user->company) ? $user->company->$name : '' }}</td>
+        </tr>        
+        <tr>
+            <th>{{ __('app.birthdate') }}:</th><td>{{ $user->birthdate }}</td>
+        </tr>
+        <tr>
+            <th>{{ __('app.city') }}:</th><td>{{ $user->city->$name }}</td>
         </tr>
         <tr>
             <th>{{ __('app.phone') }}:</th><td>{{ $user->phone }}</td>
@@ -46,14 +52,11 @@
             <th>{{ __('app.last IP') }}:</th><td>{{ $user->last_ip }}</td>
         </tr>
         <tr>
-            <th>{{ __('app.created at') }}:</th><td>{{ $user->created_at }}</td>
+            <th>{{ __('app.created at') }}:</th><td>{{ date('d.m.Y H:i:s', $user->created_at->getTimestamp()) }}</td>
         </tr>
         <tr>
-            <th>{{ __('app.updated at') }}:</th><td>{{ $user->updated_at }}</td>
-        </tr>
-        <tr>
-            <th>{{ __('app.email verified at') }}:</th><td>{{ $user->email_verified_at }}</td>
-        </tr>        
+            <th>{{ __('app.updated at') }}:</th><td>{{ date('d.m.Y H:i:s', $user->updated_at->getTimestamp()) }}</td>
+        </tr>    
     </table>
 </div>
 

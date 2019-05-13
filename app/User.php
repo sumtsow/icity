@@ -49,6 +49,15 @@ class User extends Authenticatable implements MustVerifyEmail
     }
     
     /**
+     * Get the company for this user (is optional)
+     */
+    
+    public function company()
+    {
+        return $this->belongsTo('\App\Company', 'id_company');
+    }
+    
+    /**
     * Get the user's full name.
     *
     * @return string
