@@ -20,11 +20,6 @@ class RedirectIfAuthenticated
         if (Auth::guard($guard)->check()) {
             return redirect('/');
         }
-        
-        $user = Auth::user();
-        $user->last_ip = app()->server('REMOTE_ADDR');
-        $user->save;
-        
         return $next($request);
     }
 }

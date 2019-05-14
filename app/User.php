@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -18,7 +19,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'lastname', 'firstname', 'email', 'password',
+        'lastname', 'firstname', 'email', 'password', 'last_ip',
     ];
 
     /**
@@ -65,5 +66,22 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getFullName()
     {
         return "{$this->lastname} {$this->firstname} {$this->patronymic}";
+    }
+    
+    /**
+    * Get the user's roles list.
+    *
+    * @return array of string
+    */
+    public static function getRoles ()
+    {
+        // Pulls column string from DB
+        $enumStr = DB::select(DB::raw('SHOW COLUMNS FROM `user` WHERE FIELD = "role"'))[0]->Type;
+
+        // Parse string
+        preg_match_all("/'([^']+)'/", $enumStr, $matches);
+
+        // Return matches
+        return isset($matches[1]) ? $matches[1] : [];
     }
 }

@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\City;
-use App\Company;
-use App\Order;
+//use App\Company;
+//use App\Order;
 use App\User;
 use App\Http\Requests\CreateUser;
 use App\Http\Requests\UpdateUser;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -67,11 +67,22 @@ class UserController extends Controller
     public function store(CreateUser $request)
     {
         $user = new User();
-        $user->name = $request->name;
+        $user->lastname = $request->lastname;
+        $user->firstname = $request->firstname;
+        $user->patronymic = $request->patronymic;
         $user->email = $request->email;
-        $user->role = $request->role;
-        //$user->save();
-        return redirect('user');
+//        $user->role = $request->role;
+        $user->birthdate = $request->birthdate;
+//        $user->id_city = City::getCityByName($request->city)->id;
+        $user->phone = $request->phone;
+        $user->skype = $request->skype;
+        $user->twitter = $request->twitter;
+        $user->viber = $request->viber;  
+        $user->loyality_card = $request->loyality_card; 
+        $user->options = $request->options;
+        $user->created_at = date('Y-m-d H:i:s');
+        $user->save();
+        return redirect('user.show',['id' => $user->id]);
     }
     
     /**
@@ -103,8 +114,6 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->email_verified_at = date_create_from_format('d.m.Y H:i:s', $request->email_verified_at)->format('Y-m-d H:i:s');
         $user->role = $request->role;
-        $user->id_company = Company::getCompanyByName($request->company)->id;
-        //$user->birthdate = date_create_from_format('Y-m-d', $request->birthdate)->format('Y-m-d H:i:s');
         $user->birthdate = $request->birthdate;
         $user->id_city = City::getCityByName($request->city)->id;
         $user->phone = $request->phone;
@@ -113,7 +122,6 @@ class UserController extends Controller
         $user->viber = $request->viber;  
         $user->loyality_card = $request->loyality_card; 
         $user->options = $request->options;
-        //$user->last_ip = $request->last_ip;
         $user->updated_at = date('Y-m-d H:i:s');
         $user->save();
         return redirect('user');

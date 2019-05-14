@@ -4,117 +4,212 @@
 
 <h1 class="mt-3">{{ __('app.add') }} {{ __('app.User') }}</h1>
 
-@include('errors')
-
-<form action="{{ route('user.create') }}" method="post">
+<form action="{{ route('user.store') }}" method="post" id="user-form">
     {{ csrf_field() }}
     
             <div class="form-group row">
-                <label class="col-2" for="user-lastname">{{ __('auth.lastname') }}</label>
+                <label class="col-2" for="lastname">{{ __('auth.lastname') }} *</label>
                 <div class="col-10">
-                    <input value="" type="text" name="lastname" id="user-lastname" class="form-control" />
+                    <input value required autocomplete="lastname" type="text" name="lastname" id="lastname" class="form-control @error('lastname') is-invalid @enderror" autofocus />
+                    
+                    @error('lastname')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror   
+                    
+                </div>
+            </div>
+                                
+            <div class="form-group row">
+                <label class="col-2" for="firstname">{{ __('auth.firstname') }} *</label>
+                <div class="col-10">
+                    <input value required autocomplete="firstname" type="text" name="firstname" id="firstname" class="form-control @error('firstname') is-invalid @enderror" autofocus />
+                                        
+                    @error('firstname')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror   
+                    
                 </div>
             </div>
         
             <div class="form-group row">
-                <label class="col-2" for="user-firstname">{{ __('auth.firstname') }}</label>
+                <label class="col-2" for="patronymic">{{ __('auth.patronymic') }}</label>
                 <div class="col-10">
-                    <input value="" type="text" name="firstname" id="user-firstname" class="form-control" />
-                </div>
-            </div>
-        
-            <div class="form-group row">
-                <label class="col-2" for="user-patronymic">{{ __('auth.patronymic') }}</label>
-                <div class="col-10">
-                    <input value="" type="text" name="patronymic" id="user-patronymic" class="form-control" />
+                    <input value type="text" name="patronymic" id="patronymic" class="form-control @error('patronymic') is-invalid @enderror" autofocus />
+                                                            
+                    @error('patronymic')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror   
+                    
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-email">{{ __('auth.E-Mail Address') }}</label>
-                <div class="col-10"><input value="" type="email" name="email" id="user-email" class="form-control" /></div>
+                <label class="col-2" for="email">{{ __('auth.E-Mail Address') }} *</label>
+                <div class="col-10">
+                    <input value required autocomplete="email" type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" autofocus />
+                                        
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror   
+                    
+                </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-role">{{ __('app.role') }}</label>
+                <label class="col-2" for="role">{{ __('app.role') }} *</label>
                 <div class="col-10">
-                    <select class="form-control" name="role" id="user-role">
-                        <option value="Select Role" selected="selected">{{ __('app.select role') }}</option>
-                        <option value="guest">Guest</option>
-                        <option value="client">Client</option>
-                        <option value="operator">Operator</option>
-                        <option value="manager">Manager</option>
-                        <option value="administrator">Administrator</option>
+                    <select class="form-control @error('role') is-invalid @enderror" name="role" id="role" autofocus>
+                        @foreach($user->getRoles() as $key => $role)
+                        <option value="{{ $key }}">{{ $role }}</option>
+                        @endforeach
                     </select>
+                                                            
+                    @error('role')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror   
+                    
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-2" for="user-company">{{ __('app.company') }}</label>
+                <label class="col-2" for="company">{{ __('app.company') }}</label>
                 <div class="col-10">
-                    <input value="" type="text" name="company" id="user-company" class="form-control" />
+                    <input value="" type="text" name="company" id="company" class="form-control @error('company') is-invalid @enderror" autofocus />
+                                                            
+                    @error('company')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror   
+                    
                 </div>
             </div> 
     
             <div class="form-group row">
-                <label class="col-2" for="user-birthdate">{{ __('app.birthdate') }}</label>
+                <label class="col-2" for="birthdate">{{ __('app.birthdate') }}</label>
                 <div class="col-10">
-                    <input value="" type="date" name="birthdate" id="user-birthdate" class="form-control" />
+                    <input value="" type="date" name="birthdate" id="birthdate" class="form-control @error('birthdate') is-invalid @enderror" autofocus />
+                                                            
+                    @error('birthdate')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror   
+                    
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-city">{{ __('app.city') }}</label>
+                <label class="col-2" for="city">{{ __('app.city') }}</label>
                 <div class="col-10">
-                    <input value="" type="text" name="city" id="user-city" class="form-control" />
+                    <input value="" type="text" name="city" id="city" class="form-control @error('city') is-invalid @enderror" autofocus />
+                                                            
+                    @error('city')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror   
+                    
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-phone">{{ __('app.phone') }}</label>
+                <label class="col-2" for="phone">{{ __('app.phone') }}</label>
                 <div class="col-10">
-                    <input value="" type="tel" name="phone" id="user-phone" class="form-control" />
+                    <input value="" type="tel" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" autofocus />
+                                                            
+                    @error('phone')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror   
+                    
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-skype">Skype</label>
+                <label class="col-2" for="skype">Skype</label>
                 <div class="col-10">
-                    <input value="" type="text" name="skype" id="user-skype" class="form-control" />
+                    <input value="" type="text" name="skype" id="skype" class="form-control @error('skype') is-invalid @enderror" autofocus />
+                                                            
+                    @error('skype')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror   
+                    
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-twitter">Twitter</label>
+                <label class="col-2" for="twitter">Twitter</label>
                 <div class="col-10">
-                    <input value="" type="text" name="twitter" id="user-twitter" class="form-control" />
+                    <input value="" type="text" name="twitter" id="twitter" class="form-control @error('twitter') is-invalid @enderror" autofocus />
+                                                            
+                    @error('twitter')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror   
+                    
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-viber">Viber</label>
+                <label class="col-2" for="viber">Viber</label>
                 <div class="col-10">
-                    <input value="{{ $user->viber }}" type="text" name="viber" id="user-viber" class="form-control" />
+                    <input value="{{ $user->viber }}" type="text" name="viber" id="viber" class="form-control @error('viber') is-invalid @enderror" autofocus />
+                                                            
+                    @error('viber')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror   
+                    
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-loyality_card">{{ __('app.loyality card') }}</label>
+                <label class="col-2" for="loyality_card">{{ __('app.loyality card') }}</label>
                 <div class="col-10">
-                    <input value="{{ $user->loyality_card }}" type="text" name="loyality_card" id="user-loyality_card" class="form-control" />
+                    <input value="{{ $user->loyality_card }}" type="text" name="loyality_card" id="loyality_card" class="form-control @error('loyality_card') is-invalid @enderror" autofocus />
+                                                            
+                    @error('loyality_card')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror   
+                    
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-options">{{ __('app.options') }}</label>
+                <label class="col-2" for="options">{{ __('app.options') }}</label>
                 <div class="col-10">
-                    <input value="{{ $user->options }}" type="text" name="options" id="user-options" class="form-control" />
+                    <input value="{{ $user->options }}" type="text" name="options" id="options" class="form-control @error('options') is-invalid @enderror" autofocus />
+                                                            
+                    @error('options')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror   
+                    
                 </div>
             </div>
     
 <div class="row">
     <div class="col">
-        <button type="submit" href="{{ route('user.store', ['id' => $user->id]) }}" class="btn btn-success">{{ __('app.save') }}</button>
+        <button form="user-form" type="submit" href="{{ route('user.store') }}" class="btn btn-success">{{ __('app.save') }}</button>
         <a href="{{ route('user.index') }}" class="btn btn-secondary ml-2">{{ __('app.cancel') }}</a>
     </div>
 </div>

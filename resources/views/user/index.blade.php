@@ -17,7 +17,7 @@
 
 <div class="table-responsive">
 <table class="table table-sm bg-white table-striped">
-    <thead class="thead-pat text-center">
+    <thead class="thead-pat">
         <tr>
             <th scope="col">{{ __('app.id') }}</th>
             <th scope="col">{{ __('auth.lastname') }}, {{ __('auth.firstname') }}, {{ __('auth.patronymic') }}</th>

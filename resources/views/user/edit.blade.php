@@ -11,140 +11,137 @@
     {{ method_field('put') }}
     
             <div class="form-group row">
-                <label class="col-2" for="user-id">{{ __('app.id') }}</label>
+                <label class="col-2" for="id">{{ __('app.id') }}</label>
                 <div class="col-10">
-                    <input value="{{ $user->id }}" type="text" name="id" id="user-id" class="form-control" disabled />
+                    <input value="{{ $user->id }}" type="text" name="id" id="id" class="form-control" disabled />
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-lastname">{{ __('auth.lastname') }}</label>
+                <label class="col-2" for="lastname">{{ __('auth.lastname') }}</label>
                 <div class="col-10">
-                    <input value="{{ $user->lastname }}" type="text" name="lastname" id="user-lastname" class="form-control" />
+                    <input value="{{ $user->lastname }}" type="text" name="lastname" id="lastname" class="form-control" />
                 </div>
             </div>
         
             <div class="form-group row">
-                <label class="col-2" for="user-firstname">{{ __('auth.firstname') }}</label>
+                <label class="col-2" for="firstname">{{ __('auth.firstname') }}</label>
                 <div class="col-10">
-                    <input value="{{ $user->firstname }}" type="text" name="firstname" id="user-firstname" class="form-control" />
+                    <input value="{{ $user->firstname }}" type="text" name="firstname" id="firstname" class="form-control" />
                 </div>
             </div>
         
             <div class="form-group row">
-                <label class="col-2" for="user-patronymic">{{ __('auth.patronymic') }}</label>
+                <label class="col-2" for="patronymic">{{ __('auth.patronymic') }}</label>
                 <div class="col-10">
-                    <input value="{{ $user->patronymic }}" type="text" name="patronymic" id="user-patronymic" class="form-control" />
+                    <input value="{{ $user->patronymic }}" type="text" name="patronymic" id="patronymic" class="form-control" />
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-email">{{ __('auth.E-Mail Address') }}</label>
-                <div class="col-10"><input value="{{$user->email}}" type="email" name="email" id="user-email" class="form-control" /></div>
+                <label class="col-2" for="email">{{ __('auth.E-Mail Address') }}</label>
+                <div class="col-10"><input value="{{$user->email}}" type="email" name="email" id="email" class="form-control" /></div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-email_verified_at">{{ __('app.email verified at') }}</label>
+                <label class="col-2" for="email_verified_at">{{ __('app.email verified at') }}</label>
                 <div class="col-10">
-                    <input value="{{ date('d.m.Y H:i:s', $user->email_verified_at->getTimestamp()) }}" type="datetime" name="email_verified_at" id="user-email_verified_at" class="form-control" />
+                    <input value="{{ date('d.m.Y H:i:s', $user->email_verified_at->getTimestamp()) }}" type="datetime" name="email_verified_at" id="email_verified_at" class="form-control" />
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-role">{{ __('app.role') }}</label>
+                <label class="col-2" for="role">{{ __('app.role') }}</label>
                 <div class="col-10">
-                    <select class="form-control" name="role" id="user-role">
-                        <option value="Select Role">{{ __('app.select role') }}</option>
-                        <option value="guest" @if($user->role=='guest') selected="selected" @endif>Guest</option>
-                        <option value="client" @if($user->role=='client') selected="selected" @endif>Client</option>
-                        <option value="operator" @if($user->role=='operator') selected="selected" @endif>Operator</option>
-                        <option value="manager" @if($user->role=='manager') selected="selected" @endif>Manager</option>
-                        <option value="administrator" @if($user->role=='administrator') selected="selected" @endif>Administrator</option>
+                    <select class="form-control" name="role" id="role">
+                        @foreach($user->getRoles() as $role)
+                        <option value="{{ $role }}" @if($user->role == $role) selected @endif>{{ ucfirst( $role ) }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-2" for="user-company">{{ __('app.company') }}</label>
+                <label class="col-2" for="company">{{ __('app.company') }}</label>
                 <div class="col-10">
-                    <input value="{{ $user->company->$name }}" type="text" name="company" id="user-company" class="form-control" />
+                    <input value="{{ $user->company->$name }}" type="text" name="company" id="company" class="form-control" />
                 </div>
             </div> 
     
             <div class="form-group row">
-                <label class="col-2" for="user-birthdate">{{ __('app.birthdate') }}</label>
+                <label class="col-2" for="birthdate">{{ __('app.birthdate') }}</label>
                 <div class="col-10">
-                    <input value="{{ $user->birthdate }}" type="date" name="birthdate" id="user-birthdate" class="form-control" />
+                    <input value="{{ $user->birthdate }}" type="date" name="birthdate" id="birthdate" class="form-control" />
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-city">{{ __('app.city') }}</label>
+                <label class="col-2" for="city">{{ __('app.city') }}</label>
                 <div class="col-10">
-                    <input value="{{ $user->city->$name }}" type="text" name="city" id="user-city" class="form-control" />
+                    <input value="{{ $user->city->$name }}" type="text" name="city" id="city" class="form-control" />
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-phone">{{ __('app.phone') }}</label>
+                <label class="col-2" for="phone">{{ __('app.phone') }}</label>
                 <div class="col-10">
-                    <input value="{{ $user->phone }}" type="tel" name="phone" id="user-phone" class="form-control" />
+                    <input value="{{ $user->phone }}" type="tel" name="phone" id="phone" class="form-control" />
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-skype">Skype</label>
+                <label class="col-2" for="skype">Skype</label>
                 <div class="col-10">
-                    <input value="{{ $user->skype }}" type="text" name="skype" id="user-skype" class="form-control" />
+                    <input value="{{ $user->skype }}" type="text" name="skype" id="skype" class="form-control" />
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-twitter">Twitter</label>
+                <label class="col-2" for="twitter">Twitter</label>
                 <div class="col-10">
-                    <input value="{{ $user->twitter }}" type="text" name="twitter" id="user-twitter" class="form-control" />
+                    <input value="{{ $user->twitter }}" type="text" name="twitter" id="twitter" class="form-control" />
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-viber">Viber</label>
+                <label class="col-2" for="viber">Viber</label>
                 <div class="col-10">
-                    <input value="{{ $user->viber }}" type="text" name="viber" id="user-viber" class="form-control" />
+                    <input value="{{ $user->viber }}" type="text" name="viber" id="viber" class="form-control" />
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-loyality_card">{{ __('app.loyality card') }}</label>
+                <label class="col-2" for="loyality_card">{{ __('app.loyality card') }}</label>
                 <div class="col-10">
-                    <input value="{{ $user->loyality_card }}" type="text" name="loyality_card" id="user-loyality_card" class="form-control" />
+                    <input value="{{ $user->loyality_card }}" type="text" name="loyality_card" id="loyality_card" class="form-control" />
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-options">{{ __('app.options') }}</label>
+                <label class="col-2" for="options">{{ __('app.options') }}</label>
                 <div class="col-10">
-                    <input value="{{ $user->options }}" type="text" name="options" id="user-options" class="form-control" />
+                    <input value="{{ $user->options }}" type="text" name="options" id="options" class="form-control" />
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-last_ip">{{ __('app.last IP') }}</label>
+                <label class="col-2" for="last_ip">{{ __('app.last IP') }}</label>
                 <div class="col-10">
-                    <input value="{{ $user->last_ip }}" type="tetx" name="last_ip" id="user-last_ip" class="form-control" disabled />
+                    <input value="{{ $user->last_ip }}" type="tetx" name="last_ip" id="last_ip" class="form-control" disabled />
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-created_at">{{ __('app.created at') }}</label>
+                <label class="col-2" for="created_at">{{ __('app.created at') }}</label>
                 <div class="col-10">
-                    <input value="{{ date('d.m.Y H:i:s', $user->created_at->getTimestamp()) }}" type="datetime" name="created_at" id="user-created_at" class="form-control" disabled />
+                    <input value="{{ date('d.m.Y H:i:s', $user->created_at->getTimestamp()) }}" type="datetime" name="created_at" id="created_at" class="form-control" disabled />
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-updated_at">{{ __('app.updated at') }}</label>
+                <label class="col-2" for="updated_at">{{ __('app.updated at') }}</label>
                 <div class="col-10">
-                    <input value="{{ date('d.m.Y H:i:s', $user->updated_at->getTimestamp()) }}" type="datetime" name="updated_at" id="user-updated_at" class="form-control" disabled />
+                    <input value="{{ date('d.m.Y H:i:s', $user->updated_at->getTimestamp()) }}" type="datetime" name="updated_at" id="updated_at" class="form-control" disabled />
                 </div>
             </div>
 

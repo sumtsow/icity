@@ -25,7 +25,7 @@
             <th>{{ __('app.company') }}:</th><td>{{ ($user->company) ? $user->company->$name : '' }}</td>
         </tr>        
         <tr>
-            <th>{{ __('app.birthdate') }}:</th><td>{{ date_create_from_format('Y-m-d', $user->birthdate)->format('d.m.Y') }}</td>
+            <th>{{ __('app.birthdate') }}:</th><td>{{ ($user->birthdate) ? date('d.m.Y', strtotime($user->birthdate)) : null }}</td>
         </tr>
         <tr>
             <th>{{ __('app.city') }}:</th><td>{{ $user->city->$name }}</td>
