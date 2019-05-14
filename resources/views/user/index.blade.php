@@ -9,7 +9,7 @@
 
 <div class="row">
     <div class="col">
-        <a href="{{ route('user.create') }}"class="btn btn-success mb-3">{{ __('app.add') }}</a>
+        <a href="{{ route('user.create') }}"  class="btn btn-success mb-3">{{ __('app.add') }}</a>
     </div>
 </div>
 
@@ -38,7 +38,7 @@
             <td>{{ $user->phone }}</td>
             <td>{{ date('d.m.Y', $user->created_at->getTimestamp()) }}</td>
             <td>
-                <form id="switch-form" action="{{ url('/user/switchstate/'.$user->id) }}">
+                <form id="switch-form" action="{{ route('switchstate', ['id' => $user->id]) }}">
                     @csrf
                     <input type="checkbox" @if($user->email_verified_at) checked="checked" @endif onClick="this.form.submit();" />
                 </form>

@@ -24,7 +24,6 @@ class Controller extends BaseController
     {
         return view('index',[
             'categories' => Category::all(),
-            'name' => 'name_'.app()->getLocale(),
         ]);
     }
     
@@ -38,9 +37,6 @@ class Controller extends BaseController
     {
         return view('category.show',[
             'category' => Category::find($id),
-            'name' => 'name_'.app()->getLocale(),
-            'description' => 'description_'.app()->getLocale(),
-            'unit' => 'unit_'.app()->getLocale(),
         ]);
     }
     

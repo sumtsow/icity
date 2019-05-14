@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::share([
+            'name' => 'name_'.app()->getLocale(),
+            'description' => 'description_'.app()->getLocale(),
+            'unit' => 'unit_'.app()->getLocale(),
+            ]);
     }
 }

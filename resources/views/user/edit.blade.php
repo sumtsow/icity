@@ -2,11 +2,11 @@
 
 @section('content')
 
-@include('errors')
-
 <h1 class="mt-3">{{ __('app.User') }} <em>{{ $user->getFullName() }}</em></h1>
 
-<form action="{{ url('user', ['id' => $user->id]) }}" method="post">
+@include('errors')
+
+<form action="{{ route('user.update', ['id' => $user->id]) }}" method="post">
     {{ csrf_field() }}
     {{ method_field('put') }}
     

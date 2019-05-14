@@ -31,7 +31,6 @@ class UserController extends Controller
     {
         return view('user.index', [
             'users' => User::orderBy('email', 'asc')->paginate(\App::environment('paginate')),
-            'name' => 'name_'.app()->getLocale(),
         ]);
     }
     /**
@@ -44,7 +43,6 @@ class UserController extends Controller
     {
         return view('user.show',[
             'user' => User::where('id', $id)->first(),
-            'name' => 'name_'.app()->getLocale(),
         ]);
     }
     
@@ -57,7 +55,6 @@ class UserController extends Controller
     {
         return view('user.create',[
             'user' => new User(),
-            'name' => 'name_'.app()->getLocale(),
         ]);
     }
     
@@ -87,7 +84,6 @@ class UserController extends Controller
     {
         return view('user.edit',[
             'user' => User::where('id', $id)->first(),
-            'name' => 'name_'.app()->getLocale(),
         ]);
     }
     
@@ -131,7 +127,53 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //User::destroy($id);
+        User::destroy($id);
         return redirect('user');
+    }
+    
+    /**
+     * Switch on/off user account state used by `email_verified_at` field.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function switchstate($id)
+    {
+        $user = User::find($id);
+        $user->email_verified_at ? $user->email_verified_at = null : $user->email_verified_at = date("Y-m-d H:i:s");
+        $user->save();
+        return redirect('user');
+    }
+        
+    /**
+     * Change password form
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function passwd()
+    {
+        return view('me');
+    }
+    
+    /**
+     * Change password action
+     *
+     * @param  \App\Http\Requests\UpdatePassword  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function savepasswd(UpdatePassword $request)
+    {
+        $user = User::find(Auth::id());
+        if($request->password) {
+            $user->password = bcrypt($request->password);
+            $user->updated_at = date("Y-m-d H:i:s");
+        }
+        $user->save();
+        if($user->role == 'administrator') {
+            return redirect('user');
+        }
+        else {
+            return redirect()->back();
+        }
     }
 }
