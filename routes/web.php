@@ -25,8 +25,16 @@ Route::get('/service/{id}', 'ServiceController@show')->name('service');
 // Order page
 Route::get('/order/create', 'OrderController@create')->name('order');
 
-// Users list view
+Route::resource('user', 'UserController');
+
+/*// Users list view
 Route::get('/user', 'UserController@index')->name('user')->middleware('can:admin, App\User')->middleware('verified');
+
+// User create form
+Route::get('/user/create', 'UserController@create')->name('user.create')->middleware('can:admin, App\User')->middleware('verified');
+
+// User store action
+Route::post('/user', 'UserController@store')->middleware('can:admin, App\User')->middleware('verified');
 
 // User show form
 Route::get('/user/{id}', 'UserController@show')->middleware('can:admin, App\User')->middleware('verified');
@@ -36,6 +44,9 @@ Route::get('/user/{id}/edit', 'UserController@edit')->name('user.edit')->middlew
 
 // User update action
 Route::put('/user/{id}', 'UserController@update')->middleware('can:admin, App\User')->middleware('verified');
+
+// User delete action
+Route::delete('/user/{id}', 'UserController@destroy')->middleware('can:admin, App\User')->middleware('verified');*/
 
 //Language switch action
 Route::get('/setlocale', 'Controller@locale')

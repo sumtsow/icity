@@ -15,4 +15,13 @@ class City extends Model
     {
         return $this->hasMany('\App\User');
     }
+        
+    /**
+     * Get the city with specified name.
+     */
+    public static function getCityByName($name)
+    {
+        $fieldname = 'name_'.app()->getLocale();
+        return City::where($fieldname, $name)->first();
+    }
 }

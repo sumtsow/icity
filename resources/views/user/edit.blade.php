@@ -6,7 +6,7 @@
 
 <h1 class="mt-3">{{ __('app.User') }} <em>{{ $user->getFullName() }}</em></h1>
 
-<form action="{{ route('user', ['id' => $user->id]) }}" method="post">
+<form action="{{ url('user', ['id' => $user->id]) }}" method="post">
     {{ csrf_field() }}
     {{ method_field('put') }}
     
@@ -46,14 +46,14 @@
             <div class="form-group row">
                 <label class="col-2" for="user-email_verified_at">{{ __('app.email verified at') }}</label>
                 <div class="col-10">
-                    <input value="{{$user->email_verified_at}}" type="datetime" name="email_verified_at" id="user-email_verified_at" class="form-control" />
+                    <input value="{{ date('d.m.Y H:i:s', $user->email_verified_at->getTimestamp()) }}" type="datetime" name="email_verified_at" id="user-email_verified_at" class="form-control" />
                 </div>
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="user-patronymic">{{ __('app.role') }}</label>
+                <label class="col-2" for="user-role">{{ __('app.role') }}</label>
                 <div class="col-10">
-                    <select class="form-control" name="role" id="user-role" class="form-control">
+                    <select class="form-control" name="role" id="user-role">
                         <option value="Select Role">{{ __('app.select role') }}</option>
                         <option value="guest" @if($user->role=='guest') selected="selected" @endif>Guest</option>
                         <option value="client" @if($user->role=='client') selected="selected" @endif>Client</option>
@@ -130,33 +130,32 @@
             <div class="form-group row">
                 <label class="col-2" for="user-last_ip">{{ __('app.last IP') }}</label>
                 <div class="col-10">
-                    <input value="{{ $user->last_ip }}" type="tetx" name="last_ip" id="user-last_ip" class="form-control" />
+                    <input value="{{ $user->last_ip }}" type="tetx" name="last_ip" id="user-last_ip" class="form-control" disabled />
                 </div>
             </div>
     
             <div class="form-group row">
                 <label class="col-2" for="user-created_at">{{ __('app.created at') }}</label>
                 <div class="col-10">
-                    <input value="{{ $user->created_at }}" type="datetime" name="created_at" id="user-created_at" class="form-control" />
+                    <input value="{{ date('d.m.Y H:i:s', $user->created_at->getTimestamp()) }}" type="datetime" name="created_at" id="user-created_at" class="form-control" disabled />
                 </div>
             </div>
     
             <div class="form-group row">
                 <label class="col-2" for="user-updated_at">{{ __('app.updated at') }}</label>
                 <div class="col-10">
-                    <input value="{{ $user->updated_at }}" type="datetime" name="updated_at" id="user-updated_at" class="form-control" />
+                    <input value="{{ date('d.m.Y H:i:s', $user->updated_at->getTimestamp()) }}" type="datetime" name="updated_at" id="user-updated_at" class="form-control" disabled />
                 </div>
-            </div>    
-
-</form> 
-
+            </div>
 
 <div class="row">
     <div class="col">
-        <a href="{{ route('user.edit', ['id' => $user->id]) }}"class="btn btn-success">{{ __('app.edit') }}</a>
-        <a href="{{ route('user') }}" class="btn btn-secondary">{{ __('app.cancel') }}</a>
+        <button type="submit" href="{{ route('user.update', ['id' => $user->id]) }}" class="btn btn-success">{{ __('app.save') }}</button>
+        <a href="{{ route('user.index') }}" class="btn btn-secondary ml-2">{{ __('app.cancel') }}</a>
     </div>
 </div>
+
+</form> 
 
 <div class="row my-5"></div>
 

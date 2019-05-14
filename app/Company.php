@@ -14,5 +14,14 @@ class Company extends Model
     public function service()
     {
         return $this->hasMany('\App\Service', 'id_company');
-    }  
+    }
+    
+    /**
+     * Get the company with specified name.
+     */
+    public static function getCompanyByName($name)
+    {
+        $fieldname = 'name_'.app()->getLocale();
+        return Company::where($fieldname, $name)->first();
+    }
 }

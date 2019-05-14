@@ -25,7 +25,7 @@
             <th>{{ __('app.company') }}:</th><td>{{ ($user->company) ? $user->company->$name : '' }}</td>
         </tr>        
         <tr>
-            <th>{{ __('app.birthdate') }}:</th><td>{{ $user->birthdate }}</td>
+            <th>{{ __('app.birthdate') }}:</th><td>{{ date_create_from_format('Y-m-d', $user->birthdate)->format('d.m.Y') }}</td>
         </tr>
         <tr>
             <th>{{ __('app.city') }}:</th><td>{{ $user->city->$name }}</td>
@@ -63,7 +63,7 @@
 <div class="row">
     <div class="col">
         <a href="{{ route('user.edit', ['id' => $user->id]) }}"class="btn btn-success">{{ __('app.edit') }}</a>
-        <a href="{{ route('user') }}" class="btn btn-secondary">{{ __('app.cancel') }}</a>
+        <a href="{{ route('user.index') }}" class="btn btn-secondary ml-2">{{ __('app.cancel') }}</a>
     </div>
 </div>
 

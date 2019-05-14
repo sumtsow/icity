@@ -7,6 +7,12 @@
 @section('content')
 <h2 class="my-5">{{ __('app.user admin')}}</h2>
 
+<div class="row">
+    <div class="col">
+        <a href="{{ route('user.create') }}"class="btn btn-success mb-3">{{ __('app.add') }}</a>
+    </div>
+</div>
+
 <div class="flex-center">{{ $users->links() }}</div>
 
 <div class="table-responsive">
