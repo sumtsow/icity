@@ -46,7 +46,7 @@
             <div class="form-group row">
                 <label class="col-2" for="email_verified_at">{{ __('app.email verified at') }}</label>
                 <div class="col-10">
-                    <input value="{{ date('d.m.Y H:i:s', $user->email_verified_at->getTimestamp()) }}" type="datetime" name="email_verified_at" id="email_verified_at" class="form-control" />
+                    <input value="{{ ($user->email_verified_at) ? date('d.m.Y H:i:s', $user->email_verified_at) : null }}" type="datetime" name="email_verified_at" id="email_verified_at" class="form-control" />
                 </div>
             </div>
     
@@ -64,7 +64,7 @@
             <div class="form-group row">
                 <label class="col-2" for="company">{{ __('app.company') }}</label>
                 <div class="col-10">
-                    <input value="{{ $user->company->$name }}" type="text" name="company" id="company" class="form-control" />
+                    <input value="{{ ($user->company) ? $user->company->$name : '' }}" type="text" name="company" id="company" class="form-control" />
                 </div>
             </div> 
     
@@ -78,7 +78,7 @@
             <div class="form-group row">
                 <label class="col-2" for="city">{{ __('app.city') }}</label>
                 <div class="col-10">
-                    <input value="{{ $user->city->$name }}" type="text" name="city" id="city" class="form-control" />
+                    <input value="{{ ($user->city) ? $user->city->$name : '' }}" type="text" name="city" id="city" class="form-control" />
                 </div>
             </div>
     

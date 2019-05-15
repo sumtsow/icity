@@ -16,7 +16,7 @@
             <th>{{ __('auth.E-Mail Address') }}:</th><td>{{ $user->email }}</td>
         </tr>
         <tr>
-            <th>{{ __('app.email verified at') }}:</th><td>{{ date('d.m.Y H:i:s', $user->email_verified_at->getTimestamp()) }}</td>
+            <th>{{ __('app.email verified at') }}:</th><td>{{ ($user->email_verified_at) ? date('d.m.Y H:i:s', $user->email_verified_at) : null }}</td>
         </tr>
         <tr>
             <th>{{ __('app.role') }}:</th><td>{{ $user->role }}</td>
@@ -28,7 +28,7 @@
             <th>{{ __('app.birthdate') }}:</th><td>{{ ($user->birthdate) ? date('d.m.Y', strtotime($user->birthdate)) : null }}</td>
         </tr>
         <tr>
-            <th>{{ __('app.city') }}:</th><td>{{ $user->city->$name }}</td>
+            <th>{{ __('app.city') }}:</th><td>{{  ($user->city) ? $user->city->$name : '' }}</td>
         </tr>
         <tr>
             <th>{{ __('app.phone') }}:</th><td>{{ $user->phone }}</td>

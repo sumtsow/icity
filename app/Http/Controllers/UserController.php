@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\City;
-//use App\Company;
+use App\Company;
 //use App\Order;
 use App\User;
 use App\Http\Requests\CreateUser;
@@ -71,18 +71,20 @@ class UserController extends Controller
         $user->firstname = $request->firstname;
         $user->patronymic = $request->patronymic;
         $user->email = $request->email;
-//        $user->role = $request->role;
+        $user->email_verified_at = ($user->email_verified_at) ? date('d.m.Y H:i:s') : null;
+        $user->password = bcrypt($request->password);
+        $user->role = $request->role;
+        $user->id_company = ($request->company) ? Company::getCompanyByName($request->company)->id : null;
         $user->birthdate = $request->birthdate;
-//        $user->id_city = City::getCityByName($request->city)->id;
+        $user->id_city = ($request->city) ? City::getCityByName($request->city)->id : null;
         $user->phone = $request->phone;
         $user->skype = $request->skype;
         $user->twitter = $request->twitter;
         $user->viber = $request->viber;  
         $user->loyality_card = $request->loyality_card; 
         $user->options = $request->options;
-        $user->created_at = date('Y-m-d H:i:s');
         $user->save();
-        return redirect('user.show',['id' => $user->id]);
+        return redirect(route('user.show',['id' => $user->id]));
     }
     
     /**
@@ -112,19 +114,19 @@ class UserController extends Controller
         $user->firstname = $request->firstname;
         $user->patronymic = $request->patronymic;
         $user->email = $request->email;
-        $user->email_verified_at = date_create_from_format('d.m.Y H:i:s', $request->email_verified_at)->format('Y-m-d H:i:s');
+        $user->email_verified_at = ($user->email_verified_at) ? date('d.m.Y H:i:s') : null;
         $user->role = $request->role;
+        $user->id_company = ($request->company) ? Company::getCompanyByName($request->company)->id : null;
         $user->birthdate = $request->birthdate;
-        $user->id_city = City::getCityByName($request->city)->id;
+        $user->id_city = ($request->city) ? City::getCityByName($request->city)->id : null;
         $user->phone = $request->phone;
         $user->skype = $request->skype;
         $user->twitter = $request->twitter;
         $user->viber = $request->viber;  
         $user->loyality_card = $request->loyality_card; 
         $user->options = $request->options;
-        $user->updated_at = date('Y-m-d H:i:s');
         $user->save();
-        return redirect('user');
+        return redirect(route('user.show',['id' => $user->id]));
     }
         
     /**
