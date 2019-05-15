@@ -36,7 +36,7 @@
             <td><a href="{{ url('/user', ['id' => $user->id]) }}">{{ $user->email }}</a></td>
             <td @if($user->role =='administrator') class="text-danger" @endif>{{ $user->role }}</td>               
             <td>{{ $user->phone }}</td>
-            <td>{{ date('d.m.Y', $user->created_at->getTimestamp()) }}</td>
+            <td>{{ $user->created_at->format('d.m.Y') }}</td>
             <td>
                 <form id="switch-form" action="{{ route('switchstate', ['id' => $user->id]) }}">
                     @csrf

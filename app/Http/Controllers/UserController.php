@@ -71,12 +71,12 @@ class UserController extends Controller
         $user->firstname = $request->firstname;
         $user->patronymic = $request->patronymic;
         $user->email = $request->email;
-        $user->email_verified_at = ($user->email_verified_at) ? date('d.m.Y H:i:s') : null;
+        $user->email_verified_at = ($user->email_verified_at) ? now() : null;
         $user->password = bcrypt($request->password);
         $user->role = $request->role;
-        $user->id_company = ($request->company) ? Company::getCompanyByName($request->company)->id : null;
+        $user->id_company = $request->company;
         $user->birthdate = $request->birthdate;
-        $user->id_city = ($request->city) ? City::getCityByName($request->city)->id : null;
+        $user->id_city = $request->city;
         $user->phone = $request->phone;
         $user->skype = $request->skype;
         $user->twitter = $request->twitter;
@@ -114,11 +114,11 @@ class UserController extends Controller
         $user->firstname = $request->firstname;
         $user->patronymic = $request->patronymic;
         $user->email = $request->email;
-        $user->email_verified_at = ($user->email_verified_at) ? date('d.m.Y H:i:s') : null;
+        ($request->email_verified_at == 'on') ? $user->email_verified_at = now() : $user->email_verified_at = null;
         $user->role = $request->role;
-        $user->id_company = ($request->company) ? Company::getCompanyByName($request->company)->id : null;
+        $user->id_company = $request->company;
         $user->birthdate = $request->birthdate;
-        $user->id_city = ($request->city) ? City::getCityByName($request->city)->id : null;
+        $user->id_city = $request->city;
         $user->phone = $request->phone;
         $user->skype = $request->skype;
         $user->twitter = $request->twitter;
@@ -150,7 +150,7 @@ class UserController extends Controller
     public function switchstate($id)
     {
         $user = User::find($id);
-        $user->email_verified_at ? $user->email_verified_at = null : $user->email_verified_at = date("Y-m-d H:i:s");
+        $user->email_verified_at ? $user->email_verified_at = null : $user->email_verified_at = now();
         $user->save();
         return redirect('user');
     }
@@ -176,7 +176,7 @@ class UserController extends Controller
         $user = User::find(Auth::id());
         if($request->password) {
             $user->password = bcrypt($request->password);
-            $user->updated_at = date("Y-m-d H:i:s");
+            $user->updated_at = now();
         }
         $user->save();
         if($user->role == 'administrator') {

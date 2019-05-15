@@ -71,7 +71,10 @@
         <div class="dropdown-menu bg-success mt-5 mr-2" aria-labelledby="userDropdown">
         @if (Route::has('login'))
             @auth
-            <a class="dropdown-item bg-success text-light" href="{{ route('home') }}">{{ Auth::user()->lastname.' '.Auth::user()->firstname  }}</a>
+            <p class="dropdown-item bg-success text-light">{{ Auth::user()->lastname.' '.Auth::user()->firstname  }}</p>
+            <div class="dropdown-divider"></div>
+            
+            <a class="dropdown-item bg-success text-light" href="{{ route('home') }}">{{ __('auth.Dashboard') }}</a>
             <div class="dropdown-divider"></div>
 
             <a class="dropdown-item bg-success text-light" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('auth.Logout') }}</a>

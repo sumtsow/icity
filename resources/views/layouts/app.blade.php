@@ -27,7 +27,7 @@
             <div class="row mx-0">
                 @auth
                 <div class="col">
-                    {{ __('app.your city') }} - {{ Auth::user()->city->$name }}?
+                    {{ __('app.your city') }} - {{ (Auth::user()->city) ? Auth::user()->city->$name : null }}?
                 </div>
                 @endauth
                 
@@ -43,6 +43,12 @@
                 
                 @yield('content')
                 
+            </div>
+            
+            <div class="row">
+                <div class="col my-5">
+                    &nbsp;
+                </div>
             </div>
                 
             <div class="row mx-0 fixed-bottom">

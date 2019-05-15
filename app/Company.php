@@ -24,4 +24,5 @@ class Company extends Model
         $fieldname = 'name_'.app()->getLocale();
         return Company::where($fieldname, $name)->first();
     }
+    
 }

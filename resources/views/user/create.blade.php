@@ -80,6 +80,7 @@
                 <label class="col-2" for="role">{{ __('app.role') }} *</label>
                 <div class="col-10">
                     <select class="form-control @error('role') is-invalid @enderror" name="role" id="role" autofocus>
+                        <option selected>{{ __('app.select role') }}</option>
                         @foreach($user->getRoles() as $key => $role)
                         <option value="{{ $key }}">{{ $role }}</option>
                         @endforeach
@@ -97,7 +98,13 @@
             <div class="form-group row">
                 <label class="col-2" for="company">{{ __('app.company') }}</label>
                 <div class="col-10">
-                    <input value="{{ old('company') }}" type="text" name="company" id="company" class="form-control @error('company') is-invalid @enderror" autofocus />
+                    
+                    <select class="form-control @error('company') is-invalid @enderror" name="company" id="company" autofocus>
+                        <option selected>{{ __('app.select company') }}</option>
+                        @foreach(App\Company::all() as $company)
+                        <option value="{{ $company->id }}">{{ $company->$name }}</option>
+                        @endforeach
+                    </select>
                                                             
                     @error('company')
                         <span class="invalid-feedback" role="alert">
@@ -125,7 +132,13 @@
             <div class="form-group row">
                 <label class="col-2" for="city">{{ __('app.city') }}</label>
                 <div class="col-10">
-                    <input value="{{ old('city') }}" type="text" name="city" id="city" class="form-control @error('city') is-invalid @enderror" autofocus />
+                    
+                    <select class="form-control @error('city') is-invalid @enderror" name="city" id="city" autofocus>
+                        <option selected>{{ __('app.select city') }}</option>
+                        @foreach(App\City::all() as $city)
+                        <option value="{{ $city->id }}">{{ $city->$name }}</option>
+                        @endforeach
+                    </select>
                                                             
                     @error('city')
                         <span class="invalid-feedback" role="alert">

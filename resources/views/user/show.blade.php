@@ -2,7 +2,10 @@
 
 @section('content')
 
-<h1 class="mt-3">{{ __('app.User') }} <em>{{ $user->getFullName() }}</em></h1>
+<h1 class="mt-3">
+    {{ __('app.User') }} <em>{{ $user->getFullName() }}</em>
+    <button class="btn btn-danger" data-toggle="modal" data-target="#Modal">{{ __('app.delete') }}</button>
+</h1>
 
 <div class="table-responsive">
     <table class="table table-sm bg-white table-striped">
@@ -16,7 +19,7 @@
             <th>{{ __('auth.E-Mail Address') }}:</th><td>{{ $user->email }}</td>
         </tr>
         <tr>
-            <th>{{ __('app.email verified at') }}:</th><td>{{ ($user->email_verified_at) ? date('d.m.Y H:i:s', $user->email_verified_at) : null }}</td>
+            <th>{{ __('app.email verified at') }}:</th><td>{{ ($user->email_verified_at) ? $user->email_verified_at->format('d.m.Y H:i:s') : null }}</td>
         </tr>
         <tr>
             <th>{{ __('app.role') }}:</th><td>{{ $user->role }}</td>
@@ -25,7 +28,7 @@
             <th>{{ __('app.company') }}:</th><td>{{ ($user->company) ? $user->company->$name : '' }}</td>
         </tr>        
         <tr>
-            <th>{{ __('app.birthdate') }}:</th><td>{{ ($user->birthdate) ? date('d.m.Y', strtotime($user->birthdate)) : null }}</td>
+            <th>{{ __('app.birthdate') }}:</th><td>{{ ($user->birthdate) ? $user->birthdate->format('d.m.Y') : null }}</td>
         </tr>
         <tr>
             <th>{{ __('app.city') }}:</th><td>{{  ($user->city) ? $user->city->$name : '' }}</td>
@@ -67,8 +70,29 @@
     </div>
 </div>
 
-<div class="row my-5"></div>
-
+<div class="modal" id="Modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{__('app.warning')}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <p>{{__('app.completly remove')}} <b>{{ $user->lastname }} {{ $user->firstname }}?</b></p>
+      </div>
+      <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('app.cancel')}}</button>
+            <form action="{{ route('user.destroy', ['id' => $user->id]) }}" method="post">        
+                <button type="button" class="btn btn-danger" onclick="this.form.submit();">{{__('app.yes')}}</button>
+                {{csrf_field()}}
+                {{method_field('delete')}}
+            </form>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 

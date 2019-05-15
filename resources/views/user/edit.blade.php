@@ -46,7 +46,7 @@
             <div class="form-group row">
                 <label class="col-2" for="email_verified_at">{{ __('app.email verified at') }}</label>
                 <div class="col-10">
-                    <input value="{{ ($user->email_verified_at) ? date('d.m.Y H:i:s', $user->email_verified_at) : null }}" type="datetime" name="email_verified_at" id="email_verified_at" class="form-control" />
+                    <input name="email_verified_at" id="email_verified_at" type="checkbox" @if($user->email_verified_at) checked="checked" @endif />
                 </div>
             </div>
     
@@ -64,7 +64,16 @@
             <div class="form-group row">
                 <label class="col-2" for="company">{{ __('app.company') }}</label>
                 <div class="col-10">
-                    <input value="{{ ($user->company) ? $user->company->$name : '' }}" type="text" name="company" id="company" class="form-control" />
+                    <select class="form-control" name="company" id="company">
+                        <option selected>{{ __('app.select company') }}</option>
+                        @foreach(App\Company::all() as $company)
+                            @if($user->company)
+                            <option value="{{ $company->id }}" @if($user->company->id == $company->id) selected @endif>{{ $company->$name }}</option>
+                            @else
+                            <option value="{{ $company->id }}">{{ $company->$name }}</option>
+                            @endif
+                        @endforeach
+                    </select>
                 </div>
             </div> 
     
@@ -78,7 +87,16 @@
             <div class="form-group row">
                 <label class="col-2" for="city">{{ __('app.city') }}</label>
                 <div class="col-10">
-                    <input value="{{ ($user->city) ? $user->city->$name : '' }}" type="text" name="city" id="city" class="form-control" />
+                    <select class="form-control" name="city" id="city">
+                        <option selected>{{ __('app.select city') }}</option>
+                        @foreach(App\City::all() as $city)
+                            @if($user->city)
+                            <option value="{{ $city->id }}" @if($user->city->id == $city->id) selected @endif>{{ $city->$name }}</option>
+                            @else
+                            <option value="{{ $city->id }}">{{ $city->$name }}</option>
+                            @endif
+                        @endforeach
+                    </select>
                 </div>
             </div>
     
@@ -134,14 +152,14 @@
             <div class="form-group row">
                 <label class="col-2" for="created_at">{{ __('app.created at') }}</label>
                 <div class="col-10">
-                    <input value="{{ date('d.m.Y H:i:s', $user->created_at->getTimestamp()) }}" type="datetime" name="created_at" id="created_at" class="form-control" disabled />
+                    <input value="{{ $user->created_at->format('d.m.Y H:i:s') }}" type="datetime" name="created_at" id="created_at" class="form-control" disabled />
                 </div>
             </div>
     
             <div class="form-group row">
                 <label class="col-2" for="updated_at">{{ __('app.updated at') }}</label>
                 <div class="col-10">
-                    <input value="{{ date('d.m.Y H:i:s', $user->updated_at->getTimestamp()) }}" type="datetime" name="updated_at" id="updated_at" class="form-control" disabled />
+                    <input value="{{ $user->updated_at->format('d.m.Y H:i:s') }}" type="datetime" name="updated_at" id="updated_at" class="form-control" disabled />
                 </div>
             </div>
 
@@ -153,8 +171,6 @@
 </div>
 
 </form> 
-
-<div class="row my-5"></div>
 
 @endsection
 

@@ -13,7 +13,7 @@
             </div>
         </div>            
         <input type="submit" class="btn btn-success" value="{{ __('app.save') }}" />
-        <input type="button" class="btn btn-warning" value="{{ __('app.cancel') }}" name="cancel" onclick="history.back();" />
+        <input type="button" class="btn btn-secondary" value="{{ __('app.cancel') }}" name="cancel" onclick="history.back();" />
     </form>     
 </div>
 @endsection
