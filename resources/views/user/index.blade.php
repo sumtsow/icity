@@ -4,14 +4,18 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 @endsection
 
-@section('content')
-<h2 class="my-5">{{ __('app.user admin')}}</h2>
-
-<div class="row">
-    <div class="col">
-        <a href="{{ route('user.create') }}"  class="btn btn-success mb-3">{{ __('app.add') }}</a>
-    </div>
+@section('breadcrumb')
+<div class="row" id="breadcrumbs">
+    <nav class="nav my-0 py-0">
+        <ol class="breadcrumb m-0 text-truncate">
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('auth.Dashboard')}}</a></li>
+        </ol>
+    </nav>
 </div>
+@endsection
+
+@section('content')
+<h2 class="my-3">{{ __('app.user admin')}} <a href="{{ route('user.create') }}"  class="btn btn-success mb-3">{{ __('app.add') }}</a></h2>
 
 <div class="flex-center">{{ $users->links() }}</div>
 

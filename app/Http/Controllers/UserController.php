@@ -103,7 +103,7 @@ class UserController extends Controller
     /**
      * Update the specified user in database.
      *
-     * @param  \App\Http\Requests\UpdateUser  $request
+     * @param  App\Http\Requests\UpdateUser $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

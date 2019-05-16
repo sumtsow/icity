@@ -1,11 +1,22 @@
 @extends('layouts.app')
 
+@section('breadcrumb')
+<div class="row" id="breadcrumbs">
+    <nav class="nav my-0 py-0">
+        <ol class="breadcrumb m-0 text-truncate">
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('auth.Dashboard')}}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('category.index') }}">{{ __('app.categories admin')}}</a></li>
+        </ol>
+    </nav>
+</div>
+@endsection
+
 @section('content')
 
-<h1 class="mt-3">
+<h2 class="mt-3">
     {{ __('app.category') }} <em>{{ $category->$name }}</em>
     <button class="btn btn-danger" data-toggle="modal" data-target="#Modal">{{ __('app.delete') }}</button>
-</h1>
+</h2>
    
 <div class="table-responsive">
     <table class="table table-sm bg-white table-striped">
@@ -19,7 +30,11 @@
         @endforeach
        
         <tr>
-            <th>{{ __('app.image') }}:</th><td>{{ $category->image }}</td>
+            <th>{{ __('app.image') }}:</th>
+            <td>
+                <img class="w-25" src="/img/{{ $category->image }}" alt="{{ $category->$name }}"> 
+                <a class="btn btn-success ml-3" href="#">{{ __('app.edit') }}</a>
+            </td>
         </tr>
         <tr>
             <th>{{ __('app.options') }}:</th><td>{{ $category->options }}</td>
@@ -50,15 +65,21 @@
         </button>
       </div>
       <div class="modal-body">
+          @if(count($category->service))
+          <p>{{__('app.category is not empty')}}</p>
+          @else
           <p>{{__('app.completly remove')}} <b>{{ $category->$name }}?</b></p>
+          @endif
       </div>
       <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('app.cancel')}}</button>
+            @if(!count($category->service))
             <form action="{{ route('category.destroy', ['id' => $category->id]) }}" method="post">        
                 <button type="button" class="btn btn-danger" onclick="this.form.submit();">{{__('app.yes')}}</button>
                 {{csrf_field()}}
                 {{method_field('delete')}}
             </form>
+            @endif
       </div>
     </div>
   </div>

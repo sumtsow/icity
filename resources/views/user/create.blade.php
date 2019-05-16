@@ -1,8 +1,19 @@
 @extends('layouts.app')
 
+@section('breadcrumb')
+<div class="row" id="breadcrumbs">
+    <nav class="nav my-0 py-0">
+        <ol class="breadcrumb m-0 text-truncate">
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('auth.Dashboard')}}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('user.index') }}">{{ __('app.user admin')}}</a></li>
+        </ol>
+    </nav>
+</div>
+@endsection
+
 @section('content')
 
-<h1 class="mt-3">{{ __('app.add') }} {{ __('app.User') }}</h1>
+<h2 class="mt-3">{{ __('app.add') }} {{ __('app.User') }}</h2>
 
 <form action="{{ route('user.store') }}" method="post" id="user-form">
     {{ csrf_field() }}

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Requests\CreateCategory;
+use App\Http\Requests\UpdateCategory;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -33,24 +35,33 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new category.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('category.create',[
+            'category' => new Category(),
+        ]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created category in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\CreateCategory  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCategory $request)
     {
-        //
+        $category = new Category();
+        foreach(config('app.locales') as $locale) {
+            $category->{'name_'.$locale} = $request->{'name_'.$locale};
+        }
+        $category->image = $request->image;
+        $category->options = $request->options;
+        $category->save();
+        return redirect(route('category.show',['id' => $category->id]));
     }
 
     /**
@@ -59,31 +70,41 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        return view('category.edit',[
+            'category' => Category::where('id', $id)->first(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
+     * @param  \App\UpdateCategory  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(UpdateCategory $request, $id)
     {
-        //
+        $category = Category::find($id);
+        foreach(config('app.locales') as $locale) {
+            $category->{'name_'.$locale} = $request->{'name_'.$locale};
+        }
+        $category->image = $request->image;
+        $category->options = $request->options;
+        $category->save();
+        return redirect(route('category.show',['id' => $category->id]));
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified category from storage.
      *
-     * @param  \App\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        Category::destroy($id);
+        return redirect('category');
     }
 }
