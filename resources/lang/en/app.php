@@ -75,4 +75,8 @@ return [
     'created at' => 'Created at',
     'updated at' => 'Updated at',
     'email verified at' => 'E-mail address verified at',
+    'name' => 'Name',
+    'image' => 'Image',
+    'category' => 'Category',
+    'services' => 'Services',
 ];

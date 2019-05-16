@@ -14,7 +14,22 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('category.index', [
+            'categories' => Category::all(),
+        ]);
+    }
+    
+    /**
+     * Display the specified category.
+     *
+     * @param  \App\Category  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return view('category.show',[
+            'category' => Category::find($id),
+        ]);
     }
 
     /**

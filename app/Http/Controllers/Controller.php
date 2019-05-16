@@ -35,7 +35,7 @@ class Controller extends BaseController
      */
     public function show($id)
     {
-        return view('category.show',[
+        return view('show',[
             'category' => Category::find($id),
         ]);
     }

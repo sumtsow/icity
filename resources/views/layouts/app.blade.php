@@ -45,7 +45,7 @@
                 
             </div>
             
-            <div class="row">
+            <div class="row w-75">
                 <div class="col my-5">
                     &nbsp;
                 </div>

@@ -16,22 +16,6 @@ Auth::routes(['verify' => true]);
 // Main page
 Route::get('/', 'Controller@index')->name('index');
 
-// Category page
-Route::get('/category/{id}', 'Controller@show')->name('category');
-
-// Service page
-Route::get('/service/{id}', 'ServiceController@show')->name('service');
-
-// Order page
-Route::get('/order/create', 'OrderController@create')->name('order');
-
-// User resource routes
-Route::resource('user', 'UserController');
-
-// User state switch action
-Route::get('/user/switchstate/{id}', 'UserController@switchstate')->name('switchstate')->middleware('can:admin, App\User')->middleware('verified');
-
-
 //Language switch action
 Route::get('/setlocale', 'Controller@locale')
         ->where('locale', '[a-z]{2}');
@@ -39,6 +23,20 @@ Route::get('/setlocale', 'Controller@locale')
 // Home page
 Route::get('/home', 'HomeController@index')->name('home')->middleware('can:admin, App\User')->middleware('verified');
 
+// Category resource routes
+Route::resource('category', 'CategoryController');
 
+// Service resource routes
+Route::resource('service', 'ServiceController');
 
+// Order resource routes
+Route::resource('order', 'OrderController');
 
+// User resource routes
+Route::resource('user', 'UserController');
+
+// User state switch action
+Route::get('/user/switchstate/{id}', 'UserController@switchstate')->name('switchstate')->middleware('can:admin, App\User')->middleware('verified');
+
+// Category list page 
+Route::get('/{id}', 'Controller@show')->name('category');
