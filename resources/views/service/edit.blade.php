@@ -182,8 +182,10 @@
             <div class="form-group row">
                 <label class="col-2" for="image">{{ __('app.image') }}</label>
                 <div class="col-10">
-                    <input value="{{ $service->image }}" type="text" name="image" id="image" class="form-control @error('image') is-invalid @enderror" autofocus />
-                    <a class="btn btn-success ml-3" href="#">{{ __('app.edit') }}</a>                    
+                    <div class="custom-file">
+                        <input type="file" id="customFile" name="image" class="custom-file-input @error('image') is-invalid @enderror" autofocus >
+                        <label class="custom-file-label" for="customFile">{{ $service->image }}</label>
+                    </div>                  
                                                                                                             
                     @error('image')
                         <span class="invalid-feedback" role="alert">

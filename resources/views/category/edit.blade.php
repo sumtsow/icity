@@ -47,8 +47,13 @@
         
             <div class="form-group row">
                 <label class="col-2" for="image">{{ __('app.image') }}</label>
+                
                 <div class="col-10">
-                    <input value="{{ $category->image }}" type="text" name="image" id="image" class="form-control @error('image') is-invalid @enderror" autofocus required />
+
+                    <div class="custom-file">
+                        <input type="file" id="customFile" name="image" class="custom-file-input @error('image') is-invalid @enderror" autofocus required>
+                        <label class="custom-file-label" for="customFile">{{ $category->image }}</label>
+                    </div>
                                                                                                             
                     @error('image')
                         <span class="invalid-feedback" role="alert">

@@ -87,7 +87,6 @@
             <th>{{ __('app.image') }}:</th>
             <td>
                 <img class="w-25" src="/img/{{ $service->image }}" alt="none"> 
-                <a class="btn btn-success ml-3" href="#">{{ __('app.edit') }}</a>
             </td>
         </tr>
         <tr>
@@ -119,7 +118,7 @@
         </button>
       </div>
       <div class="modal-body">
-          @if(count($service->service))
+          @if(count($service->orders))
           <p>{{__('app.service is not empty')}}</p>
           @else
           <p>{{__('app.completly remove')}} <b>{{ $service->$name }}?</b></p>
@@ -127,7 +126,7 @@
       </div>
       <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('app.cancel')}}</button>
-            @if(!count($service->order))
+            @if(!count($service->orders))
             <form action="{{ route('service.destroy', ['id' => $service->id]) }}" method="post">        
                 <button type="button" class="btn btn-danger" onclick="this.form.submit();">{{__('app.yes')}}</button>
                 {{csrf_field()}}

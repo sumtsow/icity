@@ -38,7 +38,7 @@
                     <img class="w-25" src="/storage/img/service/{{ $service->image }}" alt="{{ $service->$name }}">
                 </a>
 			</td>
-            <td>{{ count($service->order) }}</td>
+            <td>{{ count($service->orders) }}</td>
 			<td>{{ $service->created_at->format('d.m.Y H:i:s') }}</td>
 </tr>        
 @endforeach

@@ -21,7 +21,7 @@
 <div class="table-responsive">
     <table class="table table-sm bg-white table-striped">
         <tr>
-            <th>{{ __('app.id') }}:</th><td>{{ $category->id }}</td>
+            <th class="col-2">{{ __('app.id') }}:</th><td>{{ $category->id }}</td>
         </tr>
         @foreach(config('app.locales') as $locale)
         <tr>
@@ -32,8 +32,8 @@
         <tr>
             <th>{{ __('app.image') }}:</th>
             <td>
-                <img class="w-25" src="/img/{{ $category->image }}" alt="{{ $category->$name }}"> 
-                <a class="btn btn-success ml-3" href="#">{{ __('app.edit') }}</a>
+                <img src="/img/{{ $category->image }}" alt="{{ $category->$name }}"> 
+                <span>{{ $category->image }}</span>
             </td>
         </tr>
         <tr>

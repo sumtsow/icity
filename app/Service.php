@@ -24,7 +24,15 @@ class Service extends Model
     {
         return $this->belongsTo('\App\Company', 'id_company');
     }
-        
+    
+    /**
+     * Get the orders related this service.
+     */
+    public function orders()
+    {
+        return $this->belongsToMany('\App\Order', 'order_service', 'id_service', 'id_order');
+    }
+    
     /**
     * Get the service's units list.
     *
