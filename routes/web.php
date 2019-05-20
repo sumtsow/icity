@@ -26,6 +26,9 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('can:admin
 // Category resource routes
 Route::resource('category', 'CategoryController');
 
+// Service view page 
+Route::get('/service/view/{id}', 'ServiceController@view');
+
 // Service resource routes
 Route::resource('service', 'ServiceController');
 
@@ -37,6 +40,7 @@ Route::resource('user', 'UserController');
 
 // User state switch action
 Route::get('/user/switchstate/{id}', 'UserController@switchstate')->name('switchstate')->middleware('can:admin, App\User')->middleware('verified');
+
 
 // Category list page 
 Route::get('/{id}', 'Controller@show')->name('category');

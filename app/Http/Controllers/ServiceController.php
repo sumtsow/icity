@@ -3,88 +3,121 @@
 namespace App\Http\Controllers;
 
 use App\Service;
+//use App\Http\Requests\CreateService
+//use App\Http\Requests\UpdateService;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the services.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return view('service.index',[
+			'services' => Service::all(),
+        ]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new service.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('service.create',[
+            'service' => new Service(),
+        ]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created service in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\CreateCategory  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateService $request)
     {
-        //
+        $service = new Service();
+        foreach(config('app.locales') as $locale) {
+            $service->{'name_'.$locale} = $request->{'name_'.$locale};
+        }
+        $service->image = $service->image;
+        $service->options = $service->options;
+        //$service->save();
+        return redirect(route('service.index'/*,['id' => $service->id]*/ ));
     }
-
+    
     /**
-     * Display the specified resource.
+     * Display the specified service.
      *
-     * @param  \App\Service  $service
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function view($id)
+    {
+        return view('service.view',[
+            'service' => Service::find($id),
+        ]);
+    }
+    
+    /**
+     * Display the specified service for administrator.
+     *
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         return view('service.show',[
             'service' => Service::find($id),
-            'name' => 'name_'.app()->getLocale(),
-            'description' => 'description_'.app()->getLocale(),
-            'unit' => 'unit_'.app()->getLocale(),
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Service  $service
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit($id)
     {
-        //
+         return view('service.edit',[
+            'service' => Service::where('id', $id)->first(),
+        ]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified service in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \App\Http\Requests\CreateService  $request
      * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(CreateService $request,  $id)
     {
-        //
+        $service = Service::find($id);
+        foreach(config('app.locales') as $locale) {
+            $service->{'name_'.$locale} = $request->{'name_'.$locale};
+        }
+        $service->image = $request->image;
+        $service->options = $request->options;
+        //$service->save();
+        return redirect(route('service.index'/*,['id' => $service->id] */));
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified service from storage.
      *
-     * @param  \App\Service  $service
+     * @param int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
+    public function destroy($id)
     {
-        //
+		Service::destroy($id);
+		return redirect('service');
     }
 }

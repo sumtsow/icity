@@ -21,7 +21,7 @@
 <div class="table-responsive">
     <table class="table table-sm bg-white table-striped">
         <tr>
-            <th class="w-50">{{ __('app.id') }}:</th><td>{{ $category->id }}</td>
+            <th>{{ __('app.id') }}:</th><td>{{ $category->id }}</td>
         </tr>
         @foreach(config('app.locales') as $locale)
         <tr>

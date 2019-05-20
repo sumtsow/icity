@@ -21,7 +21,7 @@
 <div class="table-responsive">
     <table class="table table-sm bg-white table-striped">
         <tr>
-            <th class="w-50">{{ __('app.id') }}:</th><td>{{ $user->id }}</td>
+            <th>{{ __('app.id') }}:</th><td>{{ $user->id }}</td>
         </tr>
         <tr>
             <th>{{ __('auth.lastname') }} {{ __('auth.firstname') }} {{ __('auth.patronymic') }}:</th><td>{{ $user->getFullName() }}</td>
