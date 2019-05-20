@@ -12,7 +12,7 @@
 
 {{ $service->$description }}
 
-<h4 class="h4">{{ __('app.price', ['price' => $service->price, 'unit' => $service->$unit]) }}</h4>
+<h4 class="h4">{{ __('app.price per unit', ['price' => $service->price, 'unit' => $service->$unit]) }}</h4>
 
 <a href="{{ url('/order') }}" class="btn btn-success mt-1 mb-5">{{ __('app.add to cart') }}</a>
 

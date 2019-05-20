@@ -30,10 +30,10 @@ class Service extends Model
     *
     * @return array of string
     */
-    public static function getUnits ()
+    public static function getUnits ($locale)
     {
         // Pulls column string from DB
-        $enumStr = DB::select(DB::raw('SHOW COLUMNS FROM `service` WHERE FIELD = "unit_'.app()->getLocale().'"'))[0]->Type;
+        $enumStr = DB::select(DB::raw('SHOW COLUMNS FROM `service` WHERE FIELD = "unit_'.$locale.'"'))[0]->Type;
 
         // Parse string
         preg_match_all("/'([^']+)'/", $enumStr, $matches);

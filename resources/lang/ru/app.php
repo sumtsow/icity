@@ -29,7 +29,7 @@ return [
     'select category' => 'Выбрать категорию...',
     'provided by' => 'Предоставляется',
     'service description' => 'Описание услуги:',
-    'price' => 'Стоимость: :price грн. за :unit',
+    'price per unit' => 'Стоимость: :price грн. за :unit',
     'details' => 'Подробнее ...',
     'add to cart' => 'Добавить в корзину',
     'categories list' => 'Список категорий',

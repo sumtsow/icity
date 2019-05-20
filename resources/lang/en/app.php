@@ -29,7 +29,7 @@ return [
     'select category' => 'Select category...',
     'provided by' => 'Provided by',
     'service description' => 'Service description:',
-    'price' => 'Price: :price hrn per :unit',
+    'price per unit' => 'Price: :price hrn per :unit',
     'details' => 'Details ...',
     'add to cart' => 'Add to Cart',
     'categories list' => 'The Categories List',

@@ -29,7 +29,7 @@ return [
     'select category' => 'Обрати категорію...',
     'provided by' => 'Постачається',
     'service description' => 'Опис послуги:',
-    'price' => 'Вартість: :price грн. за :unit',
+    'price per unit' => 'Вартість: :price грн. за :unit',
     'details' => 'Докладніше ...',
     'add to cart' => 'Додати до кошика',
     'categories list' => 'Список категорій',

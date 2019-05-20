@@ -128,8 +128,8 @@
                 <label class="col-2 pl-4" for="unit">{{ __('app.unit') }}</label>
                 <div class="col-10">
                     <select class="form-control @error('unit') is-invalid @enderror" name="unit" id="unit" required>
-                        @foreach($service->getUnits() as $unit)
-                        <option value="{{ $unit }}" @if($service->{'unit_'.app()->getLocale()} == $unit) selected @endif>{{ ucfirst( $unit ) }}</option>
+                        @foreach($service->getUnits(app()->getLocale()) as $key => $unit)
+                        <option value="{{ $key }}" @if($service->{'unit_'.app()->getLocale()} == $unit) selected @endif>{{ ucfirst( $unit ) }}</option>
                         @endforeach
                     </select>
                                                                                                             
@@ -182,7 +182,7 @@
             <div class="form-group row">
                 <label class="col-2" for="image">{{ __('app.image') }}</label>
                 <div class="col-10">
-                    <input value="{{ $service->image }}" type="text" name="image" id="image" class="form-control @error('image') is-invalid @enderror" autofocus disabled/>
+                    <input value="{{ $service->image }}" type="text" name="image" id="image" class="form-control @error('image') is-invalid @enderror" autofocus />
                     <a class="btn btn-success ml-3" href="#">{{ __('app.edit') }}</a>                    
                                                                                                             
                     @error('image')

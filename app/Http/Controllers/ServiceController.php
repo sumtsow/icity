@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Service;
-//use App\Http\Requests\CreateService
-//use App\Http\Requests\UpdateService;
+use App\Http\Requests\CreateService;
+use App\Http\Requests\UpdateService;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -102,11 +102,20 @@ class ServiceController extends Controller
         $service = Service::find($id);
         foreach(config('app.locales') as $locale) {
             $service->{'name_'.$locale} = $request->{'name_'.$locale};
+            $service->{'description_'.$locale} = $request->{'description_'.$locale};
+            $units = Service::getUnits($locale);
+            $service->{'unit_'.$locale} = $units[$request->unit];
         }
+        $service->id_category = $request->category;
+        $service->id_company = $request->company;
+        $service->price = $request->price;
+        $service->minimum_batch = $request->minimum_batch;        
+        $service->maximum_batch = $request->maximum_batch;
+        $service->discount = $request->discount;
         $service->image = $request->image;
         $service->options = $request->options;
-        //$service->save();
-        return redirect(route('service.index'/*,['id' => $service->id] */));
+        $service->save();
+        return redirect(route('service.show', ['id' => $service->id]));
     }
 
     /**
