@@ -90,7 +90,13 @@ class CategoryController extends Controller
         foreach(config('app.locales') as $locale) {
             $category->{'name_'.$locale} = $request->{'name_'.$locale};
         }
-        $category->image = $request->image;
+        //$category->image = $request->image;
+        if ($request->hasFile('image')) {
+            if($request->file('image')->isValid()) {
+                $category->image = $request->file('image')->getClientOriginalName();
+                $category->addImage($request);
+            }
+        }
         $category->options = $request->options;
         $category->save();
         return redirect(route('category.show',['id' => $category->id]));

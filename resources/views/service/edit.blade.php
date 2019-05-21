@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('scripts')
+<script src="/js/uploadFileChangeName.js"></script>
+@endsection
+
 @section('breadcrumb')
 <div class="row" id="breadcrumbs">
     <nav class="nav my-0 py-0">

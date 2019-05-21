@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('scripts')
+<script src="/js/uploadFileChangeName.js"></script>
+@endsection
+
 @section('breadcrumb')
 <div class="row" id="breadcrumbs">
     <nav class="nav my-0 py-0">
@@ -16,7 +20,7 @@
 
 <h2 class="mt-3">{{ __('app.category') }} <em>{{ $category->$name }}</em></h2>
 
-<form action="{{ route('category.update', ['id' => $category->id]) }}" method="post">
+<form action="{{ route('category.update', ['id' => $category->id]) }}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
     {{ method_field('put') }}
     
@@ -51,10 +55,10 @@
                 <div class="col-10">
 
                     <div class="custom-file">
-                        <input type="file" id="customFile" name="image" class="custom-file-input @error('image') is-invalid @enderror" autofocus required>
+                        <input type="file" id="customFile" name="image" class="custom-file-input @error('image') is-invalid @enderror" autofocus>
                         <label class="custom-file-label" for="customFile">{{ $category->image }}</label>
                     </div>
-                                                                                                            
+                    
                     @error('image')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -100,5 +104,12 @@
 </div>
 
 </form> 
-
+<script>
+$(document).ready(function(){
+    $("#customFile").on("change", function(e){
+      var name = e.target.value.split( '\\' ).pop();
+      $('.custom-file-label').text(name);
+    })
+  })
+</script>
 @endsection
