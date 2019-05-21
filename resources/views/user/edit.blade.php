@@ -122,9 +122,9 @@
                         <option selected>{{ __('app.select company') }}</option>
                         @foreach(App\Company::all() as $company)
                             @if($user->company)
-                            <option value="{{ $company->id }}" @if($user->company->id == $company->id) selected @endif>{{ $company->$name }}</option>
+                            <option value="{{ $company->id }}" @if($user->company->id == $company->id) selected @endif>{{ $company->{'name_'.app()->getLocale()} }}</option>
                             @else
-                            <option value="{{ $company->id }}">{{ $company->$name }}</option>
+                            <option value="{{ $company->id }}">{{ $company->{'name_'.app()->getLocale()} }}</option>
                             @endif
                         @endforeach
                     </select>
@@ -159,9 +159,9 @@
                         <option selected>{{ __('app.select city') }}</option>
                         @foreach(App\City::all() as $city)
                             @if($user->city)
-                            <option value="{{ $city->id }}" @if($user->city->id == $city->id) selected @endif>{{ $city->$name }}</option>
+                            <option value="{{ $city->id }}" @if($user->city->id == $city->id) selected @endif>{{ $city->{'name_'.app()->getLocale()} }}</option>
                             @else
-                            <option value="{{ $city->id }}">{{ $city->$name }}</option>
+                            <option value="{{ $city->id }}">{{ $city->{'name_'.app()->getLocale()} }}</option>
                             @endif
                         @endforeach
                     </select>

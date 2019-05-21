@@ -113,7 +113,7 @@
                     <select class="form-control @error('company') is-invalid @enderror" name="company" id="company" autofocus>
                         <option selected>{{ __('app.select company') }}</option>
                         @foreach(App\Company::all() as $company)
-                        <option value="{{ $company->id }}">{{ $company->$name }}</option>
+                        <option value="{{ $company->id }}">{{ $company->{'name_'.app()->getLocale()} }}</option>
                         @endforeach
                     </select>
                                                             
@@ -147,7 +147,7 @@
                     <select class="form-control @error('city') is-invalid @enderror" name="city" id="city" autofocus>
                         <option selected>{{ __('app.select city') }}</option>
                         @foreach(App\City::all() as $city)
-                        <option value="{{ $city->id }}">{{ $city->$name }}</option>
+                        <option value="{{ $city->id }}">{{ $city->{'name_'.app()->getLocale()} }}</option>
                         @endforeach
                     </select>
                                                             

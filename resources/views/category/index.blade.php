@@ -31,14 +31,14 @@
             <td>{{ $category->id }}</td>
 			<td>
                 <a href="{{ route('category.show', ['id' => $category->id]) }}">
-                    <img class="w-25" src="/img/{{ $category->image }}" alt="{{ $category->$name }}">
+                    <img class="w-25" src="/storage/img/category/{{ $category->image }}" alt="{{ $category->{'name_'.app()->getLocale()} }}">
                 </a>
 			</td>
-            <td><a href="{{ route('category.show', ['id' => $category->id]) }}">{{ $category->$name }}</a></td>
+            <td><a href="{{ route('category.show', ['id' => $category->id]) }}">{{ $category->{'name_'.app()->getLocale()} }}</a></td>
             <td>
             @if(count($category->service))
                 @foreach($category->service as $service)
-                <p><a href="{{ route('service.show', ['id' => $service->id]) }}">{{ $service->$name }}</a></p>
+                <p><a href="{{ route('service.show', ['id' => $service->id]) }}">{{ $service->{'name_'.app()->getLocale()} }}</a></p>
                 @endforeach
             @endif
             </td>

@@ -27,7 +27,7 @@ class UpdateCategory extends FormRequest
             $rules['name_'.$locale] = 'required|string|max:255';
         }
         $rules['options'] = 'string|max:255|nullable';
-        $rules['image'] = 'string|max:255|nullable';
+        $rules['image'] = 'image';
         $rules['options'] = 'string|max:255|nullable';
         return $rules;
     }

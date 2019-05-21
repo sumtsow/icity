@@ -10,7 +10,7 @@
         <ol class="breadcrumb m-0 text-truncate">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('auth.Dashboard')}}</a></li>
             <li class="breadcrumb-item"><a href="{{ route('category.index') }}">{{ __('app.categories admin')}}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('category.show', ['id' => $category->id]) }}">{{ __('app.category') }} {{ $category->$name }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('category.show', ['id' => $category->id]) }}">{{ __('app.category') }} {{ $category->{'name_'.app()->getLocale()} }}</a></li>
         </ol>
     </nav>
 </div>
@@ -18,7 +18,7 @@
 
 @section('content')
 
-<h2 class="mt-3">{{ __('app.category') }} <em>{{ $category->$name }}</em></h2>
+<h2 class="mt-3">{{ __('app.category') }} <em>{{ $category->{'name_'.app()->getLocale()} }}</em></h2>
 
 <form action="{{ route('category.update', ['id' => $category->id]) }}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}

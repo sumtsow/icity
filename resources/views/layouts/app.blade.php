@@ -27,7 +27,7 @@
             <div class="row mx-0">
                 @auth
                 <div class="col">
-                    {{ __('app.your city') }} - {{ (Auth::user()->city) ? Auth::user()->city->$name : null }}?
+                    {{ __('app.your city') }} - {{ (Auth::user()->city) ? Auth::user()->city->{'name_'.app()->getLocale()} : null }}?
                 </div>
                 @endauth
                 

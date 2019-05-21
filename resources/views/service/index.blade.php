@@ -30,12 +30,12 @@
 @foreach($services as $service)
         <tr>
             <td>{{ $service->id }}</td>
-			<td>{{ $service->category->$name }}</td>
-			<td>{{ $service->company->$name }}</td>
-			<td><a href="{{ route('service.show', ['id' => $service->id]) }}">{{ $service->$name }}</a></td>
+			<td>{{ $service->category->{'name_'.app()->getLocale()} }}</td>
+			<td>{{ $service->company->{'name_'.app()->getLocale()} }}</td>
+			<td><a href="{{ route('service.show', ['id' => $service->id]) }}">{{ $service->{'name_'.app()->getLocale()} }}</a></td>
 			<td>
                 <a href="{{ route('service.show', ['id' => $service->id]) }}">
-                    <img class="w-25" src="/storage/img/service/{{ $service->image }}" alt="{{ $service->$name }}">
+                    <img class="w-25" src="/storage/img/service/{{ $service->image }}" alt="{{ $service->{'name_'.app()->getLocale()} }}">
                 </a>
 			</td>
             <td>{{ count($service->orders) }}</td>

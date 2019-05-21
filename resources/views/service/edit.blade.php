@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('scripts')
+<script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=xs70r0zwazereyn8rtwn65o53caspvj14u5eo1t0xl77kt8v"></script>
+<script>tinymce.init({selector:'textarea'});</script>
 <script src="/js/uploadFileChangeName.js"></script>
 @endsection
 
@@ -10,7 +12,7 @@
         <ol class="breadcrumb m-0 text-truncate">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('auth.Dashboard')}}</a></li>
             <li class="breadcrumb-item"><a href="{{ route('service.index') }}">{{ __('app.services admin')}}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('service.show', ['id' => $service->id]) }}">{{ __('app.service') }} {{ $service->$name }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('service.show', ['id' => $service->id]) }}">{{ __('app.service') }} {{ $service->{'name_'.app()->getLocale()} }}</a></li>
         </ol>
     </nav>
 </div>
@@ -18,7 +20,7 @@
 
 @section('content')
 
-<h2 class="mt-3">{{ __('app.service') }} <em>{{ $service->$name }}</em></h2>
+<h2 class="mt-3">{{ __('app.service') }} <em>{{ $service->{'name_'.app()->getLocale()} }}</em></h2>
 
 <form action="{{ route('service.update', ['id' => $service->id]) }}" method="post">
     {{ csrf_field() }}
@@ -57,9 +59,9 @@
                         <option selected>{{ __('app.select company') }}</option>
                         @foreach(App\Company::all() as $company)
                             @if($service->company)
-                            <option value="{{ $company->id }}" @if($service->company->id == $company->id) selected @endif>{{ $company->$name }}</option>
+                            <option value="{{ $company->id }}" @if($service->company->id == $company->id) selected @endif>{{ $company->{'name_'.app()->getLocale()} }}</option>
                             @else
-                            <option value="{{ $company->id }}">{{ $company->$name }}</option>
+                            <option value="{{ $company->id }}">{{ $company->{'name_'.app()->getLocale()} }}</option>
                             @endif
                         @endforeach
                     </select>
@@ -79,9 +81,9 @@
                         <option selected>{{ __('app.select category') }}</option>
                         @foreach(App\Category::all() as $category)
                             @if($service->category)
-                            <option value="{{ $category->id }}" @if($service->category->id == $category->id) selected @endif>{{ $category->$name }}</option>
+                            <option value="{{ $category->id }}" @if($service->category->id == $category->id) selected @endif>{{ $category->{'name_'.app()->getLocale()} }}</option>
                             @else
-                            <option value="{{ $category->id }}">{{ $category->$name }}</option>
+                            <option value="{{ $category->id }}">{{ $category->{'name_'.app()->getLocale()} }}</option>
                             @endif
                         @endforeach
                     </select>

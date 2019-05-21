@@ -24,8 +24,7 @@ class CreateImage extends FormRequest
     public function rules()
     {
         return [
-            //'image' => 'image',
-            /*'image' => 'image|file',*/
+            'image' => 'image',
         ];
     }
 }

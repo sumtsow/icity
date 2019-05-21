@@ -14,7 +14,7 @@
 @section('content')
 
 <h2 class="mt-3">
-    {{ __('app.category') }} <em>{{ $category->$name }}</em>
+    {{ __('app.category') }} <em>{{ $category->{'name_'.app()->getLocale()} }}</em>
     <button class="btn btn-danger" data-toggle="modal" data-target="#Modal">{{ __('app.delete') }}</button>
 </h2>
    
@@ -32,7 +32,7 @@
         <tr>
             <th>{{ __('app.image') }}:</th>
             <td>
-                <img src="/img/{{ $category->image }}" alt="{{ $category->$name }}"> 
+                <img src="/storage/img/category/{{ $category->image }}" alt="{{ $category->{'name_'.app()->getLocale()} }}"> 
                 <span>{{ $category->image }}</span>
             </td>
         </tr>
@@ -68,7 +68,7 @@
           @if(count($category->service))
           <p>{{__('app.category is not empty')}}</p>
           @else
-          <p>{{__('app.completly remove')}} <b>{{ $category->$name }}?</b></p>
+          <p>{{__('app.completly remove')}} <b>{{ $category->{'name_'.app()->getLocale()} }}?</b></p>
           @endif
       </div>
       <div class="modal-footer">

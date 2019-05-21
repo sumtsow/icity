@@ -14,7 +14,7 @@
 @section('content')
 
 <h2 class="mt-3">
-    {{ __('app.service') }} <em>{{ $service->$name }}</em>
+    {{ __('app.service') }} <em>{{ $service->{'name_'.app()->getLocale()} }}</em>
     <button class="btn btn-danger" data-toggle="modal" data-target="#Modal">{{ __('app.delete') }}</button>
 </h2>
    
@@ -24,10 +24,10 @@
             <th>{{ __('app.id') }}:</th><td>{{ $service->id }}</td>
         </tr>
         <tr>
-            <th>{{ __('app.category') }}:</th><td>{{ $service->category->$name }}</td>
+            <th>{{ __('app.category') }}:</th><td>{{ $service->category->{'name_'.app()->getLocale()} }}</td>
         </tr>
         <tr>
-            <th>{{ __('app.company') }}:</th><td>{{ $service->company->$name }}</td>
+            <th>{{ __('app.company') }}:</th><td>{{ $service->company->{'name_'.app()->getLocale()} }}</td>
         </tr>
         
         @foreach(config('app.locales') as $locale)
@@ -36,10 +36,9 @@
         </tr>
         @endforeach
         
-        <tr>
         @foreach(config('app.locales') as $locale)
-        
-            <th>{{ __('app.description') }} ({{ __('app.current language', [], $locale) }}):</th><td>{{ $service->{"description_$locale"} }}</td>
+        <tr>        
+            <th>{{ __('app.description') }} ({{ __('app.current language', [], $locale) }}):</th><td>{!! nl2br($service->{"description_$locale"}) !!}</td>
         </tr>
         @endforeach
         
@@ -121,7 +120,7 @@
           @if(count($service->orders))
           <p>{{__('app.service is not empty')}}</p>
           @else
-          <p>{{__('app.completly remove')}} <b>{{ $service->$name }}?</b></p>
+          <p>{{__('app.completly remove')}} <b>{{ $service->{'name_'.app()->getLocale()} }}?</b></p>
           @endif
       </div>
       <div class="modal-footer">

@@ -15,8 +15,8 @@ class Locale
      */
     public function handle($request, Closure $next)
     {
-        $crypted = $request->cookie('locale');
         $locale = app()->getLocale();
+        $crypted = $request->cookie('locale');
         if(isset($crypted)) {
             $locale = \Crypt::decryptString($crypted);
         }

@@ -9,10 +9,10 @@
     @foreach($categories as $category)
     <div class="card d-inline-block mw-50 p-3 border-light">
         <a href="{{ route('category', ['id' => $category->id]) }}">
-            <img src="/img/{{ $category->image }}" class="card-img-top" alt="{{ $category->$name }}">
+            <img src="/storage/img/category/{{ $category->image }}" class="card-img-top" alt="{{ $category->{'name_'.app()->getLocale()} }}">
         </a>
         <div class="card-body px-0">
-            <p class="card-text text-truncate">{{ $category->$name }} ({{ count($category->service) }})</p>
+            <p class="card-text text-truncate">{{ $category->{'name_'.app()->getLocale()} }} ({{ count($category->service) }})</p>
         </div>
     </div>
     

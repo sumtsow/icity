@@ -36,13 +36,13 @@
             <th>{{ __('app.role') }}:</th><td>{{ $user->role }}</td>
         </tr>
         <tr>
-            <th>{{ __('app.company') }}:</th><td>{{ ($user->company) ? $user->company->$name : '' }}</td>
+            <th>{{ __('app.company') }}:</th><td>{{ ($user->company) ? $user->company->{'name_'.app()->getLocale()} : '' }}</td>
         </tr>        
         <tr>
             <th>{{ __('app.birthdate') }}:</th><td>{{ ($user->birthdate) ? $user->birthdate->format('d.m.Y') : null }}</td>
         </tr>
         <tr>
-            <th>{{ __('app.city') }}:</th><td>{{  ($user->city) ? $user->city->$name : '' }}</td>
+            <th>{{ __('app.city') }}:</th><td>{{  ($user->city) ? $user->city->{'name_'.app()->getLocale()} : '' }}</td>
         </tr>
         <tr>
             <th>{{ __('app.phone') }}:</th><td>{{ $user->phone }}</td>
