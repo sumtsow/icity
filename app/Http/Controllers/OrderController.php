@@ -8,13 +8,15 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the orders.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return view('order.index', [
+            'orders' => Order::all(),
+        ]);
     }
 
     /**
@@ -24,9 +26,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('order.create',[
-            'name' => 'name_'.app()->getLocale(),
-        ]);
+        return view('order.create');
     }
 
     /**
