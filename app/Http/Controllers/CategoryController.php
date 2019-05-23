@@ -114,6 +114,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        $category = Category::find($id);
+        $category->removeImage();
+        unset($category);
         Category::destroy($id);
         return redirect('category');
     }

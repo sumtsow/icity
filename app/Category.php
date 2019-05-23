@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Category extends Model
 {
@@ -26,5 +27,13 @@ class Category extends Model
         $filename = $request->file('image')->getClientOriginalName();
         return $request->file('image')->storeAs($this->storagePath, $filename);
     }
-    
+        
+    /**
+     * Remove this category image from server
+    */
+    public function removeImage() 
+    {
+        Storage::delete($this->storagePath.$this->image);
+        return true;
+    }
 }

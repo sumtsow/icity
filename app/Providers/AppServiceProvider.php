@@ -24,10 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        /*View::share([
-            'name' => 'name_'.app()->getLocale(),
-            'description' => 'description_'.app()->getLocale(),
-            'unit' => 'unit_'.app()->getLocale(),
-            ]);*/
+        
     }
 }

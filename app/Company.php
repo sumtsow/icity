@@ -7,13 +7,31 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model
 {
     protected $table = 'company';
-            
+    
     /**
      * Get the services provided by this company.
      */
     public function service()
     {
         return $this->hasMany('\App\Service', 'id_company');
+    }
+        
+    /**
+     * Get the tariff plan using by this company.
+     */
+    
+    public function plan()
+    {
+        return $this->belongsTo('\App\Plan', 'id_plan');
+    }
+    
+    /**
+     * Get the city for this company.
+     */
+    
+    public function city()
+    {
+        return $this->belongsTo('\App\City', 'id_city');
     }
     
     /**

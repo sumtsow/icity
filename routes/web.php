@@ -26,6 +26,9 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('can:admin
 // Category resource routes
 Route::resource('category', 'CategoryController');
 
+// Company resource routes
+Route::resource('company', 'CompanyController');
+
 // Service view page 
 Route::get('/service/view/{id}', 'ServiceController@view');
 
