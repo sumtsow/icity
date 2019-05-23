@@ -22,7 +22,7 @@
 
 <h2 class="mt-3">{{ __('app.service') }} <em>{{ $service->{'name_'.app()->getLocale()} }}</em></h2>
 
-<form action="{{ route('service.update', ['id' => $service->id]) }}" method="post">
+<form action="{{ route('service.update', ['id' => $service->id]) }}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
     {{ method_field('put') }}
     
@@ -186,19 +186,24 @@
             </div>
     
             <div class="form-group row">
+                
                 <label class="col-2" for="image">{{ __('app.image') }}</label>
+                
                 <div class="col-10">
+                    
                     <div class="custom-file">
+                        
                         <input type="file" id="customFile" name="image" class="custom-file-input @error('image') is-invalid @enderror" autofocus >
                         <label class="custom-file-label" for="customFile">{{ $service->image }}</label>
-                    </div>                  
-                                                                                                            
-                    @error('image')
+                    
+                        @error('image')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
-                    @enderror
-                
+                        @enderror
+                    
+                    </div>   
+                    
                 </div>
             </div>
         

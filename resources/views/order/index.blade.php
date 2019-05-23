@@ -33,10 +33,10 @@
             <td>{{ $order->id }}</td>
             <td>{{ $order->user->getFullName() }}</td>
             <td>{{ $order->state }}</td>
-            <td>{{ $order->payment }}</td>
+            <td>{{ $order->payment }} %</td>
             <td>{{ $order->price }}</td>
             <td>From {{ $order->lead_time_begin->format('H:i:s d.m.Y') }} to {{ $order->lead_time_finish->format('H:i:s d.m.Y') }}</td>
-            <td>{{ $order->discount }}</td>
+            <td>{{ $order->discount }} %</td>
             <td>{{ $order->created_at->format('d.m.Y H:i:s') }}</td>
         </tr>        
 @endforeach

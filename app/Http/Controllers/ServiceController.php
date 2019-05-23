@@ -17,7 +17,7 @@ class ServiceController extends Controller
     public function index()
     {
         return view('service.index',[
-			'services' => Service::all(),
+            'services' => Service::all(),
         ]);
     }
 
@@ -44,10 +44,24 @@ class ServiceController extends Controller
         $service = new Service();
         foreach(config('app.locales') as $locale) {
             $service->{'name_'.$locale} = $request->{'name_'.$locale};
+            $service->{'description_'.$locale} = $request->{'description_'.$locale};
+            $units = Service::getUnits($locale);
+            $service->{'unit_'.$locale} = $units[$request->unit];
         }
-        $service->image = $service->image;
+        $service->id_category = $request->category;
+        $service->id_company = $request->company;
+        $service->price = $request->price;
+        $service->minimum_batch = $request->minimum_batch;        
+        $service->maximum_batch = $request->maximum_batch;
+        $service->discount = $request->discount;
+        if ($request->hasFile('image')) {
+            if($request->file('image')->isValid()) {
+                $service->image = $request->file('image')->getClientOriginalName();
+                $service->addImage($request);
+            }
+        };
         $service->options = $service->options;
-        //$service->save();
+        $service->save();
         return redirect(route('service.index'/*,['id' => $service->id]*/ ));
     }
     
@@ -97,7 +111,7 @@ class ServiceController extends Controller
      * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(CreateService $request,  $id)
+    public function update(UpdateService $request,  $id)
     {
         $service = Service::find($id);
         foreach(config('app.locales') as $locale) {
@@ -112,7 +126,12 @@ class ServiceController extends Controller
         $service->minimum_batch = $request->minimum_batch;        
         $service->maximum_batch = $request->maximum_batch;
         $service->discount = $request->discount;
-        $service->image = $request->image;
+        if ($request->hasFile('image')) {
+            if($request->file('image')->isValid()) {
+                $service->image = $request->file('image')->getClientOriginalName();
+                $service->addImage($request);
+            }
+        }
         $service->options = $request->options;
         $service->save();
         return redirect(route('service.show', ['id' => $service->id]));

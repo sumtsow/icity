@@ -85,7 +85,7 @@
         <tr>
             <th>{{ __('app.image') }}:</th>
             <td>
-                <img src="/img/{{ $service->image }}" alt="none"> 
+                <img src="/storage/img/service/{{ $service->image }}" alt="none"> 
             </td>
         </tr>
         <tr>

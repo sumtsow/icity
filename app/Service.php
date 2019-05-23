@@ -9,6 +9,9 @@ class Service extends Model
 {
     protected $table = 'service';
     
+    // @string path to Service's images directory in Storage
+    private $storagePath = 'public/img/service/';
+    
     /**
      * Get the category included this service.
      */
@@ -48,5 +51,13 @@ class Service extends Model
 
         // Return matches
         return isset($matches[1]) ? $matches[1] : [];
+    }
+    
+    // Add new Service image to server
+    // @param  \Illuminate\Http\Request  $request
+    public function addImage($request) 
+    {
+        $filename = $request->file('image')->getClientOriginalName();
+        return $request->file('image')->storeAs($this->storagePath, $filename);
     }
 }
