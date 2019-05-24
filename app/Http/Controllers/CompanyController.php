@@ -92,4 +92,18 @@ class CompanyController extends Controller
         Company::destroy($id);
         return redirect('company');
     }
+        
+    /**
+     * Switch on/off company boolean property.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function switchstate($id, $property)
+    {
+        $company = Company::find($id);
+        $company->$property ? $company->$property = false : $company->$property = true;
+        $company->save();
+        return redirect()->route('company.show', ['id' => $id]);
+    }
 }

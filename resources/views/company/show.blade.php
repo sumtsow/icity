@@ -24,6 +24,12 @@
             <th>{{ __('app.id') }}:</th><td>{{ $company->id }}</td>
         </tr>
         <tr>
+            <th>{{ __('app.image') }}:</th>
+            <td>
+                <img src="/storage/img/company/{{ $company->image }}" alt="none"> 
+            </td>
+        </tr>
+        <tr>
             <th>{{ __('app.city') }}:</th><td>{{ $company->city->{'name_'.app()->getLocale()} }}</td>
         </tr>
         <tr>
@@ -43,12 +49,12 @@
             <th>{{ __('app.phone') }}:</th><td>{{ $company->phone }}</td>
         </tr>
         <tr>
-            <th>{{ __('app.E-Mail Address') }}:</th><td>{{ $company->email }}</td>
+            <th>{{ __('auth.E-Mail Address') }}:</th><td>{{ $company->email }}</td>
         </tr>
         <tr>
             <th>{{ __('app.payment') }}:</th>
             <td>
-               <form id="payment_state-form" action="#">
+               <form id="payment_state-form" action="{{ url('/company/switchstate', ['id' => $company->id, 'property' => 'payment_state']) }}">
                     @csrf
                     <input type="checkbox" @if($company->payment_state) checked="checked" @endif onClick="this.form.submit();" />
                 </form>
@@ -57,7 +63,7 @@
          <tr>
             <th>{{ __('app.expired') }}:</th>
             <td>
-               <form id="expired-form" action="#">
+               <form id="expired-form" action="{{ url('/company/switchstate', ['id' => $company->id, 'property' => 'expired']) }}">
                     @csrf
                     <input type="checkbox" @if($company->expired) checked="checked" @endif onClick="this.form.submit();" />
                 </form>
@@ -66,7 +72,7 @@
         <tr>
             <th>{{ __('app.enabled') }}:</th>
             <td>
-               <form id="enabled-form" action="#">
+               <form id="enabled-form" action="{{ url('/company/switchstate', ['id' => $company->id, 'property' => 'enabled']) }}">
                     @csrf
                     <input type="checkbox" @if($company->enabled) checked="checked" @endif onClick="this.form.submit();" />
                 </form>
@@ -79,16 +85,10 @@
         @endforeach
         
         <tr>
-            <th>{{ __('app.image') }}:</th>
-            <td>
-                <img src="/storage/img/company/{{ $company->image }}" alt="none"> 
-            </td>
-        </tr>
-        <tr>
             <th>{{ __('app.work time') }}:</th>
             <td>{{ __('app.lead time period', [
-                        'begin' => $company->work_begin,
-                        'finish' => $company->work_begin,        
+                        'begin' => \Carbon\Carbon::createFromFormat('H:i:s', $company->work_begin)->format('H:i'),
+                        'finish' => \Carbon\Carbon::createFromFormat('H:i:s', $company->work_finish)->format('H:i'),        
                     ]) }}
             </td>
         </tr>       

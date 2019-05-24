@@ -44,6 +44,8 @@ Route::resource('user', 'UserController');
 // User state switch action
 Route::get('/user/switchstate/{id}', 'UserController@switchstate')->name('switchstate')->middleware('can:admin, App\User')->middleware('verified');
 
+// Company state switch action
+Route::get('/company/switchstate/{id}/{property}', 'CompanyController@switchstate')->middleware('can:admin, App\User')->middleware('verified');
 
 // Category list page 
 Route::get('/{id}', 'Controller@show')->name('category');

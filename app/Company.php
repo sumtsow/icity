@@ -9,6 +9,13 @@ class Company extends Model
     protected $table = 'company';
     
     /**
+     * Define the 'work_begin', 'work_finish' fileds as dates
+     *
+     * @var array
+     */    
+    //protected $dates = ['work_begin', 'work_finish'];
+    
+    /**
      * Get the services provided by this company.
      */
     public function service()

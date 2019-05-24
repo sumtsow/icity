@@ -18,8 +18,9 @@
     <thead class="thead-pat">
         <tr>
             <th scope="col">{{ __('app.id') }}</th>
+            <th scope="col">{{ __('app.image') }}</th>
+            <th scope="col">{{ __('app.name') }}</th>            
             <th scope="col">{{ __('app.city') }}</th>
-            <th scope="col">{{ __('app.name') }}</th>
             <th scope="col">{{ __('app.payment') }}</th>
             <th scope="col">{{ __('app.expired') }}</th>
             <th scope="col">{{ __('app.enabled') }}</th>
@@ -30,28 +31,18 @@
 @foreach($companies as $company)
         <tr>
             <td>{{ $company->id }}</td>
-            <td>{{ $company->city->{'name_'.app()->getLocale()} }}</td>
+            <td>
+                <a href="{{ route('company.show', ['id' => $company->id]) }}">
+                    <img class="w-25" src="/storage/img/company/{{ $company->image }}" alt="{{ $company->{'name_'.app()->getLocale()} }}">
+                </a>
+            </td>
             <td>
                 <a href="{{ route('company.show', ['id' => $company->id]) }}">{{ $company->{'name_'.app()->getLocale()} }}</a>
-            </td>
-            <td>
-               <form id="payment_state-form" action="#">
-                    @csrf
-                    <input type="checkbox" @if($company->payment_state) checked="checked" @endif onClick="this.form.submit();" />
-                </form>
-            </td>
-            <td>
-               <form id="expired-form" action="#">
-                    @csrf
-                    <input type="checkbox" @if($company->expired) checked="checked" @endif onClick="this.form.submit();" />
-                </form>
-            </td>
-            <td>
-                <form id="enabled-form" action="#">
-                    @csrf
-                    <input type="checkbox" @if($company->enabled) checked="checked" @endif onClick="this.form.submit();" />
-                </form>               
-            </td>
+            </td>            
+            <td>{{ $company->city->{'name_'.app()->getLocale()} }}</td>
+            <td>{{ $company->payment_state }}</td>
+            <td>{{ $company->expired }}</td>
+            <td>{{ $company->enabled }}</td>
             <td>{{ $company->created_at->format('d.m.Y H:i:s') }}</td>
         </tr>        
 @endforeach
