@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\City;
-use App\Company;
+//use App\City;
+//use App\Company;
 //use App\Order;
 use App\User;
 use App\Http\Requests\CreateUser;

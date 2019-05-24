@@ -8,6 +8,9 @@ class Company extends Model
 {
     protected $table = 'company';
     
+    // @string path to Companies images directory in Storage
+    private $storagePath = 'public/img/company/';
+    
     /**
      * Define the 'work_begin', 'work_finish' fileds as dates
      *
@@ -49,5 +52,13 @@ class Company extends Model
         $fieldname = 'name_'.app()->getLocale();
         return Company::where($fieldname, $name)->first();
     }
-    
+            
+    /**
+     * Remove this company image from server
+    */
+    public function removeImage() 
+    {
+        Storage::delete($this->storagePath.$this->image);
+        return true;
+    }
 }

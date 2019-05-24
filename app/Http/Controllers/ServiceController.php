@@ -62,7 +62,7 @@ class ServiceController extends Controller
         };
         $service->options = $service->options;
         $service->save();
-        return redirect(route('service.index'/*,['id' => $service->id]*/ ));
+        return redirect()->route('service.index'/*,['id' => $service->id]*/ );
     }
     
     /**
@@ -108,7 +108,6 @@ class ServiceController extends Controller
      * Update the specified service in storage.
      *
      * @param \App\Http\Requests\CreateService  $request
-     * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateService $request,  $id)
@@ -134,7 +133,7 @@ class ServiceController extends Controller
         }
         $service->options = $request->options;
         $service->save();
-        return redirect(route('service.show', ['id' => $service->id]));
+        return redirect()->route('service.show', ['id' => $service->id]);
     }
 
     /**

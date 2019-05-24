@@ -28,7 +28,6 @@ class CreateCategory extends FormRequest
         }
         $rules['options'] = 'string|max:255|nullable';
         $rules['image'] = 'image';
-        $rules['options'] = 'string|max:255|nullable';
         return $rules;
     }
 }

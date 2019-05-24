@@ -96,7 +96,7 @@
             <th>{{ __('app.map') }}</th><td>{{ $company->map }}</td>
         </tr>
         <tr>
-            <th>{{ __('app.website') }}</th><td><a href="{{ $company->website }}">{{ $company->website }}</a></td>
+            <th>{{ __('app.website') }}</th><td><a href="{{ $company->website }}" target="_blank">{{ $company->website }}</a></td>
         </tr>
         <tr>
             <th>Skype</th><td>{{ $company->skype }}</td>
