@@ -63,7 +63,7 @@
             <div class="form-group row">
                 <label class="col-2" for="password">{{ __('auth.Password') }} *</label>
                 <div class="col-10">
-                    <input value required autocomplete="new-password" type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" autofocus />
+                    <input value="{{ old('password') }}" required autocomplete="new-password" type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" autofocus />
                                         
                     @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -111,7 +111,7 @@
                 <div class="col-10">
                     
                     <select class="form-control @error('company') is-invalid @enderror" name="company" id="company" autofocus>
-                        <option selected>{{ __('app.select company') }}</option>
+                        <option>{{ __('app.select company') }}</option>
                         @foreach(App\Company::all() as $company)
                         <option value="{{ $company->id }}">{{ $company->{'name_'.app()->getLocale()} }}</option>
                         @endforeach
@@ -145,7 +145,7 @@
                 <div class="col-10">
                     
                     <select class="form-control @error('city') is-invalid @enderror" name="city" id="city" autofocus>
-                        <option selected>{{ __('app.select city') }}</option>
+                        <option>{{ __('app.select city') }}</option>
                         @foreach(App\City::all() as $city)
                         <option value="{{ $city->id }}">{{ $city->{'name_'.app()->getLocale()} }}</option>
                         @endforeach

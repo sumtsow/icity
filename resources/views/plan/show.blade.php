@@ -14,7 +14,7 @@
 @section('content')
 
 <h2 class="mt-3">
-    {{ __('app.plan') }} <em>{{ $plan->{'description_'.app()->getLocale()} }}</em>
+    {{ __('app.plan') }} <em>{{ $plan->{'name_'.app()->getLocale()} }}</em>
     <button class="btn btn-danger" data-toggle="modal" data-target="#Modal">{{ __('app.delete') }}</button>
 </h2>
    
@@ -71,15 +71,15 @@
         </button>
       </div>
       <div class="modal-body">
-          @if(count($plan->service))
-          <p>{{__('app.plan is not empty')}}</p>
+          @if(count($plan->company))
+          <p>{{ __('app.plan') }} <strong>{{ $plan->{'name_'.app()->getLocale()} }}</strong> {{ __('app.is not empty') }}!</p>
           @else
-          <p>{{__('app.completly remove')}} <b>{{ $plan->{'name_'.app()->getLocale()} }}?</b></p>
+          <p>{{ __('app.completly remove') }} <strong>{{ $plan->{'name_'.app()->getLocale()} }}?</strong></p>
           @endif
       </div>
       <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('app.cancel')}}</button>
-            @if(!count($plan->service))
+            @if(!count($plan->company))
             <form action="{{ route('plan.destroy', ['id' => $plan->id]) }}" method="post">        
                 <button type="button" class="btn btn-danger" onclick="this.form.submit();">{{__('app.yes')}}</button>
                 {{csrf_field()}}

@@ -108,7 +108,7 @@
                     <select class="form-control @error('plan') is-invalid @enderror" name="plan" id="plan">
                         <option>{{ __('app.select plan') }}</option>
                         @foreach(App\Plan::all() as $plan)
-                            <option value="{{ $plan->id }}">{{ $plan->{'description_'.app()->getLocale()} }}</option>
+                            <option value="{{ $plan->id }}">{{ $plan->{'name_'.app()->getLocale()} }}</option>
                         @endforeach
                     @error('plan')
                         <span class="invalid-feedback" role="alert">

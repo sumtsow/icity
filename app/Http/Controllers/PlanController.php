@@ -107,6 +107,6 @@ class PlanController extends Controller
     public function destroy($id)
     {
         Plan::destroy($id);
-        return redirect()->route('company.show', ['id' => $id]);
+        return redirect()->route('plan.show', ['id' => $id]);
     }
 }

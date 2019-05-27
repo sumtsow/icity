@@ -33,7 +33,7 @@
             <th>{{ __('app.city') }}:</th><td>{{ $company->city->{'name_'.app()->getLocale()} }}</td>
         </tr>
         <tr>
-            <th>{{ __('app.tariff plan') }}:</th><td>{{ $company->plan->{'description_'.app()->getLocale() } }}</td>
+            <th>{{ __('app.tariff plan') }}:</th><td>{{ $company->plan->{'name_'.app()->getLocale() } }}</td>
         </tr>
         
         @foreach(config('app.locales') as $locale)
@@ -137,9 +137,9 @@
       </div>
       <div class="modal-body">
           @if(count($company->service))
-          <p>{{__('app.company is not empty')}}</p>
+          <p>{{__('app.company')}} <strong>{{ $company->{'name_'.app()->getLocale()} }}</strong> {{__('app.is not empty')}}!</p>
           @else
-          <p>{{__('app.completly remove')}} <b>{{ $company->{'name_'.app()->getLocale()} }}?</b></p>
+          <p>{{__('app.completly remove')}} <strong>{{ $company->{'name_'.app()->getLocale()} }}?</strong></p>
           @endif
       </div>
       <div class="modal-footer">

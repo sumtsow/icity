@@ -173,8 +173,8 @@
                 <div class="col-10">
                    
                     <div class="custom-file">
-                        <input type="file" id="customFile" name="image" class="custom-file-input @error('image') is-invalid @enderror" autofocus>
-                        <label class="custom-file-label" for="customFile">{{ $service->image }}</label>
+                        <input type="file" id="customFile" name="image" autocomplete="options" class="custom-file-input @error('image') is-invalid @enderror" autofocus>
+                        <label class="custom-file-label" for="customFile">{{ old('image') }}</label>
 
                         @error('image')
                         <span class="invalid-feedback" role="alert">

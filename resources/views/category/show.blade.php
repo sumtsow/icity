@@ -66,9 +66,9 @@
       </div>
       <div class="modal-body">
           @if(count($category->service))
-          <p>{{__('app.category is not empty')}}</p>
+          <p>{{ __('app.category') }} <strong>{{ $category->{'name_'.app()->getLocale()} }}</strong> {{ __('app.is not empty') }}!</p>
           @else
-          <p>{{__('app.completly remove')}} <b>{{ $category->{'name_'.app()->getLocale()} }}?</b></p>
+          <p>{{ __('app.completly remove') }} <strong>{{ $category->{'name_'.app()->getLocale()} }}?</strong></p>
           @endif
       </div>
       <div class="modal-footer">

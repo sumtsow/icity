@@ -98,9 +98,9 @@
                         <option>{{ __('app.select plan') }}</option>
                         @foreach(App\Plan::all() as $plan)
                             @if($company->plan)
-                            <option value="{{ $plan->id }}" @if($company->plan->id == $plan->id) selected @endif>{{ $plan->{'description_'.app()->getLocale()} }}</option>
+                            <option value="{{ $plan->id }}" @if($company->plan->id == $plan->id) selected @endif>{{ $plan->{'name_'.app()->getLocale()} }}</option>
                             @else
-                            <option value="{{ $plan->id }}">{{ $plan->{'description_'.app()->getLocale()} }}</option>
+                            <option value="{{ $plan->id }}">{{ $plan->{'name_'.app()->getLocale()} }}</option>
                             @endif
                         @endforeach
                     @error('plan')
