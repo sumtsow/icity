@@ -38,6 +38,9 @@ Route::resource('service', 'ServiceController');
 // Order resource routes
 Route::resource('order', 'OrderController');
 
+// Tariff plan resource routes
+Route::resource('plan', 'PlanController');
+
 // User resource routes
 Route::resource('user', 'UserController');
 

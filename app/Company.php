@@ -52,7 +52,15 @@ class Company extends Model
         $fieldname = 'name_'.app()->getLocale();
         return Company::where($fieldname, $name)->first();
     }
-            
+    
+    // Add new Company image to server
+    // @param  \Illuminate\Http\Request  $request
+    public function addImage($request) 
+    {
+        $filename = $request->file('image')->getClientOriginalName();
+        return $request->file('image')->storeAs($this->storagePath, $filename);
+    }
+    
     /**
      * Remove this company image from server
     */

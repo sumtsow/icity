@@ -117,7 +117,7 @@
             </div>
     
             <div class="form-group row">
-                <label class="col-2" for="price">{{ __('app.price') }}</label>
+                <label class="col-2" for="price">{{ __('app.price') }}, {{ __('app.hrn') }}</label>
                 <div class="col-10">
                     <input value="{{ $service->price }}" type="number" name="price" id="price" class="form-control @error('price') is-invalid @enderror" autofocus required />
                                                                                                             
@@ -131,7 +131,7 @@
             </div>
     
             <div class="form-group row">
-                <label class="col-2 pl-4" for="unit">{{ __('app.unit') }}</label>
+                <label class="col-2" for="unit">{{ __('app.unit') }}</label>
                 <div class="col-10">
                     <select class="form-control @error('unit') is-invalid @enderror" name="unit" id="unit" required>
                         @foreach($service->getUnits(app()->getLocale()) as $key => $unit)

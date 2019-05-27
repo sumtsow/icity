@@ -43,7 +43,7 @@
         @endforeach
         
         <tr>
-            <th>{{ __('app.price') }}:</th><td>{{ $service->price }}</td>
+            <th>{{ __('app.price') }}:</th><td>{{ $service->price }} {{ __('app.hrn') }}</td>
         </tr>       
         <tr>
             <th>

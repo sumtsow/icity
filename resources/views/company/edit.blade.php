@@ -218,7 +218,7 @@
                 @endforeach                
             </div>
 
-              <div class="form-group p-2 border border-light rounded">
+            <div class="form-group p-2 border border-light rounded">
                 <label class="col-2 font-weight-bold px-0">{{ __('app.work time') }}</label>
 
                 <div class="form-group row">

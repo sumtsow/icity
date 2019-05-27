@@ -15,6 +15,7 @@
                     @endif
                     <a href="{{ route('user.index') }}"><h5>{{ __('app.user admin') }}</h5></a>
                     <a href="{{ route('category.index') }}"><h5>{{ __('app.categories admin') }}</h5></a>
+                    <a href="{{ route('plan.index') }}"><h5>{{ __('app.plans admin') }}</h5></a>
                     <a href="{{ route('company.index') }}"><h5>{{ __('app.companies admin') }}</h5></a>
                     <a href="{{ route('service.index') }}"><h5>{{ __('app.services admin') }}</h5></a>
                     <a href="{{ url('/order') }}"><h5>{{ __('app.orders admin') }}</h5></a>

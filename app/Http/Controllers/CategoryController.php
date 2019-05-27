@@ -66,7 +66,7 @@ class CategoryController extends Controller
         }
         $category->options = $request->options;
         $category->save();
-        return redirect(route('category.show',['id' => $category->id]));
+        return redirect()->route('category.show',['id' => $category->id]);
     }
 
     /**
@@ -103,7 +103,7 @@ class CategoryController extends Controller
         }
         $category->options = $request->options;
         $category->save();
-        return redirect(route('category.show',['id' => $category->id]));
+        return redirect()->route('category.show',['id' => $category->id]);
     }
 
     /**

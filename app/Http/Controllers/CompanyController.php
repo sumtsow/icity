@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\Http\Requests\CreateCompany;
 use App\Http\Requests\UpdateCompany;
 //use Illuminate\Http\Request;
 
@@ -35,12 +36,40 @@ class CompanyController extends Controller
     /**
      * Store a newly created company in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \App\Http\Requests\CreateCompany  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCompany $request)
     {
-        //
+        $company = new Company();
+        foreach(config('app.locales') as $locale) {
+            $company->{'name_'.$locale} = $request->{'name_'.$locale};
+            $company->{'description_'.$locale} = $request->{'description_'.$locale};
+        }
+        $company->id_plan = $request->plan;       
+        $company->id_city = $request->city;
+        $company->address = $request->address;
+        $company->phone = $request->phone;
+        $company->email = $request->email;
+        $company->payment_state = false; 
+        $company->expired = false;
+        $company->enabled = false;
+        $company->work_begin = \Carbon\Carbon::createFromFormat('H:i', $request->work_begin)->format('H:i:s');
+        $company->work_finish = \Carbon\Carbon::createFromFormat('H:i', $request->work_finish)->format('H:i:s');
+        $company->map = $request->map;
+        $company->website = $request->website;
+        $company->skype = $request->skype;
+        $company->twitter = $request->twitter;
+        $company->viber = $request->viber; 
+        $company->options = $request->options;
+        if ($request->hasFile('image')) {
+            if($request->file('image')->isValid()) {
+                $company->image = $request->file('image')->getClientOriginalName();
+                $company->addImage($request);
+            }
+        }
+        $company->save();
+        return redirect()->route('company.show', ['id' => $company->id]);
     }
 
     /**

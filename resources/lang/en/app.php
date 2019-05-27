@@ -51,6 +51,7 @@ return [
     'companies admin' => 'Companies administration',
     'services admin' => 'Services administration',
     'orders admin' => 'Orders administration',
+    'plans admin' => 'Tariff plans administration',
     'change my password' => 'Change my password',
     'upload' => 'Upload',
     'filename' => 'File Name (using Latin symbols without spaces or dots)',
@@ -107,4 +108,7 @@ return [
     'map' => 'Map',
     'website' => 'Web Site',
     'company is not empty' => 'Сompany is not empty',
+    'validity' => 'Validity',
+    'month(s)' => 'month(s)',
+    'hrn' => 'hrn',
 ];

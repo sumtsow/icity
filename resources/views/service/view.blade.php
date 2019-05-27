@@ -14,7 +14,7 @@
 
 <p></p>
 
-<h4 class="h4">{{ __('app.price per unit', ['price' => $service->price, 'unit' => $service->{'unit_'.app()->getLocale()}]) }}</h4>
+<h4 class="h4">{{ __('app.price per unit', ['price' => $service->price, 'unit' => '1 '.$service->{'unit_'.app()->getLocale()}]) }}</h4>
 
 <a href="{{ url('/order') }}" class="btn btn-success mt-1 mb-5">{{ __('app.add to cart') }}</a>
 

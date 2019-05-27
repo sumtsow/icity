@@ -30,7 +30,7 @@
 @foreach($services as $service)
         <tr>
             <td>{{ $service->id }}</td>
-			<td>
+            <td>
                 <a href="{{ route('service.show', ['id' => $service->id]) }}">
                     <img class="w-25" src="/storage/img/service/{{ $service->image }}" alt="{{ $service->{'name_'.app()->getLocale()} }}">
                 </a>
