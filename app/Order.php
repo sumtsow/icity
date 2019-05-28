@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Order extends Model
 {
@@ -27,5 +28,22 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo('\App\User', 'id_user');
+    }
+    
+        /**
+    * Get the order's possible states
+    *
+    * @return array of string
+    */
+    public static function getStates ()
+    {
+        // Pulls column string from DB
+        $enumStr = DB::select(DB::raw('SHOW COLUMNS FROM `orders` WHERE FIELD = "state"'))[0]->Type;
+
+        // Parse string
+        preg_match_all("/'([^']+)'/", $enumStr, $matches);
+
+        // Return matches
+        return isset($matches[1]) ? $matches[1] : [];
     }
 }

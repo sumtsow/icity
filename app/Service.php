@@ -61,4 +61,13 @@ class Service extends Model
         $filename = $request->file('image')->getClientOriginalName();
         return $request->file('image')->storeAs($this->storagePath, $filename);
     }
+            
+    /**
+     * Remove this Service image from server
+    */
+    public function removeImage() 
+    {
+        Storage::delete($this->storagePath.$this->image);
+        return true;
+    }
 }
