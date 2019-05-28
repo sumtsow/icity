@@ -34,7 +34,7 @@
             <td>{{ $order->user->getFullName() }}</td>
             <td>{{ $order->state }}</td>
             <td>{{ $order->payment }} %</td>
-            <td>{{ $order->price }}</td>
+            <td>{{ $order->price }} {{ __('app.hrn') }}</td>
             <td>{{ __('app.lead time period', [
                         'begin' => $order->lead_time_begin->format('H:i d.m.Y'),
                         'finish' => $order->lead_time_finish->format('H:i d.m.Y'),        

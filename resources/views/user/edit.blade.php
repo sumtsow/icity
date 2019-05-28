@@ -101,8 +101,8 @@
                 <label class="col-2" for="role">{{ __('app.role') }}</label>
                 <div class="col-10">
                     <select class="form-control @error('role') is-invalid @enderror" name="role" id="role" required>
-                        @foreach($user->getRoles() as $role)
-                        <option value="{{ $role }}" @if($user->role == $role) selected @endif>{{ ucfirst( $role ) }}</option>
+                        @foreach($user->getRoles() as $key => $role)
+                        <option value="{{ $key+1 }}" @if($user->role == $role) selected @endif>{{ $role }}</option>
                         @endforeach
                     </select>
                                                                                                             

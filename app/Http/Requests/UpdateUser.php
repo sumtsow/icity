@@ -28,7 +28,7 @@ class UpdateUser extends FormRequest
             'firstname' => 'required|alpha|max:255',
             'patronymic' => 'alpha|max:255|nullable',
             'email' => 'required|max:127',
-            'email_verified_at' => 'date',
+            'email_verified_at' => 'string',
             'role' => 'required|max:15',
             'company' => 'integer|nullable',
             'birthdate' => 'date|nullable',

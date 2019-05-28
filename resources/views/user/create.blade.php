@@ -93,7 +93,7 @@
                     <select class="form-control @error('role') is-invalid @enderror" name="role" id="role" autofocus>
                         <option selected>{{ __('app.select role') }}</option>
                         @foreach($user->getRoles() as $key => $role)
-                        <option value="{{ $key }}">{{ $role }}</option>
+                        <option value="{{ $key+1 }}">{{ $role }}</option>
                         @endforeach
                     </select>
                                                             
