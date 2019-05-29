@@ -103,6 +103,7 @@ return [
     'support' => 'Support',
     'tariff plan' => 'Tariff Plan',
     'to' => 'to',
+    'total' => 'Total',
     'unit' => 'Unit',
     'updated at' => 'Updated at',
     'upload' => 'Upload',

@@ -62,7 +62,7 @@ class ServiceController extends Controller
         };
         $service->options = $service->options;
         $service->save();
-        return redirect()->route('service.index'/*,['id' => $service->id]*/ );
+        return redirect()->route('service.show', ['id' => $service->id] );
     }
     
     /**

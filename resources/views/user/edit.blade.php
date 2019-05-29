@@ -119,7 +119,7 @@
                 <label class="col-2" for="company">{{ __('app.company') }}</label>
                 <div class="col-10">
                     <select class="form-control @error('company') is-invalid @enderror" name="company" id="company">
-                        <option selected>{{ __('app.select company') }}</option>
+                        <option>{{ __('app.select company') }}</option>
                         @foreach(App\Company::all() as $company)
                             @if($user->company)
                             <option value="{{ $company->id }}" @if($user->company->id == $company->id) selected @endif>{{ $company->{'name_'.app()->getLocale()} }}</option>
@@ -156,7 +156,7 @@
                 <label class="col-2" for="city">{{ __('app.city') }}</label>
                 <div class="col-10">
                     <select class="form-control @error('city') is-invalid @enderror" name="city" id="city">
-                        <option selected>{{ __('app.select city') }}</option>
+                        <option>{{ __('app.select city') }}</option>
                         @foreach(App\City::all() as $city)
                             @if($user->city)
                             <option value="{{ $city->id }}" @if($user->city->id == $city->id) selected @endif>{{ $city->{'name_'.app()->getLocale()} }}</option>

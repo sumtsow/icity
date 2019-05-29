@@ -56,7 +56,7 @@
                 <label class="col-2 pl-4" for="company">{{ __('app.company') }}</label>
                 <div class="col-10">
                     <select class="form-control @error('company') is-invalid @enderror" name="company" id="company">
-                        <option selected>{{ __('app.select company') }}</option>
+                        <option>{{ __('app.select company') }}</option>
                         @foreach(App\Company::all() as $company)
                             @if($service->company)
                             <option value="{{ $company->id }}" @if($service->company->id == $company->id) selected @endif>{{ $company->{'name_'.app()->getLocale()} }}</option>
@@ -78,7 +78,7 @@
                 <label class="col-2 pl-4" for="category">{{ __('app.category') }}</label>
                 <div class="col-10">
                     <select class="form-control @error('category') is-invalid @enderror" name="category" id="category">
-                        <option selected>{{ __('app.select category') }}</option>
+                        <option>{{ __('app.select category') }}</option>
                         @foreach(App\Category::all() as $category)
                             @if($service->category)
                             <option value="{{ $category->id }}" @if($service->category->id == $category->id) selected @endif>{{ $category->{'name_'.app()->getLocale()} }}</option>
