@@ -19,13 +19,8 @@
    
 <div class="table-responsive">
     <table class="table table-sm bg-white table-striped">
-        <tr>
-            <th>{{ __('app.id') }}:</th><td>{{ $order->id }}</td>
-        </tr>
-        <tr>
-            <th>{{ __('app.User') }}:</th><td>{{ $order->user->getFullName() }}</td>
-        </tr>
-        <tr>
+
+       <tr>
             <th>{{ __('app.price') }}:</th>
             <td>
                 <ol>
@@ -43,48 +38,100 @@
                     {{ $order->getItemCost($service->id) }} {{ __('app.hrn') }}
                     @if($service->discount)
                     - {{ __('app.discount') }} {{ $service->discount }}% =
-                    <del>{{ $service->pivot->number * $service->price }} {{ __('app.hrn') }}</del>
-                    {{ $service->pivot->number * $service->price * (1 - 0.01 * $service->discount) }} {{ __('app.hrn') }}
+                    <del>{{ $order->getItemCost($service->id) }} {{ __('app.hrn') }}</del>
+                    {{ $order->getDiscountItemCost($service->id) }} {{ __('app.hrn') }}
                     @endif
                 </p>
                 </li>
                 @endforeach
                 </ol>
                 <hr>
-                <h5>{{ __('app.total') }}: {{ $order->getTotalCosts() }} {{ __('app.hrn') }}</h5>
+                <h6 class="font-weight-bold">{{ __('app.total') }}: {{ $order->getTotalCosts() }} {{ __('app.hrn') }}</h6>
             </td>
         </tr>
         
         <tr>
-            <th>{{ __('app.order state') }}:</th><td>{{ __('app.'.$order->state) }}</td>
+            <th>
+                {{ __('app.User') }}:
+            </th>
+            <td>
+                <p>{{ $order->user->getFullName() }}</p>
+                <p>{{ __('auth.E-Mail Address')}}: <a href="mailto://{{ $order->user->email }}">{{ $order->user->email }}</a></p>
+                <p>{{ __('app.phone')}}: {{ $order->user->phone }}</p>
+                <p>{{ __('app.address')}}: {{ $order->user->address }}</p>
+            </td>
         </tr>
         
         <tr>
-            <th>{{ __('app.payment') }}:</th><td>{{ $order->payment }}%</td>
+            <th>
+                {{ __('app.order state') }}:
+            </th>
+            <td>
+                {{ __('app.'.$order->state) }}
+            </td>
         </tr>
         
         <tr>
-            <th>{{ __('app.lead time begin') }}:</th><td>{{ $order->lead_time_begin->format('H:i d.m.Y') }}</td>
+            <th>
+                {{ __('app.payment') }}:
+            </th>
+            <td>
+                {{ $order->payment }}% = {{ 0.01 * $order->payment * $order->getTotalCosts() }} {{ __('app.hrn') }}
+            </td>
         </tr>
         
         <tr>
-            <th>{{ __('app.lead time finish') }}:</th><td>{{ $order->lead_time_finish->format('H:i d.m.Y') }}</td>
+            <th>
+                {{ __('app.lead time begin') }}:
+            </th>
+            <td>
+                {{ $order->lead_time_begin->format('H:i d.m.Y') }}
+            </td>
         </tr>
         
         <tr>
-            <th>{{ __('app.description') }}:</th><td>{!! $order->description !!}</td>
+            <th>
+                {{ __('app.lead time finish') }}:
+            </th>
+            <td>
+                {{ $order->lead_time_finish->format('H:i d.m.Y') }}
+            </td>
         </tr>
         
         <tr>
-            <th>{{ __('app.options') }}:</th><td>{{ $order->options }}</td>
+            <th>
+                {{ __('app.description') }}:
+            </th>
+            <td>
+                {!! $order->description !!}
+            </td>
         </tr>
         
         <tr>
-            <th>{{ __('app.created at') }}:</th><td>{{ $order->created_at->format('d.m.Y H:i:s') }}</td>
+            <th>
+                {{ __('app.options') }}:
+            </th>
+            <td>
+                {{ $order->options }}
+            </td>
         </tr>
         
         <tr>
-            <th>{{ __('app.updated at') }}:</th><td>{{ $order->updated_at->format('d.m.Y H:i:s') }}</td>
+            <th>
+                {{ __('app.created at') }}:
+            </th>
+            <td>
+                {{ $order->created_at->format('d.m.Y H:i:s') }}
+            </td>
+        </tr>
+        
+        <tr>
+            <th>
+                {{ __('app.updated at') }}:
+            </th>
+            <td>
+                {{ $order->updated_at->format('d.m.Y H:i:s') }}
+            </td>
         </tr>    
     </table>
 </div>

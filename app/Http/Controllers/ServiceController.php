@@ -144,7 +144,7 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-		Service::destroy($id);
-		return redirect('service');
+        Service::destroy($id);
+        return redirect('service');
     }
 }

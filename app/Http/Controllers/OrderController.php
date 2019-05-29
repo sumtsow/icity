@@ -77,21 +77,37 @@ class OrderController extends Controller
     public function update(UpdateOrder $request, $id)
     {
         $order = Order::find($id);
-		$order->state = $request->state;
-		$order->payment = $request->payment;
-		$order->discount = $request->discount;
-		$order->description = $request->description;
-		$order->lead_time_begin = \Carbon\Carbon::createFromFormat('H:i d.m.Y', $request->lead_time_begin);
-		$order->lead_time_finish = \Carbon\Carbon::createFromFormat('H:i d.m.Y', $request->lead_time_finish);
-		$order->options = $request->options;
+        $order->state = $request->state;
+        $order->payment = $request->payment;
+        $order->description = $request->description;
+        $order->lead_time_begin = \Carbon\Carbon::createFromFormat('H:i d.m.Y', $request->lead_time_begin);
+        $order->lead_time_finish = \Carbon\Carbon::createFromFormat('H:i d.m.Y', $request->lead_time_finish);
+        $order->options = $request->options;
         $order->save();
+        if(isset($request->service)) {
+            $order->services()->attach($request->service, ['number' => 1 ]);
+        }
         return redirect()->route('order.index'/*, ['id' => $order->id]*/);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified service from current order.
      *
-     * @param  int  $order
+     * @param  int  $id
+     * @param  int  $id_service
+     * @return \Illuminate\Http\Response
+     */
+    public function removeService($id, $id_service)
+    {
+        $order = Order::find($id);
+        $order->services()->detach($id_service);
+        return redirect()->route('order.edit', ['id' => $id]);
+    }
+    
+        /**
+     * Remove the specified order from storage.
+     *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

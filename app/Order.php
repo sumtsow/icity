@@ -49,15 +49,24 @@ class Order extends Model
     }
     
     /**
-    * Get cost of the specified order item
+    * Get full cost of the specified order item
     *
     * @return float
     */
     public function getItemCost($id_service)
     {
-        //$item = $this->services->->wherePivot('id_service', $id_service);
-        $item = $this->belongsToMany('App\Service', 'order_service', 'id_order', 'id_service')->wherePivot('id_service', $id_service);
-        return $item->pivot->number * $item->price * (1 - 0.01 * $item->discount);
+        $service = $this->services->find($id_service);
+        return $service->pivot->number * $service->price;
+    }
+        
+    /**
+    * Get discount cost of the specified order item
+    *
+    * @return float
+    */
+    public function getDiscountItemCost($id_service)
+    {
+        return  $this->getItemCost($id_service) * (1 - 0.01 * $this->services->find($id_service)->discount);
     }
     
     /**

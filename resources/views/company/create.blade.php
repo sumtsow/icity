@@ -136,7 +136,7 @@
 			<div class="form-group row">
                 <label class="col-2" for="phone">{{ __('app.phone') }}</label>
                 <div class="col-10">
-                    <input value="{{ old('phone') }}" autocomplete="phone" type="text" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" autofocus />
+                    <input value="{{ old('phone') }}" autocomplete="phone" type="tel" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" autofocus />
                                                                                                             
                     @error('phone')
                         <span class="invalid-feedback" role="alert">

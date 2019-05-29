@@ -24,7 +24,58 @@
 <form action="{{ route('order.update', ['id' => $order->id]) }}" method="post" id="order-form">
     {{ csrf_field() }}
     {{ method_field('put') }}
+    
+    <div class="form-group row">
+
+        <label class="col-2" for="services">{{ __('app.price') }}</label>
+
+        <div class="col-10">
+
+            @foreach($order->services as $service)
+            <div class="mx-2 w-100 alert alert-success alert-dismissible fade show" role="alert">
+                <h6 class="font-weight-bold">
+                    <a href="{{ url('/service/view', ['id' => $service->id] ) }}" target="_blank">
+                    {{ $service->{'name_'.app()->getLocale()} }}
+                    </a>
+                </h6>
+                <p>
+                    {{ $service->pivot->number }}
+                    {{ $service->{'unit_'.app()->getLocale()} }} x
+                    {{ $service->price }} {{ __('app.hrn') }} =
+                    {{ $order->getItemCost($service->id) }} {{ __('app.hrn') }}
+                    @if($service->discount)
+                    - {{ __('app.discount') }} {{ $service->discount }}% =
+                    <del>{{ $order->getItemCost($service->id) }} {{ __('app.hrn') }}</del>
+                    {{ $order->getDiscountItemCost($service->id) }} {{ __('app.hrn') }}
+                    @endif
+                </p>
+                
+                <a type="button" form="service-form" class="close text-dark" href="{{ url('/order/remove-service', ['id' => $order->id, 'id_service' => $service->id ]) }}" >&times;</a>
+                
+            </div>   
+            @endforeach
+
+        </div>
         
+    </div>
+   
+    <div class="form-group row">
+        <label class="col-2" for="service">{{ __('app.add to order') }}</label>
+        <div class="col-10">
+            <select id="service" class="form-control" name="service">
+                <option>{{ __('app.select service') }}</option>
+                @foreach(App\Service::all() as $service)
+                <option value="{{ $service->id }}">{{ $service->{'name_'.app()->getLocale() } }}</option>
+                @endforeach
+            </select>
+                @error('service')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+        </div>
+    </div>
+    
     <div class="form-group row">
         <label class="col-2" for="user">{{ __('app.User') }}</label>
         <div class="col-10">
@@ -112,20 +163,6 @@
             </div>
         </div>
 
-    </div>
-
-    <div class="form-group row">
-        <label class="col-2" for="discount">{{ __('app.discount') }}</label>
-        <div class="col-10">
-            <input value="{{ $order->discount }}" autocomplete="discount" min="0" max="99" type="number" name="discount" id="discount" class="form-control @error('discount') is-invalid @enderror" autofocus />
-
-            @error('discount')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-
-        </div>
     </div>
 
     <div class="form-group row">

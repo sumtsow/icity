@@ -26,12 +26,12 @@ class UpdateOrder extends FormRequest
     {
         return [
             'state' => 'required|string|in:not confirmed,confirmed,completed,canceled',
-			'payment' => 'required|integer|min:0|max:100',
-			'discount' => 'integer|min:0|max:100|nullable',
-			'description' => 'string|nullable',
-			'lead_time_begin' => 'required|date',
-			'lead_time_finish' => 'required|after:lead_time_begin',
-			'options' => 'string|nullable',
+            'payment' => 'required|integer|min:0|max:100',
+            'description' => 'string|nullable',
+            'lead_time_begin' => 'required|date',
+            'lead_time_finish' => 'required|after:lead_time_begin',
+            'options' => 'string|nullable',
+            'service' => 'integer|exists:service,id|nullable',
         ];
     }
 }

@@ -38,6 +38,9 @@ Route::resource('service', 'ServiceController');
 // Order resource routes
 Route::resource('order', 'OrderController');
 
+// Order remove service route
+Route::get('/order/remove-service/{id}/{id_service}', 'OrderController@removeService')->middleware('can:admin, App\User')->middleware('verified');
+
 // Tariff plan resource routes
 Route::resource('plan', 'PlanController');
 
