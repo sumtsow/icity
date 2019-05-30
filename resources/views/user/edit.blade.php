@@ -85,9 +85,10 @@
     
             <div class="form-group row">
                 <label class="col-2" for="email_verified_at">{{ __('app.email verified at') }}</label>
-                <div class="col-10">
-                    <input name="email_verified_at" id="email_verified_at" type="checkbox" @if($user->email_verified_at) checked="checked" @endif />
-                                                                                                            
+                <div class="col-10 custom-control custom-switch">
+                    <input name="email_verified_at" id="email_verified_at" type="checkbox" class="custom-control-input" @if($user->email_verified_at) checked="checked" @endif />
+                    <label class="ml-3 custom-control-label" for="email_verified_at">&nbsp;</label>
+                                                                                
                     @error('email_verified_at')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

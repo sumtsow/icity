@@ -156,9 +156,10 @@
              
             <div class="form-group row">
                 <label class="col-2" for="payment">{{ __('app.payment') }}</label>
-                <div class="form-check col-10">
-                    <input type="checkbox" name="payment" id="payment" class="ml-2 form-check-input @error('payment') is-invalid @enderror" autofocus @if($company->payment_state) checked="checked" @endif />
-                           
+                <div class="custom-control custom-switch col-10 pl-5">
+                    <input type="checkbox" id="payment" name="payment" class="custom-control-input @error('payment') is-invalid @enderror" autofocus @if($company->payment_state) checked="checked" @endif />
+                    <label class="custom-control-label" for="payment">&nbsp;</label>
+                    
                     @error('payment')
                         <span class="ml-5 invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -170,9 +171,10 @@
              
             <div class="form-group row">
                 <label class="col-2" for="expired">{{ __('app.expired') }}</label>
-                <div class="form-check col-10">
-                    <input type="checkbox" name="expired" id="expired" class="ml-2 form-check-input @error('expired') is-invalid @enderror" autofocus @if($company->expired) checked="checked" @endif />
-                           
+                <div class="custom-control custom-switch col-10 pl-5">
+                    <input type="checkbox" name="expired" id="expired" class="custom-control-input @error('expired') is-invalid @enderror" autofocus @if($company->expired) checked="checked" @endif />
+                    <label class="custom-control-label" for="expired">&nbsp;</label>
+                    
                     @error('expired')
                         <span class="ml-5 invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -184,9 +186,10 @@
              
             <div class="form-group row">
                 <label class="col-2" for="enabled">{{ __('app.enabled') }}</label>
-                <div class="form-check col-10">
-                    <input type="checkbox" name="enabled" id="enabled" class="ml-2 form-check-input @error('enabled') is-invalid @enderror" autofocus @if($company->enabled) checked="checked" @endif />
-                           
+                <div class="custom-control custom-switch col-10 pl-5">
+                    <input type="checkbox" name="enabled" id="enabled" class="custom-control-input @error('enabled') is-invalid @enderror" autofocus @if($company->enabled) checked="checked" @endif />
+                    <label class="custom-control-label" for="enabled">&nbsp;</label>
+                    
                     @error('enabled')
                         <span class="ml-5 invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

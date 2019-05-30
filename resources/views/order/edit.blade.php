@@ -38,17 +38,21 @@
                     {{ $service->{'name_'.app()->getLocale()} }}
                     </a>
                 </h6>
-                <p>
-                    {{ $service->pivot->number }}
-                    {{ $service->{'unit_'.app()->getLocale()} }} x
-                    {{ $service->price }} {{ __('app.hrn') }} =
-                    {{ $order->getItemCost($service->id) }} {{ __('app.hrn') }}
-                    @if($service->discount)
-                    - {{ __('app.discount') }} {{ $service->discount }}% =
-                    <del>{{ $order->getItemCost($service->id) }} {{ __('app.hrn') }}</del>
-                    {{ $order->getDiscountItemCost($service->id) }} {{ __('app.hrn') }}
-                    @endif
-                </p>
+                <div class="form-row">
+                    <div class="col-1">
+                        <input class="form-control" type="number" name="service_{{ $service->id }}_number" value="{{ $service->pivot->number }}" />
+                    </div>
+                    <div class="col-10">
+                        {{ $service->{'unit_'.app()->getLocale()} }} x
+                        {{ $service->price }} {{ __('app.hrn') }} =
+                        {{ $order->getItemCost($service->id) }} {{ __('app.hrn') }}
+                        @if($service->discount)
+                        - {{ __('app.discount') }} {{ $service->discount }}% =
+                        <del>{{ $order->getItemCost($service->id) }} {{ __('app.hrn') }}</del>
+                        {{ $order->getDiscountItemCost($service->id) }} {{ __('app.hrn') }}
+                        @endif
+                    </div>
+                </div>
                 
                 <a type="button" form="service-form" class="close text-dark" href="{{ url('/order/remove-service', ['id' => $order->id, 'id_service' => $service->id ]) }}" >&times;</a>
                 

@@ -84,9 +84,14 @@ class OrderController extends Controller
         $order->lead_time_finish = \Carbon\Carbon::createFromFormat('H:i d.m.Y', $request->lead_time_finish);
         $order->options = $request->options;
         $order->save();
-        if(isset($request->service)) {
+        if(is_int($request->service)) {
             $order->services()->attach($request->service, ['number' => 1 ]);
         }
+        foreach($order->services as $service) {
+            if($service->pivot->number != $request->{'service_'.$service->id.'_number'}) {
+                $order->services()->updateExistingPivot($service->id, ['number' => $request->{'service_'.$service->id.'_number'} ]);
+            }
+        }        
         return redirect()->route('order.index'/*, ['id' => $order->id]*/);
     }
 

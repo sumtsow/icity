@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('styles')
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-@endsection
-
 @section('breadcrumb')
 <div class="row" id="breadcrumbs">
     <nav class="nav my-0 py-0">
@@ -42,10 +38,15 @@
             <td>{{ $user->phone }}</td>
             <td>{{ $user->created_at->format('d.m.Y') }}</td>
             <td>
+                
                 <form id="switch-form" action="{{ route('switchstate', ['id' => $user->id]) }}">
-                    @csrf
-                    <input type="checkbox" @if($user->email_verified_at) checked="checked" @endif onClick="this.form.submit();" />
+                @csrf    
+                <div class="custom-control custom-switch">    
+                    <input type="checkbox" class="custom-control-input" id="customSwitch{{ $user->id }}" @if($user->email_verified_at) checked="checked" @endif onClick="this.form.submit();" />
+                    <label class="custom-control-label" for="customSwitch{{ $user->id }}">&nbsp;</label>
+                </div>    
                 </form>
+                
             </td>
 </tr>        
 @endforeach

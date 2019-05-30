@@ -56,7 +56,10 @@
             <td>
                <form id="payment_state-form" action="{{ url('/company/switchstate', ['id' => $company->id, 'property' => 'payment_state']) }}">
                     @csrf
-                    <input type="checkbox" @if($company->payment_state) checked="checked" @endif onClick="this.form.submit();" />
+                    <div class="custom-control custom-switch"> 
+                        <input type="checkbox" class="custom-control-input" id="payment" @if($company->payment_state) checked="checked" @endif onClick="this.form.submit();" />
+                        <label class="custom-control-label" for="payment">&nbsp;</label>       
+                    </div>       
                 </form>
             </td>
         </tr>
@@ -65,7 +68,10 @@
             <td>
                <form id="expired-form" action="{{ url('/company/switchstate', ['id' => $company->id, 'property' => 'expired']) }}">
                     @csrf
-                    <input type="checkbox" @if($company->expired) checked="checked" @endif onClick="this.form.submit();" />
+                    <div class="custom-control custom-switch"> 
+                        <input type="checkbox" class="custom-control-input" id="expired" @if($company->expired) checked="checked" @endif onClick="this.form.submit();" />
+                        <label class="custom-control-label" for="expired">&nbsp;</label>
+                    </div>
                 </form>
             </td>
         </tr>
@@ -74,7 +80,10 @@
             <td>
                <form id="enabled-form" action="{{ url('/company/switchstate', ['id' => $company->id, 'property' => 'enabled']) }}">
                     @csrf
-                    <input type="checkbox" @if($company->enabled) checked="checked" @endif onClick="this.form.submit();" />
+                    <div class="custom-control custom-switch"> 
+                        <input type="checkbox" class="custom-control-input" id="enabled" @if($company->enabled) checked="checked" @endif onClick="this.form.submit();" />
+                        <label class="custom-control-label" for="enabled">&nbsp;</label>       
+                    </div>       
                 </form>
             </td>
         </tr>

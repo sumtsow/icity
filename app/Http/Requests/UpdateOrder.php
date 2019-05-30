@@ -31,7 +31,8 @@ class UpdateOrder extends FormRequest
             'lead_time_begin' => 'required|date',
             'lead_time_finish' => 'required|after:lead_time_begin',
             'options' => 'string|nullable',
-            'service' => 'integer|exists:service,id|nullable',
+            'service' => 'string|nullable',
+            //'number' => 'integer|min:1',
         ];
     }
 }
