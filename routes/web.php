@@ -24,7 +24,10 @@ Route::get('/setlocale', 'Controller@locale')
 Route::get('/home', 'HomeController@index')->name('home')->middleware('can:admin, App\User')->middleware('verified');
 
 // Cart resource routes
-Route::resource('cart', 'CartController');
+Route::resource('cart', 'CartController')->middleware('auth');
+
+// Cart remove service route
+Route::get('/cart/remove-service/{id}/{id_service}', 'CartController@removeService');
 
 // Category resource routes
 Route::resource('category', 'CategoryController');

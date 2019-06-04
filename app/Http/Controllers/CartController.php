@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
+use App\Http\Requests\UpdateCart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,7 @@ class CartController extends Controller
     public function index()
     {
         return view('cart.index', [
-            'cart' => Cart::where('id_user', Auth::id())->first(),
+            //'cart' => Cart::where('id_user', Auth::id())->first(),
         ]);
     }
 
@@ -31,14 +32,18 @@ class CartController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Add new service to cart.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id_service
+     * @param  \App\Http\Requests\UpdateCart $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UpdateCart $request)
     {
-        //
+        $cart = Cart::where('id_user', Auth::id())->first();
+        $cart->services()->attach($request->id_service, ['number' => $request->number] );
+        $cart->save();
+        return redirect()->to('/service/view/'.$request->id_service);
     }
 
     /**
@@ -68,15 +73,36 @@ class CartController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Cart  $cart
+     * @param  \App\Http\Requests\UpdateCart $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cart $cart)
+    public function update(UpdateCart $request, $id)
     {
-        //
+        $cart = Cart::find($id);
+        $cart->save();
+        foreach($cart->services as $service) {
+            if($service->pivot->number != $request->{'service_'.$service->id.'_number'}) {
+                $cart->services()->updateExistingPivot($service->id, ['number' => $request->{'service_'.$service->id.'_number'} ]);
+            }
+        }        
+        return redirect()->route('cart.index');
     }
 
+    /**
+     * Remove the specified service from cart.
+     *
+     * @param  int  $id
+     * @param  int  $id_service
+     * @return \Illuminate\Http\Response
+     */
+    public function removeService($id, $id_service)
+    {
+        $cart = Cart::find($id);
+        $cart->services()->detach($id_service);
+        return redirect()->route('cart.index');
+    }
+    
     /**
      * Remove the specified resource from storage.
      *

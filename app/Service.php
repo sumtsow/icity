@@ -34,7 +34,7 @@ class Service extends Model
      */
     public function orders()
     {
-        return $this->belongsToMany('\App\Order', 'order_service', 'id_service', 'id_order');
+        return $this->belongsToMany('App\Order', 'order_service', 'id_service', 'id_order');
     }
     
     /**

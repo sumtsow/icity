@@ -19,7 +19,7 @@
             <div class="col-md-10">
                 <div class="card-body">
                     <h5 class="card-title">{{ $service->{'name_'.app()->getLocale()} }}</h5>
-                    <p class="card-text">{{ __('app.provided by') }}: <a href="#">{{ $service->company->{'name_'.app()->getLocale()} }}</a></p>
+                    <p class="card-text">{{ __('app.provided by') }}: <a href="{{ route('company.show', ['id' => $service->company->id]) }}">{{ $service->company->{'name_'.app()->getLocale()} }}</a></p>
                     <p class="card-text">{{ __('app.price per unit', ['price' => $service->price, 'unit' => '1 '.$service->{'unit_'.app()->getLocale()}]) }}</p>
                     <a class="btn btn-success" href="{{ url('/service/view', ['id' => $service->id]) }}">{{ __('app.details') }}</a>
                 </div>

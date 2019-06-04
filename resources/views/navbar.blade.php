@@ -63,7 +63,13 @@
 
 <div class="col-3 d-none d-xs-none d-sm-none d-md-block d-lg-block d-xl-block">
     
-    <a class="mx-3 my-1" href="{{ route('cart.index') }}"><img src="/img/cart.png" alt="map" /></a>
+    <a class="mx-3 my-1" href="{{ route('cart.index') }}"><img src="/img/cart.png" alt="map" />
+        @auth
+        @if(isset($cart->services))
+        <span class="badge badge-light">{{ count($cart->services) }}</span>
+        @endif
+        @endauth
+    </a>
     
     <div class="d-inline dropdown mt-1">
        

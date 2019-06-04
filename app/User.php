@@ -30,7 +30,15 @@ class User extends Authenticatable //implements MustVerifyEmail
     protected $hidden = [
         'password', 'remember_token',
     ];
-
+    
+    /**
+     * Get the cart belongs to this user.
+     */
+    public function cart()
+    {
+        return $this->hasOne('App\Cart', 'id_user');
+    }
+    
     /**
      * The attributes that should be cast to native types.
      *
