@@ -23,6 +23,9 @@ Route::get('/setlocale', 'Controller@locale')
 // Home page
 Route::get('/home', 'HomeController@index')->name('home')->middleware('can:admin, App\User')->middleware('verified');
 
+// Cart resource routes
+Route::resource('cart', 'CartController');
+
 // Category resource routes
 Route::resource('category', 'CategoryController');
 

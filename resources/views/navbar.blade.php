@@ -63,7 +63,7 @@
 
 <div class="col-3 d-none d-xs-none d-sm-none d-md-block d-lg-block d-xl-block">
     
-    <a class="mx-3 my-1" href="#"><img src="/img/cart.png" alt="map" /></a>
+    <a class="mx-3 my-1" href="{{ route('cart.index') }}"><img src="/img/cart.png" alt="map" /></a>
     
     <div class="d-inline dropdown mt-1">
        

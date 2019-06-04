@@ -40,7 +40,7 @@
                 </h6>
                 <div class="form-row">
                     <div class="col-1">
-                        <input class="form-control" type="number" name="service_{{ $service->id }}_number" value="{{ $service->pivot->number }}" />
+                        <input class="form-control px-1" type="number" name="service_{{ $service->id }}_number" value="{{ $service->pivot->number }}" />
                     </div>
                     <div class="col-10">
                         {{ $service->{'unit_'.app()->getLocale()} }} x
