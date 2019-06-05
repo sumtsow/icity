@@ -2,7 +2,7 @@
     
     <div class="row">
         
-        <nav class="col-5 navbar navbar-dark p-0">
+        <nav class="col-5 navbar navbar-dark p-0" style="min-height:  88px">
             
             <button class="navbar-toggler" type="button" data-toggle="dropdown" aria-haspopup="true" aria-label="Toggle navigation" id="navbarDropdown">
                 <span class="navbar-toggler-icon"></span>
