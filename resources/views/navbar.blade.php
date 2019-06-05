@@ -65,8 +65,8 @@
     
     <a class="mx-3 my-1" href="{{ route('cart.index') }}"><img src="/img/cart.png" alt="map" />
         @auth
-        @if(isset($cart->services))
-        <span class="badge badge-light">{{ count($cart->services) }}</span>
+        @if(isset(Auth::user()->cart->services))
+        <span class="badge badge-light">{{ count(Auth::user()->cart->services) }}</span>
         @endif
         @endauth
     </a>

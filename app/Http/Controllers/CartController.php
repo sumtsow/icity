@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
+use App\Service;
 use App\Http\Requests\UpdateCart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,9 +17,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('cart.index', [
-            //'cart' => Cart::where('id_user', Auth::id())->first(),
-        ]);
+        return view('cart.index');
     }
 
     /**
@@ -41,9 +40,24 @@ class CartController extends Controller
     public function store(UpdateCart $request)
     {
         $cart = Cart::where('id_user', Auth::id())->first();
-        $cart->services()->attach($request->id_service, ['number' => $request->number] );
+		$id_service = $request->id_service;		
+		
+		$exists = false;
+		foreach($cart->services as $service) {
+			if($service->id == $id_service) {
+				$exists = true;
+			}
+		}
+
+		if($exists) {
+			$cart->services()->updateExistingPivot($id_service, ['number' => $request->number + $service->pivot->number ] );
+		}
+		else {
+			$cart->services()->attach($id_service, ['number' => $request->number] );
+		}
         $cart->save();
-        return redirect()->to('/service/view/'.$request->id_service);
+        //return redirect()->to('/service/view/'.$id_service);
+		return redirect()->route('cart.index');
     }
 
     /**

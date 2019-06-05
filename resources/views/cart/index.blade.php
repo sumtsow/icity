@@ -2,15 +2,15 @@
 
 @section('content')
 <h2 class="mt-3">{{ __('app.cart') }}</h2>
-@if(isset($cart))
-<form action="{{ route('cart.update', ['id' => $cart->id]) }}" method="post" id="cart-form">
+@if(isset(Auth::user()->cart))
+<form action="{{ route('cart.update', ['id' => Auth::user()->cart->id]) }}" method="post" id="cart-form">
     {{ csrf_field() }}
     {{ method_field('put') }}
     
     <div class="form-group">
         <div class="col-10">
         
-            @foreach($cart->services as $service)
+            @foreach(Auth::user()->cart->services as $service)
             <div class="mx-2 w-100 alert alert-success alert-dismissible fade show" role="alert">
                 <h6 class="font-weight-bold">
                     <a href="{{ url('/service/view', ['id' => $service->id] ) }}" target="_blank">
@@ -31,24 +31,26 @@
                         {{ $service->pivot->number * $service->price }} {{ __('app.hrn') }}
                         @if($service->discount)
                         - {{ __('app.discount') }} {{ $service->discount }}% =
-                        <del>{{ $cart->getItemCost($service->id) }} {{ __('app.hrn') }}</del>
-                        {{ $cart->getDiscountItemCost($service->id) }} {{ __('app.hrn') }}
+                        <del>{{ Auth::user()->cart->getItemCost($service->id) }} {{ __('app.hrn') }}</del>
+                        {{ Auth::user()->cart->getDiscountItemCost($service->id) }} {{ __('app.hrn') }}
                         @endif
                     </div>
                 </div>
                 
-                <a type="button" form="service-form" class="close text-dark" href="{{ url('/cart/remove-service', ['id' => $cart->id, 'id_service' => $service->id ]) }}" >&times;</a>
+                <a type="button" form="service-form" class="close text-dark" href="{{ url('/cart/remove-service', ['id' => Auth::user()->cart->id, 'id_service' => $service->id ]) }}" >&times;</a>
                 
             </div>   
             @endforeach
-            
+        
+			<h4>{{ __('app.price') }}: {{ Auth::user()->cart->getTotalCost() }} {{ __('app.hrn') }}</h4>
+		
         </div>
         
     </div>
 
 <div class="row">
     <div class="col">
-        <button type="submit" href="{{ route('cart.update', ['id' => $cart->id]) }}" class="btn btn-success">{{ __('app.update') }}</button>
+        <button type="submit" href="{{ route('cart.update', ['id' => Auth::user()->cart->id]) }}" class="btn btn-success">{{ __('app.update') }}</button>
     </div>
 </div>
 

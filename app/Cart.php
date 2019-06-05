@@ -26,6 +26,22 @@ class Cart extends Model
     }
     
     /**
+    * Get full cost of all cart items with all discounts
+    *
+    * @return float
+    */
+    public function getTotalCost()
+    {
+        $totalCost = (float) 0;
+		
+		foreach($this->services as $service) {
+			$totalCost += $this->getDiscountItemCost($service->id);
+		}
+
+        return $totalCost;
+    }
+	
+	/**
     * Get full cost of the specified cart item
     *
     * @return float
