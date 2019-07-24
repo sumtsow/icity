@@ -46,7 +46,7 @@
                     </div>
                     
                     <div class="col-2">
-                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">{{ __('app.search') }}</button>
+                        <button title="{{ __('app.search') }}" class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
                     </div>
                 
                 </div>
