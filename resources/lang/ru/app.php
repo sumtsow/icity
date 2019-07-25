@@ -13,6 +13,7 @@ return [
     |
     */
     'action' => 'Возможные действия',
+    'actions' => 'Акции',
     'address' => 'Адрес',
     'add to cart' => 'Добавить в корзину',
     'add to order' => 'Добавить к заказу',
@@ -21,6 +22,7 @@ return [
     'cancel' => 'Отмена',
     'canceled' => 'отменен',
     'cart' => 'Корзина',
+    'categories' => 'Категории',
     'categories admin' => 'Управление категориями',
     'categories list' => 'Список категорий',
     'category' => 'Категория',

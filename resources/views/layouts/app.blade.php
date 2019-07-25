@@ -48,7 +48,7 @@
                 
             </div>
             
-            <div class="row w-75">
+            <div class="row w-75" id="padding">
                 <div class="col my-5">
                     &nbsp;
                 </div>

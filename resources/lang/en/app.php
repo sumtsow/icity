@@ -13,6 +13,7 @@ return [
     |
     */
     'action' => 'Posiible actions',
+    'actions' => 'Actions',
     'add' => 'Add',
     'address' => 'Address',
     'add to cart' => 'Add to Cart',
@@ -21,6 +22,7 @@ return [
     'cancel' => 'Cancel',
     'canceled' => 'canceled',
     'cart' => 'Cart',
+    'categories' => 'Categories',
     'categories admin' => 'Categiries administration',
     'categories list' => 'The Categories List',
     'category' => 'Category',

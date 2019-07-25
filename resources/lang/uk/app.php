@@ -13,6 +13,7 @@ return [
     |
     */
     'action' => 'Можливі дії',
+    'actions' => 'Акції',
     'address' => 'Адреса',
     'add to cart' => 'Додати до кошика',
     'add to order' => 'Додати до замовлення',
@@ -21,6 +22,7 @@ return [
     'cancel' => 'Відміна',
     'canceled' => 'скасований',
     'cart' => 'Кошик',
+    'categories' => 'Категорії',
     'categories admin' => 'Управління категоріями',
     'categories list' => 'Список категорій',
     'category' => 'Категорія',
