@@ -31,22 +31,22 @@
             </a>
         </div>
 
-        <div class="col d-flex my-auto mx-3">
-            <a class="d-none d-xs-none d-sm-none d-md-flex d-lg-flex d-xl-flex" href="#"><img src="/img/map.png" alt="Map" /></a>
+        <div class="col my-auto mx-3 d-none d-xs-none d-sm-none d-md-flex d-lg-flex d-xl-flex">
+            <a class="" href="#"><img src="/img/map.png" alt="Map" /></a>
         </div>
 
-        <div class="col d-none d-xs-none d-sm-none d-md-flex d-lg-flex d-xl-flex">
+        <div class="col w-100">
             
-            <form class="form my-4 w-100">   
+            <form class="form my-4">   
                 
-                <div class="d-flex justify-content-end my-auto">
+                <div class="d-inline-flex justify-content-end my-auto">
 
                     <div class="mr-2">
                         <input class="form-control mr-2" type="search" placeholder="{{ __('app.find service') }}" aria-label="{{ __('app.search') }}">
                     </div>
                     
                     <div class="mr-2">
-                        <button title="{{ __('app.search') }}" class="btn btn-outline-light" type="submit"><i class="fas fa-search"></i></button>
+                        <button title="{{ __('app.search') }}" class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
                     </div>
                 
                 </div>
@@ -60,7 +60,7 @@
     <a class="my-auto" href="{{ route('cart.index') }}"><img src="/img/cart.png" alt="Cart" />
         @auth
         @if(isset(Auth::user()->cart->services))
-        <span class="badge badge-pill badge-light">{{ count(Auth::user()->cart->services) }}</span>
+        <span class="badge badge-pill badge-light position-fixed" style="margin: 4px 0 0 -50px !important">{{ count(Auth::user()->cart->services) }}</span>
         @endif
         @endauth
     </a>

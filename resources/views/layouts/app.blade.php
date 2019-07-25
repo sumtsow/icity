@@ -25,7 +25,7 @@
         
         <div class="container-fluid m-0 p-0">
             
-            <div class="row mx-0">
+            <div class="row mx-0 d-none d-xs-none d-sm-none d-md-flex d-lg-flex d-xl-flex">
                 @auth
                 <div class="col">
                     {{ __('app.your city') }} - {{ (Auth::user()->city) ? Auth::user()->city->{'name_'.app()->getLocale()} : null }}?
@@ -54,7 +54,7 @@
                 </div>
             </div>
                 
-            <div class="row mx-0 fixed-bottom">
+            <div class="row mx-0 fixed-bottom d-none d-xs-none d-sm-none d-md-flex d-lg-flex d-xl-flex">
 
                 <div class="col text-light bg-success p-3">
                     &copy; iCity 2019
@@ -71,6 +71,28 @@
                             @endforeach
                         </select>
                     </form>
+                </div>
+                
+            </div>
+            
+            <div class="row mx-0 text-light bg-success fixed-bottom d-flex d-xs-flex d-sm-flex d-md-none d-lg-none d-xl-none">
+                
+                @auth
+                <div class="col text-uppercase p-3">
+                    <h4>{{ (Auth::user()->city) ? Auth::user()->city->{'name_'.app()->getLocale()} : null }}</h4>
+                </div>                    
+                @endauth                    
+                
+                <div class="col p-3">
+                    <h4>{{ date('H:i') }}</h4>
+                </div>
+                
+                <div class="col p-3">
+                    <h4>+12&deg;C</h4>
+                </div>
+                                
+                <div class="col p-3">
+                    <h4><i class="fas fa-cloud-rain"></i></h4>
                 </div>
                 
             </div>
