@@ -27,7 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('can:admin
 Route::resource('cart', 'CartController')->middleware('auth');
 
 // Cart remove service route
-Route::get('/cart/remove-service/{id}/{id_service}', 'CartController@removeService');
+Route::get('/cart/remove-service/{id}/{id_service}', 'CartController@removeService')->middleware('can:admin, App\User');
 
 // Category resource routes
 Route::resource('category', 'CategoryController');
