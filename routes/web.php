@@ -13,6 +13,8 @@
 
 Auth::routes(['verify' => true]);
 
+Route::get('/logout', 'Auth\LoginController@logout');
+
 // Main page
 Route::get('/', 'Controller@index')->name('index');
 
@@ -33,7 +35,7 @@ Route::get('/cart/remove-service/{id}/{id_service}', 'CartController@removeServi
 Route::resource('category', 'CategoryController');
 
 // Company resource routes
-Route::resource('company', 'CompanyController');
+Route::resource('company', 'CompanyController')->middleware('can:admin, App\User');
 
 // Service view page 
 Route::get('/service/view/{id}', 'ServiceController@view');
