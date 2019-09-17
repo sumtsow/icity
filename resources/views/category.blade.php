@@ -2,6 +2,8 @@
 
 @section('content')
 
+@if(is_a($category, 'App\Category'))
+
 <h1 class="mt-3">
     {{ $category->{'name_'.app()->getLocale()} }}
 </h1>
@@ -29,5 +31,7 @@
     @endif
     
 @endforeach
+
+@endif
 
 @endsection
