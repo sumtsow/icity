@@ -5,20 +5,31 @@
             </button>
 
             <div class="dropdown-menu bg-success" aria-labelledby="navbarDropdown">
+                
+                <a class="nav-link text-light d-xs-flex d-sm-flex d-md-flex d-lg-none d-xl-none" href="{{ url('/') }}">{{ __('app.main') }}</a>
 
-                <a class="nav-link text-light" href="#">{{ __('app.poster & tickets') }}</a>
+            @auth
+            <a class="nav-link text-light d-xs-flex d-sm-flex d-md-flex d-lg-none d-xl-none"  href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form-2').submit();">{{ __('auth.Logout') }}</a>
+            <form id="logout-form-2" action="{{ route('logout') }}" method="post" style="display: none;">@csrf</form>   
+                
+            @else
+            <a class="nav-link text-light d-xs-flex d-sm-flex d-md-flex d-lg-none d-xl-none" href="{{ route('login') }}">{{ __('auth.login') }}</a>
+            
+            @endauth
+                
+                <a class="nav-link text-light" href="{{ url('/tickets') }}">{{ __('app.poster & tickets') }}</a>
 
-                <a class="nav-link text-light" href="#">{{ __('app.city news') }}</a>
+                <a class="nav-link text-light" href="{{ url('/news') }}">{{ __('app.city news') }}</a>
 
-                <a class="nav-link text-light" href="#">{{ __('app.weather forecast') }}</a>
+                <a class="nav-link text-light" href="{{ url('/forecast') }}">{{ __('app.weather forecast') }}</a>
 
-                <a class="nav-link text-light" href="#">{{ __('app.services map') }}</a>
+                <a class="nav-link text-light" href="{{ url('/service') }}">{{ __('app.services map') }}</a>
 
-                <a class="nav-link text-light" href="#">{{ __('app.companies list') }}</a>
+                <a class="nav-link text-light" href="{{ url('/company') }}">{{ __('app.companies list') }}</a>
 
-                <a class="nav-link text-light" href="#">{{ __('app.delivery & payment') }}</a>
+                <a class="nav-link text-light" href="{{ url('/delivery') }}">{{ __('app.delivery & payment') }}</a>
 
-                <a class="nav-link text-light" href="#">{{ __('app.support') }}</a>
+                <a class="nav-link text-light" href="{{ url('/support') }}">{{ __('app.support') }}</a>
 
             </div>
 
@@ -60,7 +71,7 @@
     <a class="my-auto" href="{{ route('cart.index') }}"><img src="/img/cart.png" alt="Cart" />
         @auth
         @if(isset(Auth::user()->cart->services))
-        <span class="badge badge-pill badge-light position-fixed" style="margin: 4px 0 0 -50px !important">{{ count(Auth::user()->cart->services) }}</span>
+        <span class="badge badge-pill badge-light position-absolute" style="margin: 4px 0 0 -50px !important">{{ count(Auth::user()->cart->services) }}</span>
         @endif
         @endauth
     </a>
@@ -78,7 +89,7 @@
             <div class="dropdown-divider"></div>
 
             <a class="dropdown-item bg-success text-light" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('auth.Logout') }}</a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>   
+            <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none;">@csrf</form>   
                 
             @else
             <a class="dropdown-item bg-success text-light" href="{{ route('login') }}">{{ __('auth.login') }}</a>

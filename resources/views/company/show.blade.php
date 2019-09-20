@@ -1,28 +1,34 @@
 @extends('layouts.app')
 
-@section('breadcrumb')
-<div class="row" id="breadcrumbs">
-    <nav class="nav my-0 py-0">
-        <ol class="breadcrumb m-0 text-truncate">
-            <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('auth.Dashboard')}}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('company.index') }}">{{ __('app.companies admin')}}</a></li>
-        </ol>
-    </nav>
-</div>
-@endsection
+@can('admin', 'App\User')
+    @section('breadcrumb')
+    <div class="row" id="breadcrumbs">
+        <nav class="nav my-0 py-0">
+            <ol class="breadcrumb m-0 text-truncate">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('auth.Dashboard')}}</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('company.index') }}">{{ __('app.companies admin')}}</a></li>
+            </ol>
+        </nav>
+    </div>
+    @endsection
+@endcan
 
 @section('content')
 
 <h2 class="mt-3">
-    {{ __('app.company') }} <em>{{ $company->{'name_'.app()->getLocale()} }}</em>
+    {{ __('app.company') }}: <em>{{ $company->{'name_'.app()->getLocale()} }}</em>
+    @can('admin', 'App\User')
     <button class="btn btn-danger" data-toggle="modal" data-target="#Modal">{{ __('app.delete') }}</button>
+    @endcan
 </h2>
    
 <div class="table-responsive">
     <table class="table table-sm bg-white table-striped">
+        @can('admin', 'App\User')
         <tr>
             <th>{{ __('app.id') }}:</th><td>{{ $company->id }}</td>
         </tr>
+        @endcan
         <tr>
             <th>{{ __('app.image') }}:</th>
             <td>
@@ -35,13 +41,17 @@
         <tr>
             <th>{{ __('app.tariff plan') }}:</th><td>{{ $company->plan->{'name_'.app()->getLocale() } }}</td>
         </tr>
-        
-        @foreach(config('app.locales') as $locale)
+        @can('admin', 'App\User')
+            @foreach(config('app.locales') as $locale)
         <tr>
             <th>{{ __('app.name') }} ({{ __('app.current language', [], $locale) }}):</th><td>{{ $company->{"name_$locale"} }}</td>
         </tr>
-        @endforeach
-        
+            @endforeach
+        @else
+        <tr>
+            <th>{{ __('app.name') }}:</th><td>{{ $company->{'name_'.app()->getLocale()} }}</td>
+        </tr>        
+        @endcan
         <tr>
             <th>{{ __('app.address') }}:</th><td>{{ $company->address }}</td>
         </tr>
@@ -51,6 +61,7 @@
         <tr>
             <th>{{ __('auth.E-Mail Address') }}:</th><td>{{ $company->email }}</td>
         </tr>
+        @can('admin', 'App\User')
         <tr>
             <th>{{ __('app.payment') }}:</th>
             <td>
@@ -92,7 +103,11 @@
             <th>{{ __('app.description') }} ({{ __('app.current language', [], $locale) }}):</th><td>{!! nl2br($company->{"description_$locale"}) !!}</td>
         </tr>
         @endforeach
-        
+        @else
+        <tr>        
+            <th>{{ __('app.description') }}:</th><td>{!! nl2br($company->{'name_'.app()->getLocale()}) !!}</td>
+        </tr>        
+        @endcan
         <tr>
             <th>{{ __('app.work time') }}:</th>
             <td>{{ __('app.lead time period', [
@@ -115,7 +130,8 @@
         </tr>
         <tr>
             <th>Viber</th><td>{{ $company->viber }}</td>
-        </tr>        
+        </tr>   
+        @can('admin', 'App\User')
         <tr>
             <th>{{ __('app.options') }}:</th><td>{{ $company->options }}</td>
         </tr>
@@ -124,10 +140,12 @@
         </tr>
         <tr>
             <th>{{ __('app.updated at') }}:</th><td>{{ $company->updated_at->format('d.m.Y H:i:s') }}</td>
-        </tr>    
+        </tr>
+        @endcan
     </table>
 </div>
 
+@can('admin', 'App\User')
 <div class="row">
     <div class="col">
         <a href="{{ route('company.edit', ['id' => $company->id]) }}"class="btn btn-success">{{ __('app.edit') }}</a>
@@ -164,5 +182,6 @@
     </div>
   </div>
 </div>
+@endcan
 
 @endsection

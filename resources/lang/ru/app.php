@@ -64,6 +64,7 @@ return [
     'lead time period' => 'От :begin до :finish',
     'lead time' => 'Срок исполнения',
     'loyality card' => '№ карты лояльности',
+    'main' => 'На главную',
     'map' => 'Карта',
     'month(s)' => 'месяц(ев)',
     'name' => 'Название',

@@ -32,10 +32,12 @@ Route::resource('cart', 'CartController')->middleware('auth');
 Route::get('/cart/remove-service/{id}/{id_service}', 'CartController@removeService')->middleware('can:admin, App\User');
 
 // Category resource routes
-Route::resource('category', 'CategoryController');
+Route::resource('category', 'CategoryController')->middleware('can:admin, App\User');
 
 // Company resource routes
+Route::get('/company/{id}', 'CompanyController@show')->name('company.show');
 Route::resource('company', 'CompanyController')->middleware('can:admin, App\User');
+Route::get('/company', 'CompanyController@index')->name('company.index');
 
 // Service view page 
 Route::get('/service/view/{id}', 'ServiceController@view');

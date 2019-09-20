@@ -64,6 +64,7 @@ return [
     'lead time' => 'Lead Time',
     'lead time period' => 'From :begin to :finish',
     'loyality card' => 'Loyality card No',
+    'main' => 'Main page',
     'map' => 'Map',
     'month(s)' => 'month(s)',
     'name' => 'Name',
