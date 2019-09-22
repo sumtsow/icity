@@ -34,10 +34,14 @@ Route::get('/cart/remove-service/{id}/{id_service}', 'CartController@removeServi
 // Category resource routes
 Route::resource('category', 'CategoryController')->middleware('can:admin, App\User');
 
-// Company resource routes
+// Company routes
+Route::get('/company/index', 'CompanyController@index')->name('company.index');
+Route::get('/company/create', 'CompanyController@create')->middleware('can:admin, App\User')->name('company.create');
 Route::get('/company/{id}', 'CompanyController@show')->name('company.show');
-Route::resource('company', 'CompanyController')->middleware('can:admin, App\User');
-Route::get('/company', 'CompanyController@index')->name('company.index');
+Route::get('/company/{id}/edit', 'CompanyController@edit')->middleware('can:admin, App\User')->name('company.edit');
+Route::post('/company', 'CompanyController@store')->middleware('can:admin, App\User')->name('company.store');
+Route::put('/company/update', 'CompanyController@update')->middleware('can:admin, App\User')->name('company.update');
+Route::delete('/company/{id}', 'CompanyController@destroy')->middleware('can:admin, App\User')->name('company.destroy');
 
 // Service view page 
 Route::get('/service/view/{id}', 'ServiceController@view');

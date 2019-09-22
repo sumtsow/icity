@@ -16,31 +16,36 @@ $(document).ready(function() {
 
 function getLocation() {
     return $.ajax({
-        url: "https://ipapi.co/jsonp/",
-        dataType: "jsonp",
+        url: "https://ipapi.co/city",
         type: "GET",
         async: "true",
-    });
+    });        
 }
 
-function getWeather(locdata) {
-    var lat = locdata.latitude;
-    var lon = locdata.longitude;
-    var apiURI = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=5b58aee62c41eb64fcab16edce2e5cc1";
-    if (locdata){
-        $("#city").html(locdata.city);
+function getWeather(city) {
+    var result = false;
+    if (city) {
+        var userCity = $(".city").attr('title');
+        if(typeof userCity === "undefined") {
+            userCity = city;
+            $(".city").html(city);
+        }
+        var apiURI = "https://api.openweathermap.org/data/2.5/weather?q=" + userCity + "&appid=5b58aee62c41eb64fcab16edce2e5cc1";
+        result = $.ajax({
+            url: apiURI,
+            dataType: "jsonp",
+            type: "GET",
+            async: "true",
+        }).done(dataHandler);
     }
-    return answer = $.ajax({
-      url: apiURI,
-      dataType: "jsonp",
-      type: "GET",
-      async: "true",
-    }).done(dataHandler);
+    return result;
 }
 
 function dataHandler(data) {
-    var temp = data.main.temp - 273.15;
-    $("#temp").html(temp.toFixed(0) + "&deg;C");
-    var imgURL = "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
-    $("#weatherImg").attr("src", imgURL);
+    if(data) {
+        var temp = data.main.temp - 273.15;
+        $("#temp").html(temp.toFixed(0) + "&deg;C");
+        var imgURL = "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
+        $("#weatherImg").attr("src", imgURL);
+    }
 }

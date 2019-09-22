@@ -28,12 +28,16 @@
         <div class="container-fluid m-0 p-0">
             
             <div class="row mx-0 d-none d-xs-none d-sm-none d-md-flex d-lg-flex d-xl-flex">
-                @auth
                 <div class="col">
-                    {{ __('app.your city') }} - {{ (Auth::user()->city) ? Auth::user()->city->{'name_'.app()->getLocale()} : null }}?
-                </div>
+                {{ __('app.your city') }} - 
+                @auth
+                    <span class="city" title="{{ Auth::user()->city->{'name_en'} }}">
+                    {{ (Auth::user()->city) ? Auth::user()->city->{'name_'.app()->getLocale()} : null }}
+                @else
+                    <span class="city">
                 @endauth
-                
+                    </span>?
+                </div>
             </div>
                 
             <div class="d-flex row mx-0 bg-success">
@@ -80,14 +84,17 @@
             <div class="row pt-2 align-items-center mx-0 text-light bg-success fixed-bottom d-flex d-xs-flex d-sm-flex d-md-none d-lg-none d-xl-none">
                 
                 <div class="col">
-                    <h5 id="city">
+                    
                 @auth
-                    {{ (Auth::user()->city) ? Auth::user()->city->{'name_'.app()->getLocale()} : null }}
+                    <h5 class="city" title="{{ Auth::user()->city->{'name_en'} }}">
+    {{ (Auth::user()->city) ? Auth::user()->city->{'name_'.app()->getLocale()} : null }}
+                @else
+                    <h5 class="city">
                 @endauth
-                    </h5>                
+                    </h5>   
                 </div>
                 
-                <div class="col" id=Clock>
+                <div class="col">
                     <h5><span id="hours"></span>:<span id="min"></span></h5>
                 </div>
                 
