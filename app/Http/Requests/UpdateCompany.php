@@ -27,7 +27,7 @@ class UpdateCompany extends FormRequest
         'plan'=> 'required|integer',
         'city'=> 'required|integer',
         'address'=> 'string|max:255|nullable',        
-        'phone'=> 'string|max:12|nullable',
+        'phone'=> 'string|max:14|nullable',
         'email'=> 'required|max:127',
         'payment_state'=> 'string|max:3',
         'expired'=> 'string|max:3',

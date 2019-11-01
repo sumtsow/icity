@@ -1,4 +1,4 @@
-        <nav class="col-1 navbar navbar-dark p-0" style="min-height:  88px">
+        <nav class="col-2 navbar navbar-dark p-0" style="min-height:  88px">
             
             <button class="navbar-toggler" type="button" data-toggle="dropdown" aria-haspopup="true" aria-label="Toggle navigation" id="navbarDropdown">
                 <span class="navbar-toggler-icon"></span>
@@ -35,7 +35,7 @@
 
         </nav>
 
-        <div class="col-2">
+        <div class="col-1">
             <a class="navbar-brand text-center text-uppercase d-none d-xs-none d-sm-none  d-md-block d-lg-block d-xl-block" href="/">
                 <span class="h1 font-weight-bold text-light">iCity</span><br>
                 <span class="h6 text-dark font-weight-bold"><sup>{{ __('app.online city') }}</sup></span>
@@ -66,7 +66,7 @@
             
         </div>
 
-<div class="col-4 d-none d-xs-none d-sm-none d-md-flex d-lg-flex d-xl-flex justify-content-end">
+<div class="col-3 d-none d-xs-none d-sm-none d-md-flex d-lg-flex d-xl-flex justify-content-end">
     
     <a class="my-auto" href="{{ route('cart.index') }}"><img src="/img/cart.png" alt="Cart" />
         @auth
@@ -107,3 +107,4 @@
     </div>
     
 </div>
+<div class="col-1"></div>

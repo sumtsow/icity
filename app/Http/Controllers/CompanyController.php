@@ -105,9 +105,9 @@ class CompanyController extends Controller
      * @param int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCompany $request, $id)
+    public function update(UpdateCompany $request)
     {
-        $company = Company::find($id);
+        $company = Company::find($request->id);
         foreach(config('app.locales') as $locale) {
             $company->{'name_'.$locale} = $request->{'name_'.$locale};
             $company->{'description_'.$locale} = $request->{'description_'.$locale};
