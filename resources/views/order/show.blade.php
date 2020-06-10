@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@can('admin', 'App\User')
 @section('breadcrumb')
 <div class="row" id="breadcrumbs">
     <nav class="nav my-0 py-0">
@@ -144,3 +144,4 @@
 </div>
 
 @endsection
+@endcan

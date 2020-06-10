@@ -50,16 +50,16 @@ Route::get('/service/view/{id}', 'ServiceController@view');
 Route::resource('service', 'ServiceController');
 
 // Order resource routes
-Route::resource('order', 'OrderController');
+Route::resource('order', 'OrderController')->middleware('can:admin, App\User');
 
 // Order remove service route
 Route::get('/order/remove-service/{id}/{id_service}', 'OrderController@removeService')->middleware('can:admin, App\User')->middleware('verified');
 
 // Tariff plan resource routes
-Route::resource('plan', 'PlanController');
+Route::resource('plan', 'PlanController')->middleware('can:admin, App\User');
 
 // User resource routes
-Route::resource('user', 'UserController');
+Route::resource('user', 'UserController')->middleware('can:admin, App\User');
 
 // User state switch action
 Route::get('/user/switchstate/{id}', 'UserController@switchstate')->name('switchstate')->middleware('can:admin, App\User')->middleware('verified');

@@ -15,7 +15,9 @@
 
 <h2 class="mt-3">
     {{ __('app.service') }} <em>{{ $service->{'name_'.app()->getLocale()} }}</em>
+    @can('update', $service)
     <button class="btn btn-danger" data-toggle="modal" data-target="#Modal">{{ __('app.delete') }}</button>
+    @endcan
 </h2>
    
 <div class="table-responsive">

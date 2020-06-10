@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@can('admin', 'App\User')
 @section('breadcrumb')
 <div class="row" id="breadcrumbs">
     <nav class="nav my-0 py-0">
@@ -9,9 +10,12 @@
     </nav>
 </div>
 @endsection
+@endcan
 
 @section('content')
+@can('admin', 'App\User')
 <h2 class="mt-3">{{ __('app.orders admin')}} <a href="{{ route('order.create') }}"  class="btn btn-success mb-3">{{ __('app.add') }}</a></h2>
+@endcan
 
 <div class="table-responsive">
 <table class="table table-sm bg-white table-striped">
